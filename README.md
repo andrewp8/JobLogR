@@ -1,5 +1,5 @@
 # JobLogR
-###### App will be deployed on Apr 10th
+###### The app will be deployed in early April
 <p align="center" width="100%">
 <img alt="JobLogR Wireframe" width="700px" src="https://github.com/andrewp8/jobLogR/assets/69804999/c2c00383-66d8-4c3f-b5bd-2fc591d9fa94" />
 </p>
