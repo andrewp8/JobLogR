@@ -2,9 +2,8 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
-    enable_extension 'citext' unless extension_enabled?('citext')
     create_table :users do |t|
-      # enable_extension("citext")
+      enable_extension("citext")
       ## Database authenticatable
       t.citext :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
