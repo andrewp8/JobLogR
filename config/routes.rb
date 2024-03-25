@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :boards
   mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
   root to: "boards#index"
   
