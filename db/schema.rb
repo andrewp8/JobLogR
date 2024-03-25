@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_25_222721) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_25_225601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -19,6 +19,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_222721) do
     t.string "board_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "job_listings", force: :cascade do |t|
+    t.string "title"
+    t.string "company"
+    t.string "location"
+    t.float "salary"
+    t.integer "status", default: 0, null: false
+    t.text "details"
+    t.string "details_summary"
+    t.bigint "applicant_id", null: false
+    t.integer "points", default: 0, null: false
+    t.bigint "board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_job_listings_on_applicant_id"
+    t.index ["board_id"], name: "index_job_listings_on_board_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_222721) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "job_listings", "boards"
+  add_foreign_key "job_listings", "users", column: "applicant_id"
 end

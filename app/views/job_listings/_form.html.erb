@@ -1,0 +1,67 @@
+<%= form_with(model: job_listing) do |form| %>
+  <% if job_listing.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(job_listing.errors.count, "error") %> prohibited this job_listing from being saved:</h2>
+
+      <ul>
+        <% job_listing.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :company, style: "display: block" %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :salary, style: "display: block" %>
+    <%= form.text_field :salary %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.text_area :details %>
+  </div>
+
+  <div>
+    <%= form.label :details_summary, style: "display: block" %>
+    <%= form.text_field :details_summary %>
+  </div>
+
+  <div>
+    <%= form.label :applicant_id, style: "display: block" %>
+    <%= form.text_field :applicant_id %>
+  </div>
+
+  <div>
+    <%= form.label :points, style: "display: block" %>
+    <%= form.number_field :points %>
+  </div>
+
+  <div>
+    <%= form.label :board_id, style: "display: block" %>
+    <%= form.text_field :board_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
