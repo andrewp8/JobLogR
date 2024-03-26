@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Board < ApplicationRecord
-  has_many :job_listings
+  has_many :job_listings, dependent: :destroy
 end

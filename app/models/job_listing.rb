@@ -7,10 +7,10 @@
 #  details         :text
 #  details_summary :string
 #  location        :string
-#  points          :integer          default(0), not null
 #  salary          :float
 #  status          :integer          default("pending"), not null
 #  title           :string
+#  total_points    :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  applicant_id    :bigint           not null
@@ -29,6 +29,8 @@
 class JobListing < ApplicationRecord
   belongs_to :applicant, class_name: "User"
   belongs_to :board
+
+  has_many :interviews, dependent: :destroy
 
   enum status: {
     pending: 0,
