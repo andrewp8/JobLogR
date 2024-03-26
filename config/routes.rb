@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
+  resources :interviews
   root to: "boards#index"
+  # mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
   
   devise_for :users
   resources :job_listings

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_25_225601) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_26_110624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -19,6 +19,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_225601) do
     t.string "board_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.string "interview_type", null: false
+    t.text "details"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "point", default: 1, null: false
+    t.bigint "job_listing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_listing_id"], name: "index_interviews_on_job_listing_id"
   end
 
   create_table "job_listings", force: :cascade do |t|
@@ -30,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_225601) do
     t.text "details"
     t.string "details_summary"
     t.bigint "applicant_id", null: false
-    t.integer "points", default: 0, null: false
+    t.integer "total_points", default: 0, null: false
     t.bigint "board_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_225601) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "interviews", "job_listings"
   add_foreign_key "job_listings", "boards"
   add_foreign_key "job_listings", "users", column: "applicant_id"
 end
