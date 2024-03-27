@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_26_110624) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_26_104520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_26_110624) do
     t.string "location"
     t.float "salary"
     t.integer "status", default: 0, null: false
+    t.string "job_url"
+    t.string "portal_url"
     t.text "details"
     t.string "details_summary"
     t.bigint "applicant_id", null: false
@@ -57,8 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_26_110624) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.citext "username"
-    t.string "firstname"
-    t.string "lastname"
+    t.string "first_name"
+    t.string "last_name"
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

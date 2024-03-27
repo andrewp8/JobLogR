@@ -6,7 +6,9 @@
 #  company         :string
 #  details         :text
 #  details_summary :string
+#  job_url         :string
 #  location        :string
+#  portal_url      :string
 #  salary          :float
 #  status          :integer          default("pending"), not null
 #  title           :string
