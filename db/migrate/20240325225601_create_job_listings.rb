@@ -6,10 +6,12 @@ class CreateJobListings < ActiveRecord::Migration[7.0]
       t.string :location
       t.float :salary
       t.integer :status, default: 0, null: false
+      t.string :job_url
+      t.string :portal_url
       t.text :details
       t.string :details_summary
       t.references :applicant, null: false, foreign_key: { to_table: :users }
-      t.integer :points, default: 0, null: false
+      t.integer :total_points, default: 0, null: false
       t.references :board, null: false, foreign_key: { to_table: :boards }
 
       t.timestamps

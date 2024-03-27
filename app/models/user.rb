@@ -5,8 +5,8 @@
 #  id                     :bigint           not null, primary key
 #  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  firstname              :string
-#  lastname               :string
+#  first_name             :string
+#  last_name              :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string

@@ -28,6 +28,6 @@ class Interview < ApplicationRecord
   private
 
   def increment_job_listing_total_points
-    job_listing.increament!(:total_points, points)
+    job_listing.increment!(:total_points, point)
   end
 end
