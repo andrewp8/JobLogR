@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "boards#index"
+  root to: "pages#landing"
   # mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
   
   devise_for :users
