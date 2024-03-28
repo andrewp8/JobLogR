@@ -20,7 +20,7 @@ unless Rails.env.production?
     ] do
       puts "done adding sample data"
       end_time = Time.now
-      p "It took #{(end_time - start_time).to_i} seconds to create sample data."
+      puts "It took #{(end_time - start_time).to_i} seconds to create sample data."
     end
 
     task add_users: :environment do
@@ -46,7 +46,7 @@ unless Rails.env.production?
 
       people.each do |person|
         username = person.fetch(:first_name).downcase
-        role = User.admin.exists? ? :user : :admin
+        role = User.admin.exists? ? :user : :moderator
         user = User.create(
           email: "#{username}@example.com",
           password: "password",
@@ -56,7 +56,7 @@ unless Rails.env.production?
           role: role,
         )
       end
-      puts "done adding users"
+      puts "There are now #{User.count} users"
     end
 
     task add_boards: :environment do
@@ -67,7 +67,7 @@ unless Rails.env.production?
         )
       end
 
-      puts "done adding boards"
+      puts "There are now #{Board.count} boards"
     end
 
     task add_job_listings: :environment do
@@ -90,7 +90,7 @@ unless Rails.env.production?
           total_points: rand(-1..10),
         )
       end
-      puts "done adding job_listings"
+      puts "There are now #{JobListing.count} job listings"
     end
 
     task add_interviews: :environment do
@@ -106,14 +106,14 @@ unless Rails.env.production?
         ].sample
         interview = Interview.create(
           interview_type: interview_type,
-          details: Faker::Lorem.paragraph(sentence_count:1),
+          details: Faker::Lorem.paragraph(sentence_count: 1),
           start_date: Faker::Date.between(from: 2.months.ago, to: Date.today),
           end_date: Faker::Date.between(from: 10.days.from_now, to: 1.month.from_now),
           job_listing_id: JobListing.all.sample.id,
-          point: 1
+          point: 1,
         )
       end
-      puts "done adding interviews"
+      puts "There are now #{Interview.count} interviews"
     end
   end
 end
