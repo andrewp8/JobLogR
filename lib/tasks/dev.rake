@@ -88,6 +88,7 @@ unless Rails.env.production?
           details: Faker::Lorem.paragraph(sentence_count: 10),
           details_summary: Faker::ProgrammingLanguage.name,
           total_points: rand(-1..10),
+          created_at: Time.now - rand(1..6).months
         )
       end
       puts "There are now #{JobListing.count} job listings"
@@ -104,11 +105,13 @@ unless Rails.env.production?
           "Behavioral Interview",
           "Panel Interview",
         ].sample
+        start_date = Time.now + rand(1..3).months
+        end_date = start_date.advance(days: rand(10..60))
         interview = Interview.create(
           interview_type: interview_type,
           details: Faker::Lorem.paragraph(sentence_count: 1),
-          start_date: Faker::Date.between(from: 2.months.ago, to: Date.today),
-          end_date: Faker::Date.between(from: 10.days.from_now, to: 1.month.from_now),
+          start_date: start_date,
+          end_date: end_date,
           job_listing_id: JobListing.all.sample.id,
           point: 1,
         )
