@@ -42,7 +42,7 @@ a{
 }
 
 /* ------------------------------- btn ------------------------------ */
-.sign_up_bg, .sign_up, .log_in, .sign_out, .create {
+.sign_up_bg, .sign_up, .log_in, .sign_out, .create, .close{
   color: black;
   margin-bottom: 10px;
   border: solid .5 grey;
@@ -61,7 +61,7 @@ a{
   font-weight: bolder;
 }
 
-.sign_up_bg:active, .sign_out:active, .log_in:active, .create:active {
+.sign_up_bg:active, .sign_out:active, .log_in:active, .create:active, .close:active {
   color: white;
   font-weight: bold;
   animation-name: glow;
@@ -90,6 +90,10 @@ a{
 .create {
   background-color: var(--app-green);
   box-shadow: 1px 1px 20px 1px var(--app-green);
+}
+.close {
+  background-color: grey;
+  box-shadow: 1px 1px 20px 1px grey;
 }
 
 /* --------------------------------- landing -------------------------------- */

@@ -4,6 +4,10 @@ class BoardsController < ApplicationController
   # GET /boards or /boards.json
   def index
     @boards = Board.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /boards/1 or /boards/1.json
@@ -22,11 +26,13 @@ class BoardsController < ApplicationController
   # POST /boards or /boards.json
   def create
     @board = Board.new(board_params)
-
+    
+    
     respond_to do |format|
       if @board.save
-        format.html { redirect_to board_url(@board), notice: "Board was successfully created." }
+        format.html { redirect_to boards_path, notice: "Board was successfully created." }
         format.json { render :show, status: :created, location: @board }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @board.errors, status: :unprocessable_entity }
@@ -65,6 +71,6 @@ class BoardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def board_params
-      params.require(:board).permit(:title)
+      params.require(:board).permit(:board_name, :board)
     end
 end

@@ -9,4 +9,7 @@
 #
 class Board < ApplicationRecord
   has_many :job_listings, dependent: :destroy
+
+  # -------------------------------- validations ------------------------------- #
+  validates :board_name, presence: true
 end
