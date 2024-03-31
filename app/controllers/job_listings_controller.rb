@@ -1,5 +1,5 @@
 class JobListingsController < ApplicationController
-  before_action :set_job_listing, only: %i[ show edit update destroy ]
+  before_action :set_job_listing, only: %i[ show edit update update_status destroy ]
 
   # GET /job_listings or /job_listings.json
   def index
@@ -43,6 +43,20 @@ class JobListingsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @job_listing.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_status
+    new_status = params[:status].to_sym
+    @job = set_job_listing() 
+    respond_to do |format| 
+      if JobListing.statuses.key?(new_status)
+        @job.update(status: new_status)
+        format.html{redirect_to board_path(@job.board), notice: "Status updated successfully."}
+        format.js
+      else
+        format.html{redirect_to board_path(@job.board), alert: "Invalid status."}
       end
     end
   end

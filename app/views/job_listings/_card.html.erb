@@ -1,4 +1,4 @@
-<div class="col-6">
+<div class="col-6" id="<%=dom_id(job)%>">
   <div class="card mb-3">
     <div class="card-body">
       <%= link_to job.title, job.job_url, class:"card-title h5", style: "color: var(--app-purple)"%>
@@ -13,10 +13,7 @@
             'text-danger' 
             %>"><%= job.status.gsub(/_/, ' ').titleize %></p>
       <div class="col text-center">
-          <i class="fa-regular fa-hourglass-half btn text-secondary"></i>
-          <i class="fa-solid fa-eye btn text-primary"></i>
-          <i class="fa-solid fa-circle-check btn text-success"></i>
-          <i class="fa-solid fa-thumbs-down btn text-danger"></i>
+        <%= render "job_listings/card_status", job: job %>
       </div>
     </div>
   </div>

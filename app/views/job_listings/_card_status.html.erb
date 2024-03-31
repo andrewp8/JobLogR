@@ -1,0 +1,9 @@
+<% if job.status == 'pending' %>
+  <%= render partial: 'job_listings/card_icons', locals: { under_review: true, interviewing: true, rejected: true, job: job } %>
+<% elsif job.status == 'under_review' %>
+  <%= render partial: 'job_listings/card_icons', locals: { pending: true, interviewing: true, rejected: true, job: job } %>
+<% elsif job.status == 'interviewing' %>
+  <%= render partial: 'job_listings/card_icons', locals: { under_review: true, pending: true, rejected: true, job: job } %>
+<% else %>
+  <%= render partial: 'job_listings/card_icons', locals: { under_review: true, interviewing: true, pending: true, job: job } %>
+<% end %>

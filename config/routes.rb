@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: "pages#landing"
   
-  resources :job_listings
+  resources :job_listings do
+    patch 'update_status/:status', action: :update_status, on: :member, as: :update_status
+  end
   resources :boards
   resources :interviews
   

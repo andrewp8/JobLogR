@@ -1,7 +1,3 @@
-Found no changes, using resolution from the lockfile
-Found no changes, using resolution from the lockfile
-Found no changes, using resolution from the lockfile
-Found no changes, using resolution from the lockfile
 <% pendings = @board.job_listings.where(status: :pending) %>
 <% under_reviews = @board.job_listings.where(status: :under_review) %>
 <% interviewings = @board.job_listings.where(status: :interviewing) %>
@@ -26,25 +22,25 @@ Found no changes, using resolution from the lockfile
       <a class="dropdown-toggle d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" role="button" aria-expanded="false">Status</a>
       <ul class="dropdown-menu">
         <li>
-          <a class="dropdown-item" href="#scrollspyHeading1">
+          <a class="dropdown-item" href="#scrollPending">
             <i class="fa-regular fa-hourglass-half btn text-secondary"></i>
             Pendings
           </a>
         </li>
         <li>
-          <a class="dropdown-item" href="#scrollspyHeading2">
+          <a class="dropdown-item" href="#scrollUnderReview">
             <i class="fa-solid fa-eye btn text-primary"></i>
             Under Reviews
           </a>
         </li>
         <li>
-          <a class="dropdown-item" href="#scrollspyHeading3">
+          <a class="dropdown-item" href="#scrollInterviewing">
             <i class="fa-solid fa-circle-check btn text-success"></i>
             Interviewings
           </a>
         </li>
         <li>
-          <a class="dropdown-item" href="#scrollspyHeading4">
+          <a class="dropdown-item" href="#scrollRejected">
             <i class="fa-solid fa-thumbs-down btn text-danger"></i>
             Rejections
           </a>
@@ -54,29 +50,33 @@ Found no changes, using resolution from the lockfile
   </ul>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#navbar-scroll" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-  <div class="container">
+  <div class="container" id="scrollPending">
     <div class="row">
+      <h5>Pendings</h5>
       <% pendings.each do |pending| %>
         <%= render "job_listings/card", job: pending %>
       <% end %>
     </div>
   </div>
-  <div class="container" id="scrollspyHeading2">
+  <div class="container" id="scrollUnderReview">
     <div class="row">
+      <h5>Under Reviews</h5>
       <% under_reviews.each do |under_review| %>
         <%= render "job_listings/card", job: under_review %>
       <% end %>
     </div>
   </div>
-  <div class="container" id="scrollspyHeading3">
+  <div class="container" id="scrollInterviewing">
     <div class="row">
+      <h5>Interviewings</h5>
       <% interviewings.each do |interviewing| %>
         <%= render "job_listings/card", job: interviewing %>
       <% end %>
     </div>
   </div>
-  <div class="container" id="scrollspyHeading4">
+  <div class="container" id="scrollRejected">
     <div class="row">
+      <h5>Rections</h5>
       <% rejections.each do |rejection| %>
         <%= render "job_listings/card", job: rejection %>
       <% end %>
