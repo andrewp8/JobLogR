@@ -1,0 +1,23 @@
+<div class="col-6">
+        <div class="card mb-3">
+          <div class="card-body">
+          <%= link_to job.title, job.job_url, class:"card-title h5", style: "color: var(--app-purple)"%>
+            <p class="card-text"><span class="fw-bold"><%= job.company %></span> - <span class="h8"><%= job.location %></span></p>
+            <p class="card-text"><%= job.details_summary %></p>
+            <p class="card-text h8">$<%= job.salary %></p>
+            <p class="card-text h8">Applied: <%= time_ago_in_words(job.created_at) %></p>
+            <p class="card-text h8 <%= 
+            job.status == 'interviewing' ? 'text-success' : 
+            job.status == 'pending' ? 'text-secondary' : 
+            job.status == 'under_review' ? 'text-primary' : 
+            'text-danger' 
+            %>"><%= job.status.gsub(/_/, ' ').titleize %></p>
+            <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-regular fa-hourglass-half btn text-secondary"></i>
+            <i class="fa-solid fa-eye btn text-primary"></i>
+            <i class="fa-solid fa-circle-check btn text-success"></i>
+            <i class="fa-solid fa-thumbs-down btn text-danger"></i>
+            </div>
+          </div>
+        </div>
+      </div>

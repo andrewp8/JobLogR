@@ -40,7 +40,15 @@ a{
   width: 50px;
   border-radius: 50%;
 }
+/* --------------------------------- navbar --------------------------------- */
+.ct_nav{
+  background-color: rgba(211, 211, 211, 0.491);
+  backdrop-filter: blur(10px);
+}
 
+#navbar-scroll {
+  top: 68px; 
+}
 /* ------------------------------- btn ------------------------------ */
 .sign_up_bg, .sign_up, .log_in, .sign_out, .create, .close{
   color: black;
@@ -132,6 +140,12 @@ a{
   border-radius: 10px;
   box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
 }
+
+/* ---------------------------------- text ---------------------------------- */
+.h8{
+  font-size: small;
+}
+
 
 .test {
   border: 1px solid red;
