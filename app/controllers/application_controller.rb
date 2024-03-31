@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       ago_string = "Created #{time_ago.join(', ')} ago"
       date_string = timestamp.strftime('%m/%d/%Y')
 
-      "#{ago_string}, #{date_string}"
+      "#{ago_string}, #{date_string}" 
     end
   end
 
