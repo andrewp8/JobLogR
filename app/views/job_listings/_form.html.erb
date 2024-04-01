@@ -51,6 +51,11 @@
     <%= form.text_field :details_summary, class: "form-control", required: false, id:"details_summary", placeholder: "Ruby, SQL" %>
   </div>
 
+  <div class="mb-3">
+      <%= form.label :attachments, 'PDF Attachments', class: "col-form-label" %>
+  <%= form.file_field :attachments, multiple: true, accept: 'application/pdf' %>
+  </div>
+
   <div>
     <%= form.hidden_field :applicant_id, value: current_user.id %>
     <%= form.hidden_field :board_id, value: locals[:board].id %>

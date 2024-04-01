@@ -36,6 +36,12 @@ class JobListingsController < ApplicationController
 
   # PATCH/PUT /job_listings/1 or /job_listings/1.json
   def update
+    @job_listing.files.attach(
+      io: File.open('/path/to/file'),
+      filename: 'file.pdf',
+      content_type: 'application/pdf',
+      identify: false
+    )
     respond_to do |format|
       if @job_listing.update(job_listing_params)
         format.html { redirect_to job_listing_url(@job_listing), notice: "Job listing was successfully updated." }
@@ -81,6 +87,6 @@ class JobListingsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def job_listing_params
-    params.require(:job_listing).permit(:title, :company, :location, :salary, :status, :details, :details_summary, :applicant_id, :points, :board_id, :job_url, :portal_url)
+    params.require(:job_listing).permit(:title, :company, :location, :salary, :status, :details, :details_summary, :applicant_id, :points, :board_id, :job_url, :portal_url, attachments: [])
   end
 end

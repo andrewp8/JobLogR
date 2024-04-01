@@ -32,11 +32,17 @@
       </button>
     </h2>
     <div id="collapseFiles" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <p class="placeholder-glow">
-          <span class="placeholder col-12"></span>
-        </p>
+      <% if @job_listing.attachments.attached? %>
+      <div class="m-2 d-flex justify-content-evenly align-items-center">
+
+    <% @job_listing.attachments.each do |attachment| %>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <%= attachment.filename %>
+</button>
+        <%= render "attachments", attachment: attachment %>
+    <% end %>
       </div>
+<% end %>
     </div>
   </div>
   <div class="accordion-item">
