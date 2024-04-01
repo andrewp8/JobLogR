@@ -1,9 +1,6 @@
 <div class="col-6" id="<%=dom_id(job)%>">
   <div class="card mb-3">
     <div class="card-body">
-        <%= link_to job_listing_path(job), class: "d-flex justify-content-end" do%>
-        <i class="fa-solid fa-arrow-right"></i>
-        <%end%>
       <%if job.job_url.blank?%>
         <p class="card-title h5"><%=job.title.capitalize%></p>
       <%else%>
@@ -21,6 +18,11 @@
             %>"><%= job.status.gsub(/_/, ' ').titleize %></p>
       <div class="col text-center">
         <%= render "job_listings/card_status", job: job %>
+      </div>
+      <div class="col-12 text-center">
+        <%= link_to job_listing_path(job) do%>
+          Go to page <i class="fa-solid fa-arrow-right"></i>
+        <%end%>
       </div>
     </div>
   </div>
