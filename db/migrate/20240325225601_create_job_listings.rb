@@ -1,8 +1,8 @@
 class CreateJobListings < ActiveRecord::Migration[7.0]
   def change
     create_table :job_listings do |t|
-      t.string :title
-      t.string :company
+      t.string :title, null: false
+      t.string :company, null: false
       t.string :location
       t.float :salary
       t.integer :status, default: 0, null: false

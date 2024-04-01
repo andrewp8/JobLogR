@@ -1,67 +1,63 @@
-<%= form_with(model: job_listing) do |form| %>
-  <% if job_listing.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(job_listing.errors.count, "error") %> prohibited this job_listing from being saved:</h2>
+<%= form_with(model: locals[:job_listing], local: true) do |form| %>
+  <% if locals[:job_listing].errors.any? %>
+    <div class="text-danger">
+      <h6><%= pluralize(locals[:job_listing].errors.count, "error") %> prohibited this job listing from being saved:</h2>
 
       <ul>
-        <% job_listing.errors.each do |error| %>
+        <% locals[:job_listing].errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :title, "Job Title", class: "col-form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true, id:"title", placeholder: "Job Title, required" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :company, "Company", class: "col-form-label" %>
+    <%= form.text_field :company, class: "form-control", required: true, id:"company", placeholder: "Company, required" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :location, "Location", class: "col-form-label" %>
+    <%= form.text_field :location, class: "form-control", required: false, id:"location", placeholder: "remote or San Jose, CA" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :salary, "Salary", class: "col-form-label" %>
+    <%= form.text_field :salary, class: "form-control", required: false, id:"salary",  type: "number", step: "0.01", min: 0, placeholder: "19.99" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :job_url, "Job Application Page", class: "col-form-label" %>
+    <%= form.text_field :job_url, class: "form-control", required: false, id:"job_url", placeholder: "https://www.google.com" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :portal_url, "Candidate Portal Page", class: "col-form-label" %>
+    <%= form.text_field :portal_url, class: "form-control", required: false, id:"portal_url", placeholder: "The URL where you access the page to check your application status" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :details, "Details", class: "col-form-label" %>
+    <%= form.text_area :details, class: "form-control", required: false, id:"details", placeholder: "Job Details" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :details_summary, "Details Summary", class: "col-form-label" %>
+    <%= form.text_field :details_summary, class: "form-control", required: false, id:"details_summary", placeholder: "Ruby, SQL" %>
   </div>
 
   <div>
-    <%= form.label :company, style: "display: block" %>
-    <%= form.text_field :company %>
+    <%= form.hidden_field :applicant_id, value: current_user.id %>
+    <%= form.hidden_field :board_id, value: locals[:board].id %>
   </div>
 
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div>
-    <%= form.label :salary, style: "display: block" %>
-    <%= form.text_field :salary %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :details, style: "display: block" %>
-    <%= form.text_area :details %>
-  </div>
-
-  <div>
-    <%= form.label :details_summary, style: "display: block" %>
-    <%= form.text_field :details_summary %>
-  </div>
-
-  <div>
-    <%= form.label :applicant_id, style: "display: block" %>
-    <%= form.text_field :applicant_id %>
-  </div>
-
-  <div>
-    <%= form.label :points, style: "display: block" %>
-    <%= form.number_field :points %>
-  </div>
-
-  <div>
-    <%= form.label :board_id, style: "display: block" %>
-    <%= form.text_field :board_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-group mb-3 d-flex justify-content-between">
+    <button type="button" class="btn close w-100" data-bs-dismiss="modal">Close</button>
+    <%= form.submit "Save", class: "btn create w-100", button_html: { class: "create" } %>
   </div>
 <% end %>

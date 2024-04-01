@@ -26,7 +26,7 @@
 /* ---------------------------------- roots --------------------------------- */
 a{
   text-decoration: none;
-  color: var(--app-purple)
+  color: var(--app-purple);
 }
 /* ---------------------------------- logo ---------------------------------- */
 .logo {
@@ -146,6 +146,10 @@ a{
   font-size: small;
 }
 
+/* -------------------------------- accordion ------------------------------- */
+.accordion-button:focus {
+  box-shadow: 0 0 10px 1px rgba(128, 128, 128, 0.765);
+}
 
 .test {
   border: 1px solid red;

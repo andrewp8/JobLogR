@@ -3,7 +3,7 @@
 # Table name: job_listings
 #
 #  id              :bigint           not null, primary key
-#  company         :string
+#  company         :string           not null
 #  details         :text
 #  details_summary :string
 #  job_url         :string
@@ -11,7 +11,7 @@
 #  portal_url      :string
 #  salary          :float
 #  status          :integer          default("pending"), not null
-#  title           :string
+#  title           :string           not null
 #  total_points    :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -40,4 +40,9 @@ class JobListing < ApplicationRecord
     interviewing: 2,
     rejected: -1
   }
+
+  # -------------------------------- validations ------------------------------- #
+  validates :title, presence: true
+  validates :company, presence: true
+  validates :job_url, format: { with: /\Ahttps?:\/\//, message: "must start with http:// or https://" }, allow_blank: true
 end

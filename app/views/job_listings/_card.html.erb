@@ -1,20 +1,24 @@
-<div class="col-6" id="<%=dom_id(job)%>">
-  <div class="card mb-3">
-    <div class="card-body">
-      <%= link_to job.title, job.job_url, class:"card-title h5", style: "color: var(--app-purple)"%>
-      <p class="card-text"><span class="fw-bold"><%= job.company %></span> - <span class="h8"><%= job.location %></span></p>
-      <p class="card-text"><%= job.details_summary %></p>
-      <p class="card-text h8">$<%= job.salary %></p>
-      <p class="card-text h8">Applied: <%= time_ago_in_words(job.created_at) %></p>
-      <p class="card-text h8 <%= 
+<div class="col-6" id="<%=dom_id(job)%>" onclick="location.href='<%= job_listing_path(job) %>';" style="cursor: pointer;">
+    <div class="card mb-3">
+      <div class="card-body">
+        <%if job.job_url.blank?%>
+          <p class="card-title h5"><%=job.title.capitalize%></p>
+        <%else%>
+          <%= link_to job.title.capitalize, job.job_url, class:"card-title h5", style: "color: var(--app-purple)", target: "_blank" %>
+        <%end%>
+        <p class="card-text"><span class="fw-bold"><%= job.company.capitalize %></span> - <span class="h8"><%= job.location %></span></p>
+        <p class="card-text"><%= job.details_summary %></p>
+        <p class="card-text h8">$<%= job.salary %></p>
+        <p class="card-text h8">Applied: <%= time_ago_in_words(job.created_at) %></p>
+        <p class="card-text h8 <%= 
             job.status == 'interviewing' ? 'text-success' : 
             job.status == 'pending' ? 'text-secondary' : 
             job.status == 'under_review' ? 'text-primary' : 
             'text-danger' 
             %>"><%= job.status.gsub(/_/, ' ').titleize %></p>
-      <div class="col text-center">
-        <%= render "job_listings/card_status", job: job %>
+        <div class="col text-center">
+          <%= render "job_listings/card_status", job: job %>
+        </div>
       </div>
     </div>
-  </div>
 </div>

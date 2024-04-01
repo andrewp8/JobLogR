@@ -3,7 +3,7 @@
 <% interviewings = @board.job_listings.where(status: :interviewing) %>
 <% rejections = @board.job_listings.where(status: :rejected) %>
 
-<nav id="navbar-scroll" class="navbar bg-body-tertiary px-3 mb-3 sticky-top">
+<nav id="navbar-scroll" class="navbar bg-body-tertiary px-3 mb-3 sticky-top d-flex justify-content-evenly align-items-center">
   <div class="d-flex justify-content-evenly">
     <%= link_to boards_path, class:"btn text-secondary-emphasis" do %>
       <i class="fa-solid fa-left-long"></i>
@@ -17,6 +17,9 @@
       <i class="fa-solid fa-trash"></i>
     <% end %>
   </div>
+  <%= link_to new_job_listing_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#newJobListingModal" } do %>
+    <i class="fa-solid fa-plus"></i> Job Listing
+  <%end%>
   <ul class="nav nav-pills">
     <li class="nav-item dropdown">
       <a class="dropdown-toggle d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" role="button" aria-expanded="false">Status</a>
@@ -55,7 +58,7 @@
       <h5>Pendings</h5>
       <% pendings.each do |pending| %>
         <%= render "job_listings/card", job: pending %>
-      <% end %>
+      <%end%>
     </div>
   </div>
   <div class="container" id="scrollUnderReview">
@@ -80,6 +83,20 @@
       <% rejections.each do |rejection| %>
         <%= render "job_listings/card", job: rejection %>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newJobListingModal" tabindex="-1" aria-labelledby="newJobListingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newJobListingModalLabel">New Job Listing</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "job_listings/form", locals: { job_listing: JobListing.new, board: @board } %>
+      </div>
     </div>
   </div>
 </div>

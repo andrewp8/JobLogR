@@ -34,8 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_26_104520) do
   end
 
   create_table "job_listings", force: :cascade do |t|
-    t.string "title"
-    t.string "company"
+    t.string "title", null: false
+    t.string "company", null: false
     t.string "location"
     t.float "salary"
     t.integer "status", default: 0, null: false

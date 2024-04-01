@@ -25,6 +25,16 @@
   </p>
 
   <p>
+    <strong>Job Application Page:</strong>
+      <%= link_to "Link", job_listing.job_url, target: "_blank" %>
+  </p>
+
+  <p>
+    <strong>Candidate Portal Page:</strong>
+   <%= link_to "Link", job_listing.portal_url, target: "_blank" %>
+  </p>
+
+  <p>
     <strong>Details:</strong>
     <%= job_listing.details %>
   </p>
@@ -35,18 +45,13 @@
   </p>
 
   <p>
-    <strong>Applicant:</strong>
-    <%= job_listing.applicant_id %>
-  </p>
-
-  <p>
     <strong>Points:</strong>
     <%= job_listing.total_points %>
   </p>
 
   <p>
     <strong>Board:</strong>
-    <%= job_listing.board_id %>
+    <%= job_listing.board.board_name %>
   </p>
 
 </div>

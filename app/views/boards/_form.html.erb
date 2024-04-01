@@ -1,7 +1,7 @@
 
 <%= form_with(model: board, local: true) do |form| %>
   <% if board.errors.any? %>
-    <div style="color: red">
+    <div class="text-danger">
       <h6><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
       <ul>
         <% board.errors.each do |error| %>
