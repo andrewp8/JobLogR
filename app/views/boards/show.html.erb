@@ -10,7 +10,7 @@
     <% end %>
     <h3 class="navbar-brand"><%= @board.board_name %></h3>
 
-    <%= link_to edit_board_path(@board), class:"btn text-warning" do %>
+    <%=  link_to edit_board_path(@board), class: "px-5 btn text-warning", data: { bs_toggle: "modal", bs_target: "#editBoardModal" } do %>
       <i class="fa-solid fa-pencil"></i>
     <% end %>
     <%= button_to @board, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger" do %>
@@ -79,7 +79,7 @@
   </div>
   <div class="container" id="scrollRejected">
     <div class="row">
-      <h5>Rections</h5>
+      <h5>Rejections</h5>
       <% rejections.each do |rejection| %>
         <%= render "job_listings/card", job: rejection %>
       <% end %>
@@ -96,6 +96,20 @@
       </div>
       <div class="modal-body">
         <%= render "job_listings/form", locals: { job_listing: JobListing.new, board: @board } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editBoardModal" tabindex="-1" aria-labelledby="editBoardModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editBoardModalLabel">New Board</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "form", board: @board %>
       </div>
     </div>
   </div>
