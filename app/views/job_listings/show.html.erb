@@ -1,22 +1,22 @@
- <div class="d-flex justify-content-end align-items-center my-2">
-          <%= link_to edit_job_listing_path(@job_listing), data: {job_listing: @job_listing, board: @job_listing.board}, class:"btn text-warning" do %>
-            <i class="fa-solid fa-pencil"></i>
-          <% end %>
-          <%= button_to @job_listing, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger delete-button" do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-        </div>
+<div class="d-flex justify-content-end align-items-center my-2">
+  <%= link_to edit_job_listing_path(@job_listing), class: "px-5 btn text-warning", data: { bs_toggle: "modal", bs_target: "#editJobListingModal" } do %>
+    <i class="fa-solid fa-pencil"></i>
+  <% end %>
+  <%= button_to @job_listing, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger delete-button" do %>
+    <i class="fa-solid fa-trash"></i>
+  <% end %>
+</div>
 <div class="accordion" id="accordionExample">
- 
+
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJobDetails" aria-expanded="true" aria-controls="collapseJobDetails">
-          <%= link_to board_path(@job_listing.board.id), class:"btn text-secondary-emphasis" do %>
-            <i class="fa-solid fa-left-long"></i>
-          <% end %>
-          <h3 class="navbar-brand">
-            <%= @job_listing.title.capitalize%>
-          </h3>
+        <%= link_to board_path(@job_listing.board.id), class:"btn text-secondary-emphasis" do %>
+          <i class="fa-solid fa-left-long"></i>
+        <% end %>
+        <h3 class="navbar-brand">
+          <%= @job_listing.title.capitalize%>
+        </h3>
       </button>
     </h2>
     <div id="collapseJobDetails" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -37,6 +37,34 @@
           <span class="placeholder col-12"></span>
         </p>
       </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInterviews" aria-expanded="false" aria-controls="collapseInterviews">
+        Interview Info
+      </button>
+    </h2>
+    <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <% @job_listing.interviews.each do |interview|%>
+              <%= render "interviews/interview", interview: interview %>
+            <%end%>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
     </div>
   </div>
   <div class="accordion-item">
@@ -68,3 +96,16 @@
   </div>
 </div>
 
+<div class="modal fade" id="editJobListingModal" tabindex="-1" aria-labelledby="editJobListingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editJobListingModalLabel">Edit Job Listing</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "job_listings/form", locals: { job_listing: @job_listing, board: @job_listing.board } %>
+      </div>
+    </div>
+  </div>
+</div>

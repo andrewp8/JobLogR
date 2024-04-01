@@ -1,32 +1,11 @@
-<div id="<%= dom_id interview %>">
-  <p>
-    <strong>Interview type:</strong>
-    <%= interview.interview_type %>
-  </p>
 
-  <p>
-    <strong>Details:</strong>
-    <%= interview.details %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= interview.start_date %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= interview.end_date %>
-  </p>
-
-  <p>
-    <strong>Point:</strong>
-    <%= interview.point %>
-  </p>
-
-  <p>
-    <strong>Job listing:</strong>
-    <%= interview.job_listing_id %>
-  </p>
-
+<div class="card bg-secondary" id="<%= dom_id interview %>">
+  <div class="card-body">
+    <h5 class="card-title"><%= interview.interview_type.capitalize %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Start date: <%= interview.start_date %></h6>
+    <h6 class="card-subtitle mb-2 text-body-secondary">End date: <%= interview.end_date %></h6>
+    <p class="card-text"><%= interview.details %></p>
+    <a href="#" class="card-link">Edit</a>
+    <a href="#" class="card-link">Delete</a>
+  </div>
 </div>
