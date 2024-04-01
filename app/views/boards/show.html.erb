@@ -1,10 +1,102 @@
+<% pendings = @board.job_listings.where(status: :pending) %>
+<% under_reviews = @board.job_listings.where(status: :under_review) %>
+<% interviewings = @board.job_listings.where(status: :interviewing) %>
+<% rejections = @board.job_listings.where(status: :rejected) %>
 
-<div class="card border" style="width: 18rem;height: 10rem;">
-  <%#= render @board %>
-  <div>
-    <%= link_to "Edit this board", edit_board_path(@board) %> |
-    <%= link_to "Back to boards", boards_path %>
+<nav id="navbar-scroll" class="navbar bg-body-tertiary px-3 mb-3 sticky-top d-flex justify-content-evenly align-items-center">
+  <div class="d-flex justify-content-evenly">
+    <%= link_to boards_path, class:"btn text-secondary-emphasis" do %>
+      <i class="fa-solid fa-left-long"></i>
+    <% end %>
+    <h3 class="navbar-brand"><%= @board.board_name %></h3>
 
-    <%= button_to "Destroy this board", @board, method: :delete %>
+    <%= link_to edit_board_path(@board), class:"btn text-warning" do %>
+      <i class="fa-solid fa-pencil"></i>
+    <% end %>
+    <%= button_to @board, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger" do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </div>
+  <%= link_to new_job_listing_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#newJobListingModal" } do %>
+    <i class="fa-solid fa-plus"></i> Job Listing
+  <%end%>
+  <ul class="nav nav-pills">
+    <li class="nav-item dropdown">
+      <a class="dropdown-toggle d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" role="button" aria-expanded="false">Status</a>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#scrollPending">
+            <i class="fa-regular fa-hourglass-half btn text-secondary"></i>
+            Pendings
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#scrollUnderReview">
+            <i class="fa-solid fa-eye btn text-primary"></i>
+            Under Reviews
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#scrollInterviewing">
+            <i class="fa-solid fa-circle-check btn text-success"></i>
+            Interviewings
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#scrollRejected">
+            <i class="fa-solid fa-thumbs-down btn text-danger"></i>
+            Rejections
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<div data-bs-spy="scroll" data-bs-target="#navbar-scroll" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+  <div class="container" id="scrollPending">
+    <div class="row">
+      <h5>Pendings</h5>
+      <% pendings.each do |pending| %>
+        <%= render "job_listings/card", job: pending %>
+      <%end%>
+    </div>
+  </div>
+  <div class="container" id="scrollUnderReview">
+    <div class="row">
+      <h5>Under Reviews</h5>
+      <% under_reviews.each do |under_review| %>
+        <%= render "job_listings/card", job: under_review %>
+      <% end %>
+    </div>
+  </div>
+  <div class="container" id="scrollInterviewing">
+    <div class="row">
+      <h5>Interviewings</h5>
+      <% interviewings.each do |interviewing| %>
+        <%= render "job_listings/card", job: interviewing %>
+      <% end %>
+    </div>
+  </div>
+  <div class="container" id="scrollRejected">
+    <div class="row">
+      <h5>Rections</h5>
+      <% rejections.each do |rejection| %>
+        <%= render "job_listings/card", job: rejection %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newJobListingModal" tabindex="-1" aria-labelledby="newJobListingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newJobListingModalLabel">New Job Listing</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "job_listings/form", locals: { job_listing: JobListing.new, board: @board } %>
+      </div>
+    </div>
   </div>
 </div>

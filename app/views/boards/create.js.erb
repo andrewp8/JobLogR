@@ -1,0 +1,9 @@
+<% if @board.errors.any? %>
+  // If there are errors, update the modal content with the form including error messages
+  $('#newBoardModalContent').html('<%= j render("form", board: @board) %>');
+<% else %>
+  // If successful, close the modal and possibly update the index page
+  $('#newBoardModal').modal('hide');
+  // You might want to update the index page here, for example:
+  // $('#boards-list').html('<%= j render(partial: "boards_list", locals: { boards: @boards }) %>');
+<% end %>

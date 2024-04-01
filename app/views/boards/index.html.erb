@@ -1,17 +1,17 @@
 <div class="container text-center">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 my-2">
       <h3>My Boards</h3>
     </div>
     <div class="col-12">
       <%= link_to "New board", new_board_path, class: "create px-5", data: { bs_toggle: "modal", bs_target: "#newBoardModal" } %>
-
     </div>
+
     <div class="col-12">
       <% @boards.each do |board| %>
         <%= link_to board_path(board) do %>
           <div class="border rounded-2 m-4 p-3" style="height: 7rem;">
-          <%#= render board %>
+
           <h4><%= board.board_name %></h4>
           <h6 class="text-secondary-emphasis"><%= current_user.email %></h5>
           <p class="text-secondary"><%= time_ago_in_words(board.created_at) %></p>
@@ -21,5 +21,20 @@
   </div>
   <div class="col-12">
     <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "sign_out px-5" %>
+  </div>
+</div>
+
+
+<div class="modal fade" id="newBoardModal" tabindex="-1" aria-labelledby="newBoardModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newBoardModalLabel">New Board</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "form", board: Board.new %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
-<%= form_with(model: board) do |form| %>
-  <% if board.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
 
+<%= form_with(model: board, local: true) do |form| %>
+  <% if board.errors.any? %>
+    <div class="text-danger">
+      <h6><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
       <ul>
         <% board.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :board_name, "Board Name", class: "col-form-label" %>
+    <%= form.text_field :board_name, class: "form-control", required: true, id: "board_name" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group mb-3 d-flex justify-content-between">
+    <button type="button" class="btn close w-100" data-bs-dismiss="modal">Close</button>
+    <%= form.submit "Save", class: "btn create w-100", button_html: { class: "create" } %>
   </div>
 <% end %>

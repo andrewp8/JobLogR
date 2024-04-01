@@ -1,0 +1,29 @@
+<!-- _icons.html.erb -->
+<% if local_assigns[:pending] %>
+  <%= link_to update_status_job_listing_path(local_assigns[:job], status: :pending), method: :patch do %>
+    <i class="fa-regular fa-hourglass-half btn text-secondary"></i>
+  <% end %>
+<% end %>
+
+<% if local_assigns[:under_review] %>
+  <%= link_to update_status_job_listing_path(local_assigns[:job], status: :under_review), method: :patch do %>
+    <i class="fa-solid fa-eye btn text-primary"></i>
+  <% end %>
+
+<% end %>
+
+<% if local_assigns[:interviewing] %>
+  <%= link_to update_status_job_listing_path(local_assigns[:job], status: :interviewing), method: :patch do %>
+    <i class="fa-solid fa-circle-check btn text-success"></i>
+  <% end %>
+<% end %>
+
+<% if local_assigns[:rejected] %>
+  <%= link_to update_status_job_listing_path(local_assigns[:job], status: :rejected), method: :patch do %>
+    <i class="fa-solid fa-thumbs-down btn text-danger"></i>
+  <% end %>
+<% end %>
+
+
+
+
