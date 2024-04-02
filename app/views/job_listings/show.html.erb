@@ -33,16 +33,16 @@
     </h2>
     <div id="collapseFiles" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <% if @job_listing.attachments.attached? %>
-      <div class="m-2 d-flex justify-content-evenly align-items-center">
+        <div class="m-2 list-group">
 
-    <% @job_listing.attachments.each do |attachment| %>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <%= attachment.filename %>
-</button>
-        <%= render "attachments", attachment: attachment %>
-    <% end %>
-      </div>
-<% end %>
+          <% @job_listing.attachments.each do |attachment| %>
+            <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <%= attachment.filename %>
+            </button>
+            <%= render "attachments", attachment: attachment %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="accordion-item">
@@ -115,3 +115,4 @@
     </div>
   </div>
 </div>
+

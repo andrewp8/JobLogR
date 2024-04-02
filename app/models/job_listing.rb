@@ -10,7 +10,7 @@
 #  location        :string
 #  portal_url      :string
 #  salary          :float
-#  status          :integer          default("pending"), not null
+#  status          :integer          default(0), not null
 #  title           :string           not null
 #  total_points    :integer          default(0), not null
 #  created_at      :datetime         not null
@@ -38,11 +38,22 @@ class JobListing < ApplicationRecord
     pending: 0,
     under_review: 1,
     interviewing: 2,
-    rejected: -1
+    rejected: -1,
   }
 
   # -------------------------------- validations ------------------------------- #
   validates :title, presence: true
   validates :company, presence: true
   validates :job_url, format: { with: /\Ahttps?:\/\//, message: "must start with http:// or https://" }, allow_blank: true
+  validate :attachments_content_type
+
+  private
+
+  def attachments_content_type
+    attachments.each do |attachment|
+      if !attachment.content_type.in?(%w(application/pdf))
+        errors.add(:attachments, "must be a PDF file")
+      end
+    end
+  end
 end

@@ -52,8 +52,8 @@
   </div>
 
   <div class="mb-3">
-      <%= form.label :attachments, 'PDF Attachments', class: "col-form-label" %>
-  <%= form.file_field :attachments, multiple: true, accept: 'application/pdf' %>
+    <%= form.label :attachments, "Attachments", class: "form-label" %>
+    <%= form.file_field :attachments, multiple: true, accept: 'application/pdf', placeholder: "Select .pdf files",class:"form-control" %>
   </div>
 
   <div>

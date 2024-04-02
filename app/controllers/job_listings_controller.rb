@@ -36,18 +36,18 @@ class JobListingsController < ApplicationController
 
   # PATCH/PUT /job_listings/1 or /job_listings/1.json
   def update
-    @job_listing.files.attach(
-      io: File.open('/path/to/file'),
-      filename: 'file.pdf',
-      content_type: 'application/pdf',
-      identify: false
-    )
+    if params[:job_listing][:attachments].present?
+      params[:job_listing][:attachments].each do |attachment|
+        @job_listing.attachments.attach(attachment)
+      end
+    end
     respond_to do |format|
       if @job_listing.update(job_listing_params)
         format.html { redirect_to job_listing_url(@job_listing), notice: "Job listing was successfully updated." }
         format.json { render :show, status: :ok, location: @job_listing }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html {redirect_back(fallback_location: job_listing_url(@job_listing), alert: "Unable to update the record. Please check your input.")}
+        # format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @job_listing.errors, status: :unprocessable_entity }
       end
     end
