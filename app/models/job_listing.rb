@@ -33,7 +33,7 @@ class JobListing < ApplicationRecord
   belongs_to :board
 
   has_many :interviews, dependent: :destroy
-
+  has_many_attached :attachments, service: :amazon
   enum status: {
     pending: 0,
     under_review: 1,

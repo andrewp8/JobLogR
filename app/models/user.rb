@@ -27,8 +27,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :job_listings, foreign_key: "applicant_id", dependent: :destroy
+  has_one_attached :avatar
   validates :username,
             presence: true,
             uniqueness: true,
