@@ -14,7 +14,7 @@
 
           <h4><%= board.board_name %></h4>
           <h6 class="text-secondary-emphasis"><%= current_user.email %></h5>
-          <p class="text-secondary"><%= time_ago_in_words(board.created_at) %></p>
+          <p class="text-secondary"><%= time_ago_in_words(board.created_at) %> ago</p>
         </div>
       <% end %>
     <% end %>
