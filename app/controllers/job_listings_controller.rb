@@ -67,6 +67,16 @@ class JobListingsController < ApplicationController
     end
   end
 
+  def graph
+    @job_listings = JobListing.all
+  
+    respond_to do |format|
+      format.html { render "line_chart" }
+      # Add other formats as needed, like JSON, XML, etc.
+    end
+  end
+  
+
   # DELETE /job_listings/1 or /job_listings/1.json
   def destroy
     board_id = @job_listing.board.id
