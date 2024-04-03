@@ -52,7 +52,9 @@
       </button>
     </h2>
     <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-
+        <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
+    <i class="fa-solid fa-plus"></i> Interview
+  <%end%>
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -115,4 +117,3 @@
     </div>
   </div>
 </div>
-
