@@ -33,16 +33,16 @@
     </h2>
     <div id="collapseFiles" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <% if @job_listing.attachments.attached? %>
-      <div class="m-2 d-flex justify-content-evenly align-items-center">
+        <div class="m-2 list-group">
 
-    <% @job_listing.attachments.each do |attachment| %>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <%= attachment.filename %>
-</button>
-        <%= render "attachments", attachment: attachment %>
-    <% end %>
-      </div>
-<% end %>
+          <% @job_listing.attachments.each do |attachment| %>
+            <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <%= attachment.filename %>
+            </button>
+            <%= render "attachments", attachment: attachment %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="accordion-item">
@@ -52,7 +52,9 @@
       </button>
     </h2>
     <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-
+        <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
+    <i class="fa-solid fa-plus"></i> Interview
+  <%end%>
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">

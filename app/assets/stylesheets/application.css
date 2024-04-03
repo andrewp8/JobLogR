@@ -151,6 +151,12 @@ a{
   box-shadow: 0 0 10px 1px rgba(128, 128, 128, 0.765);
 }
 
+/* -------------------------------- carousel -------------------------------- */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  color: black;
+}
+
 .test {
   border: 1px solid red;
 }

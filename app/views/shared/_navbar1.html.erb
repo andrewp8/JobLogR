@@ -21,8 +21,8 @@
               Job Tracker
             </a>
             <ul class="dropdown-menu">
-              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item sign_out" %>
+              <%= link_to "Boards", boards_path, class: "dropdown-item" %>
+              <%= link_to "Analyize", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </ul>
           </li>
           <li class="nav-item dropdown">
