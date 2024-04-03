@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ai_messages
   root to: "pages#landing"
 
   resources :job_listings do

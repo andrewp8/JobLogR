@@ -1,0 +1,21 @@
+<div id="<%= dom_id ai_message %>" class="p-3 " >
+  <div class="d-flex justify-content-end align-items-center">
+<% if current_user.avatar.attached? %>
+                <%= image_tag(current_user.avatar, style: "width: 50px; border-radius: 25px;") %>
+              <% else %>
+                <i class="fa-solid fa-user-tie"></i>
+              <% end %>
+
+      <p class="px-1"><strong><%=ai_message.role[0]%></strong>: <%= ai_message.body[0] %></p>
+
+    </div>
+    <div class="d-flex justify-content-start">
+      <i class="fa-solid fa-robot me-2"></i> </strong> <%= ai_message.body[1] %></p>
+
+    </div>
+    <%# <p>
+      <strong>Job listing:</strong>
+      <%= ai_message.job_listing_id %>
+    <%# </p> %>
+
+  </div>

@@ -52,9 +52,9 @@
       </button>
     </h2>
     <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
-    <i class="fa-solid fa-plus"></i> Interview
-  <%end%>
+      <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
+        <i class="fa-solid fa-plus"></i> Interview
+      <%end%>
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -82,23 +82,15 @@
       </button>
     </h2>
     <div id="collapseChatGPT" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <div class="card" aria-hidden="true">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title placeholder-glow">
-              <span class="placeholder col-6"></span>
-            </h5>
-            <p class="card-text placeholder-glow">
-              <span class="placeholder col-7"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-6"></span>
-              <span class="placeholder col-8"></span>
-            </p>
-            <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+      <div class="accordion-body ">
+        <% @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
+          <div class="card p-2 bg-body-tertiary">
+            <h5><%= date.strftime('%a, %d %b %Y') %></h5>
+            <%messages.each do |msg|%>
+              <%=render "ai_messages/ai_message", ai_message: msg%>
+            <%end%>
           </div>
-        </div>
+        <%end%>
       </div>
     </div>
   </div>

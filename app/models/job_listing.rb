@@ -10,7 +10,7 @@
 #  location        :string
 #  portal_url      :string
 #  salary          :float
-#  status          :integer          default(0), not null
+#  status          :integer          default("pending"), not null
 #  title           :string           not null
 #  total_points    :integer          default(0), not null
 #  created_at      :datetime         not null
@@ -33,6 +33,7 @@ class JobListing < ApplicationRecord
   belongs_to :board
 
   has_many :interviews, dependent: :destroy
+  has_many :ai_messages, foreign_key: :job_listing_id
   has_many_attached :attachments, service: :amazon
   enum status: {
     pending: 0,

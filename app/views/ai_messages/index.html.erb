@@ -1,0 +1,15 @@
+<h1>Ai Messages</h1>
+
+<%= turbo_frame_tag 'ai_messages' do %>
+  <% @ai_messages.each do |ai_message| %>
+      <%=link_to ai_message_path(ai_message.id)%>
+    <div id="ai_message_<%= ai_message.id %>">
+      <p><strong>Role:</strong> <%= ai_message.role %></p>
+      <p><strong>Body:</strong> <%= ai_message.body %></p>
+      <p><strong>Job Listing:</strong> <%= ai_message.job_listing.title %></p>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to 'New Ai Message', new_ai_message_path %>
+<%= render "form", ai_message: @ai_message %>
