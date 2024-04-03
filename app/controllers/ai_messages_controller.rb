@@ -28,8 +28,8 @@ class AiMessagesController < ApplicationController
     @ai_message = AiMessage.new(ai_message_params)
     @ai_message.role << current_user.username
     @ai_message.body << params[:ai_message][:body]
-    @ai_message.job_listing_id = params[:job_listing_id]
-
+    @ai_message.job_listing_id = params[:ai_message][:job_listing_id]
+    puts "test--- #{@ai_message.job_listing_id}"
     client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
 
     response = client.chat(
@@ -39,13 +39,13 @@ class AiMessagesController < ApplicationController
         temperature: 0.7,
       },
     )
-
+puts "ABC --- #{response["choices"][0]["message"]["content"]}"
     @ai_message.role << "system"
     @ai_message.body << response["choices"][0]["message"]["content"]
 
     respond_to do |format|
       if @ai_message.save
-        format.html { redirect_to ai_message_url(@ai_message), notice: "Ai message was successfully created." }
+        format.html { redirect_to job_listing_path(@ai_message.job_listing_id), notice: "Ai message was successfully created." }
         format.json { render :show, status: :created, location: @ai_message }
         format.turbo_stream { render turbo_stream: turbo_stream.append(@ai_message) }
       else

@@ -1,17 +1,18 @@
-<%= form_with(model: ai_message, local: true) do |form| %>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-  <div class="field">
-    <input type="number" name= "job_listing_id" value = "63" >
+<%= turbo_frame_tag 'new_message_frame' do %>
+  <%= form_with(model: ai_message, local: true) do |form| %>
+    <div class="mb-3">
+      <div class="input-group">
+        <%= form.text_field :body, class: "form-control", required: false, id:"body", placeholder: "How can I help you?" %>
+        <%= form.submit "Ask", class: "input-group-text"%>
+      </div>
+    </div>
+    <div>
+      <%= form.hidden_field :job_listing_id, value: job_listing.id %>
+    </div>
+    <%#= form.text_field :body %>
+    <%#= form.text_field :job_listing_id, value: job_listing.id %>
     <%# <%= form.label :job_listing_id %>
     <%# <%= form.collection_select :job_listing_id, JobListing.all, :id, :title %>
-  </div>
-  <%= form.submit 'Submit' %>
+    <%#= form.submit 'Submit' %>
+  <% end %>
 <% end %>
-
-<turbo-frame id="response_frame">
-  <!-- Response from OpenAI will be displayed here -->
-</turbo-frame>

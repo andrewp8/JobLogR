@@ -6,11 +6,12 @@
                 <i class="fa-solid fa-user-tie"></i>
               <% end %>
 
-      <p class="px-1"><strong><%=ai_message.role[0]%></strong>: <%= ai_message.body[0] %></p>
+      <p class="px-1 text-primary-emphasis"><strong><%=ai_message.role[0]%></strong>: <%= ai_message.body[0] %></p>
 
     </div>
-    <div class="d-flex justify-content-start">
-      <i class="fa-solid fa-robot me-2"></i> </strong> <%= ai_message.body[1] %></p>
+    <div class="d-flex justify-content-start align-items-start">
+    <% bot_avatar = "https://cdn.create.vista.com/api/media/small/176577870/stock-vector-cute-smiling-funny-robot-chat-bot" %>
+      <%= image_tag(bot_avatar, style: "width: 50px; border-radius: 25px;") %> <span><%= ai_message.body[1] %></span></p>
 
     </div>
     <%# <p>

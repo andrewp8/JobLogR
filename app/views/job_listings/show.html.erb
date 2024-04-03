@@ -83,11 +83,14 @@
     </h2>
     <div id="collapseChatGPT" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body ">
+      <%= render "ai_messages/form", ai_message: AiMessage.new, job_listing: @job_listing %>
         <% @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
           <div class="card p-2 bg-body-tertiary">
             <h5><%= date.strftime('%a, %d %b %Y') %></h5>
             <%messages.each do |msg|%>
+              <%= turbo_frame_tag 'messages_frame' do %>
               <%=render "ai_messages/ai_message", ai_message: msg%>
+              <% end %>
             <%end%>
           </div>
         <%end%>
