@@ -1,0 +1,9 @@
+<h1>New Ai Message</h1>
+
+<%= render 'form', ai_message: @ai_message %>
+
+<turbo-frame id="response_frame">
+  <!-- Response from OpenAI will be displayed here -->
+</turbo-frame>
+
+<%= link_to 'Back', ai_messages_path %>
