@@ -11,9 +11,9 @@ services:
     buildCommand: "./bin/render-build.sh" # # we already created these two files for you
     startCommand: "./bin/render-start.sh"
     envVars: # this section sets some ENV variables needed by Render for deployment
-      - key: SECRET_KEY_BASE
+      - key: DATABASE_URL
         formDatabase:
           name: joblogr
           property: connectionString
-        generateValue: true
       - key: RAILS_MASTER_KEY
+        sync: false
