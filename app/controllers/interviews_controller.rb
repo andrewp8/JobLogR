@@ -3,6 +3,7 @@ class InterviewsController < ApplicationController
 
   # GET /interviews or /interviews.json
   def index
+
     @interviews = Interview.all
   end
 
