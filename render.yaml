@@ -16,4 +16,5 @@ services:
           name: joblogr
           property: connectionString
       - key: RAILS_MASTER_KEY
-        sync: false
+        group: default
+        sync: true
