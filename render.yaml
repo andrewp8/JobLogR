@@ -3,18 +3,18 @@ databases:
     plan: free
     databaseName: joblogr
     user: joblogr
+
 services:
   - type: web
     name: joblogr
-    env: ruby # this app is written in ruby
-    plan: free # make sure to set this to free or you'll get billed $$$
-    buildCommand: "./bin/render-build.sh" # # we already created these two files for you
-    startCommand: "./bin/render-start.sh"
-    envVars: # this section sets some ENV variables needed by Render for deployment
+    plan: free
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
       - key: DATABASE_URL
-        formDatabase:
+        fromDatabase:
           name: joblogr
           property: connectionString
       - key: RAILS_MASTER_KEY
-        group: default
-        sync: true
+        sync: false
