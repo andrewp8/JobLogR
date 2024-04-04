@@ -1,9 +1,10 @@
 class JobListingsController < ApplicationController
+  include ActionView::Helpers::NumberHelper
   before_action :set_job_listing, only: %i[ show edit update update_status destroy ]
 
   # GET /job_listings or /job_listings.json
   def index
-    @job_listings = JobListing.all
+    @job_listings = JobListing.where(applicant_id: current_user.id).order(created_at: :desc)
   end
 
   # GET /job_listings/1 or /job_listings/1.json
@@ -68,7 +69,7 @@ class JobListingsController < ApplicationController
   end
 
   def graph
-    @job_listings = JobListing.all
+    @job_listings = JobListing.where(applicant_id: current_user.id)
   
     respond_to do |format|
       format.html { render "line_chart" }
