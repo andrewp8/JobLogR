@@ -22,13 +22,14 @@
             </a>
             <ul class="dropdown-menu">
               <%= link_to "Boards", boards_path, class: "dropdown-item" %>
-              <%= link_to "Analyize", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+              <%= link_to 'View Graph', graph_job_listings_path, class: "dropdown-item" %>
+
             </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.avatar.attached? %>
-                <%= image_tag(current_user.avatar, style: "width: 50px; border-radius: 50px;") %>
+                <%= image_tag(current_user.avatar, style: "width: 50px; border-radius: 50%;") %>
               <% else %>
                 <i class="fa-solid fa-user-tie"></i>
               <% end %>

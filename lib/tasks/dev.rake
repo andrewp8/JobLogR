@@ -72,7 +72,7 @@ unless Rails.env.production?
 
     task add_job_listings: :environment do
       puts "adding job listings..."
-      54.times do |job|
+      400.times do |job|
         rand_salary = rand(40000.0..110000.0)
         status = [:pending, :under_review, :interviewing, :rejected].sample
         job = JobListing.create(
@@ -88,7 +88,7 @@ unless Rails.env.production?
           details: Faker::Lorem.paragraph(sentence_count: 10),
           details_summary: Faker::ProgrammingLanguage.name,
           total_points: rand(-1..10),
-          created_at: Time.now - rand(1..6).months
+          created_at: Time.now - rand(1..200).days
         )
       end
       puts "There are now #{JobListing.count} job listings"
@@ -96,7 +96,7 @@ unless Rails.env.production?
 
     task add_interviews: :environment do
       puts "adding interviews"
-      12.times do |interview|
+      60.times do |interview|
         interview_type = [
           "Phone Interview",
           "On-site Interview",
@@ -105,8 +105,8 @@ unless Rails.env.production?
           "Behavioral Interview",
           "Panel Interview",
         ].sample
-        start_date = Time.now + rand(1..3).months
-        end_date = start_date.advance(days: rand(10..60))
+        start_date = Time.now + rand(1..15).days
+        end_date = start_date.advance(days: rand(10..20))
         interview = Interview.create(
           interview_type: interview_type,
           details: Faker::Lorem.paragraph(sentence_count: 1),

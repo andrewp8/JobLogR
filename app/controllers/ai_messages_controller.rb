@@ -31,11 +31,11 @@ class AiMessagesController < ApplicationController
     @ai_message.job_listing_id = params[:ai_message][:job_listing_id]
     puts "test--- #{@ai_message.job_listing_id}"
     client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
-
+  instructed_prompt = "As a career expert, please answer my question #{@ai_message.body[0]}. Give me a specific advice, insights, recommendations, and url if necessary. Please respond in Markdown syntax language."
     response = client.chat(
       parameters: {
         model: "gpt-3.5-turbo", 
-        messages: [{ role: "user", content: @ai_message.body[0] }], # Required.
+        messages: [{ role: "user", content: instructed_prompt }], # Required.
         temperature: 0.7,
       },
     )

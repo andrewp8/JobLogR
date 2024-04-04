@@ -1,0 +1,58 @@
+<div class="border mb-3">
+  <h6 class="m-2">In the last 6 months</h6>
+  <div class="d-flex justify-content-evenly text-center">
+    <div class="col-6">
+      <h6>Applied</h6>
+      <h1 class="text-primary"><%=@job_listings.where("created_at >= ?", 6.months.ago).count%></h1>
+    </div>
+    <div class="col-6">
+      <h6>Interviewed</h6>
+      <h1 class="text-success"><%=@job_listings.where(status: :interviewing).where("created_at >= ?", 6.months.ago).count%></h1>
+    </div>
+  </div>
+  <div>
+    <%interviewing_counts = @job_listings.where(status: :interviewing).where("created_at >= ?", 6.months.ago)%>
+    <%= area_chart @job_listings.group(:total_points).where("created_at >= ?", 6.months.ago).count, label: "", colors: ["#9430ff"] , loading: "Loading...",download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings" 
+    %>
+  </div>
+</div>
+
+<div class="border mb-3 d-flex align-items-center">
+  <div class="col-8">
+    <%job_listings_last_seven_days = JobListing.where("created_at >= ?", 7.days.ago)%>
+    <%= column_chart job_listings_last_seven_days.group_by_day(:created_at).count, label: "Job Listings created in the last 7 days", loading: "Loading...",download: true, title: "Applied job listings in the last 7 days", xtitle: "Date", ytitle: "Amount of job listing"   %>
+  </div>
+  <div class="col-4 text-center">
+    <h6>In the last 7 days</h6>
+    <h6>Applied</h6>
+    <h1 class="text-primary"><%=job_listings_last_seven_days.count%></h1>
+  </div>
+</div>
+
+<div class="border mb-3">
+  <div class="mb-3 col-12">
+    <%= pie_chart @job_listings.group(:status).count, donut: true, colors: ['#0f76f3', '#9430ff', '#f30fd9', '#198754'], loading: "Loading...",download: true,title: "Total job listings applied", xtitle: "Date", ytitle: "Amount of job listing"%>
+  </div>
+  <div class="d-flex justify-content-between text-center">
+    <div class="col-2">
+      <h6>Total applied</h6>
+      <h1><%=@job_listings.count%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Interviews</h6>
+      <h1 style="color: #198754"><%=@job_listings.where(status: :interviewing).count%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Under Reviews</h6>
+      <h1 style="color: var(--app-purple)"><%=@job_listings.where(status: :under_review).count%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Pending</h6>
+      <h1 style="color: var(--app-blue)"><%=@job_listings.where(status: :pending).count%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Rejected</h6>
+      <h1 style="color: var(--app-pink)"><%=@job_listings.where(status: :rejected).count%></h1>
+    </div>
+  </div>
+</div>
