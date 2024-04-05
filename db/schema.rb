@@ -54,8 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_03_054834) do
 
   create_table "boards", force: :cascade do |t|
     t.string "board_name"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -80,12 +82,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_03_054834) do
     t.string "portal_url"
     t.text "details"
     t.string "details_summary"
-    t.bigint "applicant_id", null: false
     t.integer "total_points", default: 0, null: false
     t.bigint "board_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["applicant_id"], name: "index_job_listings_on_applicant_id"
     t.index ["board_id"], name: "index_job_listings_on_board_id"
   end
 
@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_03_054834) do
     t.citext "username"
     t.string "first_name"
     t.string "last_name"
-    t.integer "role"
+    t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -109,7 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_03_054834) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ai_messages", "job_listings"
+  add_foreign_key "boards", "users"
   add_foreign_key "interviews", "job_listings"
   add_foreign_key "job_listings", "boards"
-  add_foreign_key "job_listings", "users", column: "applicant_id"
 end

@@ -10,7 +10,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer
+#  role                   :integer          default("user"), not null
 #  username               :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -28,7 +28,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :job_listings, foreign_key: "applicant_id", dependent: :destroy
+  has_many :boards, dependent: :destroy
   has_one_attached :avatar
   validates :username,
             presence: true,

@@ -1,7 +1,7 @@
-<% pendings = @board.job_listings.where(status: :pending) %>
-<% under_reviews = @board.job_listings.where(status: :under_review) %>
-<% interviewings = @board.job_listings.where(status: :interviewing) %>
-<% rejections = @board.job_listings.where(status: :rejected) %>
+<% pendings = @board.job_listings.where(status: :pending).order(created_at: :desc) %>
+<% under_reviews = @board.job_listings.where(status: :under_review).order(created_at: :desc) %>
+<% interviewings = @board.job_listings.where(status: :interviewing).order(created_at: :desc) %>
+<% rejections = @board.job_listings.where(status: :rejected).order(created_at: :desc) %>
 
 <nav id="navbar-scroll" class="navbar bg-body-tertiary px-3 mb-3 sticky-top d-flex justify-content-evenly align-items-center">
   <div class="d-flex justify-content-evenly">
@@ -55,7 +55,7 @@
 <div data-bs-spy="scroll" data-bs-target="#navbar-scroll" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
   <div class="container" id="scrollPending">
     <div class="row">
-      <h5>Pendings</h5>
+      <h5 class="text-secondary">Pendings</h5>
       <% pendings.each do |pending| %>
         <%= render "job_listings/card", job: pending %>
       <%end%>
@@ -63,7 +63,7 @@
   </div>
   <div class="container" id="scrollUnderReview">
     <div class="row">
-      <h5>Under Reviews</h5>
+      <h5 class="text-primary">Under Reviews</h5>
       <% under_reviews.each do |under_review| %>
         <%= render "job_listings/card", job: under_review %>
       <% end %>
@@ -71,7 +71,7 @@
   </div>
   <div class="container" id="scrollInterviewing">
     <div class="row">
-      <h5>Interviewings</h5>
+      <h5 class="text-success">Interviewings</h5>
       <% interviewings.each do |interviewing| %>
         <%= render "job_listings/card", job: interviewing %>
       <% end %>
@@ -79,7 +79,7 @@
   </div>
   <div class="container" id="scrollRejected">
     <div class="row">
-      <h5>Rejections</h5>
+      <h5 class="text-danger">Rejections</h5>
       <% rejections.each do |rejection| %>
         <%= render "job_listings/card", job: rejection %>
       <% end %>

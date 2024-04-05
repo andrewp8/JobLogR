@@ -4,7 +4,11 @@ class JobListingsController < ApplicationController
 
   # GET /job_listings or /job_listings.json
   def index
-    @job_listings = JobListing.where(applicant_id: current_user.id).order(created_at: :desc)
+
+    jobs_array = current_user.boards.flat_map(&:job_listings)
+    puts jobs_array
+    debugger
+    @job_listings = JobListing.where(id: jobs_array.map(&:id))
   end
 
   # GET /job_listings/1 or /job_listings/1.json
@@ -69,8 +73,10 @@ class JobListingsController < ApplicationController
   end
 
   def graph
-    @job_listings = JobListing.where(applicant_id: current_user.id)
-  
+    # @job_listings
+
+    @job_listings = JobListing.joins(board: :user).where(users: { id: current_user.id })
+# @job_listings = JobListing.includes(board: :user).where(users: { id: current_user.id })
     respond_to do |format|
       format.html { render "line_chart" }
       # Add other formats as needed, like JSON, XML, etc.
@@ -98,6 +104,6 @@ class JobListingsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def job_listing_params
-    params.require(:job_listing).permit(:title, :company, :location, :salary, :status, :details, :details_summary, :applicant_id, :points, :board_id, :job_url, :portal_url, attachments: [])
+    params.require(:job_listing).permit(:title, :company, :location, :salary, :status, :details, :details_summary, :points, :board_id, :job_url, :portal_url, attachments: [])
   end
 end
