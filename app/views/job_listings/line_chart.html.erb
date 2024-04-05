@@ -12,7 +12,7 @@
   </div>
   <div>
     <%interviewing_counts = @job_listings.where(status: :interviewing).where("created_at >= ?", 6.months.ago)%>
-    <%= area_chart @job_listings.group(:total_points).where("created_at >= ?", 6.months.ago).count, label: "", colors: ["#9430ff"] , loading: "Loading...",download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings" 
+    <%= area_chart @job_listings.group(:total_points).where("created_at >= ?", 6.months.ago).count, label: "", colors: ["#9430ff"] , loading: "Loading...",download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings"
     %>
   </div>
 </div>
