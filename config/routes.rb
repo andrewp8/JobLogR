@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :interviews
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
+  delete 'users/remove_avatar', to: 'users#remove_avatar', as: 'remove_avatar'
   # mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
