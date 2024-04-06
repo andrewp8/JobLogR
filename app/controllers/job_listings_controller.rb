@@ -4,11 +4,7 @@ class JobListingsController < ApplicationController
 
   # GET /job_listings or /job_listings.json
   def index
-
-    jobs_array = current_user.boards.flat_map(&:job_listings)
-    puts jobs_array
-    debugger
-    @job_listings = JobListing.where(id: jobs_array.map(&:id))
+    @job_listings = JobListing.joins(board: :user).where(users: { id: current_user.id })
   end
 
   # GET /job_listings/1 or /job_listings/1.json
@@ -73,10 +69,7 @@ class JobListingsController < ApplicationController
   end
 
   def graph
-    # @job_listings
-
-    @job_listings = JobListing.joins(board: :user).where(users: { id: current_user.id })
-# @job_listings = JobListing.includes(board: :user).where(users: { id: current_user.id })
+    @job_listings = index
     respond_to do |format|
       format.html { render "line_chart" }
       # Add other formats as needed, like JSON, XML, etc.

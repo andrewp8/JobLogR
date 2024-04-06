@@ -12,14 +12,14 @@
       </div>
     </div>
     <div>
-      <%= area_chart @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , label: "", colors: ["#9430ff"] , loading: "Loading...",download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: "Amount: "%>
+      <%= area_chart @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , label: "", colors: ["#9430ff"] , loading: "Loading...",download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: "Amount: ", library: {backgroundColor: "#eee"}%>
     </div>
   </div>
 
   <div class="border mb-3 d-flex align-items-center">
     <div class="col-8">
       <%job_listings_last_seven_days = @job_listings.where("job_listings.created_at >= ?", 7.days.ago)%>
-      <%= column_chart job_listings_last_seven_days.group_by_day(:created_at).count, label: "Job Listings created in the last 7 days", loading: "Loading...",download: true, title: "Applied job listings in the last 7 days", xtitle: "Date", ytitle: "Amount of job listing", library: {
+      <%= column_chart job_listings_last_seven_days.group_by_day(:created_at).count, label: "Amount: ", loading: "Loading...",download: true, title: "Applied job listings in the last 7 days", xtitle: "Date", ytitle: "Amount of job listing", library: {
         colors: ["#0f76f3"],
         tooltip: {
           textStyle: {
