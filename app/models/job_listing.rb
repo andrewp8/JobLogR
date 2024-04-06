@@ -15,32 +15,29 @@
 #  total_points    :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  applicant_id    :bigint           not null
 #  board_id        :bigint           not null
 #
 # Indexes
 #
-#  index_job_listings_on_applicant_id  (applicant_id)
-#  index_job_listings_on_board_id      (board_id)
+#  index_job_listings_on_board_id  (board_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (applicant_id => users.id)
 #  fk_rails_...  (board_id => boards.id)
 #
 class JobListing < ApplicationRecord
-  belongs_to :applicant, class_name: "User"
-  belongs_to :board
-
-  has_many :interviews, dependent: :destroy
-  has_many :ai_messages, foreign_key: :job_listing_id
-  has_many_attached :attachments, service: :amazon
   enum status: {
     pending: 0,
     under_review: 1,
     interviewing: 2,
     rejected: -1,
   }
+  
+  belongs_to :board
+  has_many :interviews, dependent: :destroy
+  has_many :ai_messages, foreign_key: :job_listing_id
+
+  has_many_attached :attachments, service: :amazon
 
   # -------------------------------- validations ------------------------------- #
   validates :title, presence: true

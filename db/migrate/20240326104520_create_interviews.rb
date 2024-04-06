@@ -6,7 +6,7 @@ class CreateInterviews < ActiveRecord::Migration[7.0]
       t.date :start_date
       t.date :end_date
       t.integer :point, default: 1, null: false
-      t.references :job_listing, null: false, foreign_key: true
+      t.references :job_listing, null: false, foreign_key: { to_table: :job_listings}
 
       t.timestamps
     end

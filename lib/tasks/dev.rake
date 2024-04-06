@@ -40,20 +40,28 @@ unless Rails.env.production?
         first_name: "andrew",
         last_name: "pham",
       )
+      User.create!(
+        email: "bob@example.com",
+        password: "123456",
+        role: :moderator,
+        username: "bob",
+        first_name: "bob",
+        last_name: "bobby",
+      )
 
-      people << { first_name: "Alice", last_name: "Smith" }
-      people << { first_name: "Bob", last_name: "Smith" }
 
-      people.each do |person|
-        username = person.fetch(:first_name).downcase
-        role = User.admin.exists? ? :user : :moderator
+      6.times do
+        first_name = Faker::Name.first_name
+        last_name = Faker::Name.last_name
+        username = first_name.downcase
+
         user = User.create(
           email: "#{username}@example.com",
           password: "password",
-          username: username.downcase,
-          first_name: "#{person[:first_name]}",
-          last_name: "#{person[:last_name]}",
-          role: role,
+          username: username,
+          first_name: first_name,
+          last_name: last_name,
+          role: :user,
         )
       end
       puts "There are now #{User.count} users"
@@ -63,7 +71,8 @@ unless Rails.env.production?
       puts "adding boards..."
       3.times do |i|
         board = Board.create(
-          board_name: "Job board ##{i + 1}",
+          board_name: "Job board ##{Time.now.year - i}",
+          user_id: User.all.sample.id
         )
       end
 
@@ -76,7 +85,6 @@ unless Rails.env.production?
         rand_salary = rand(40000.0..110000.0)
         status = [:pending, :under_review, :interviewing, :rejected].sample
         job = JobListing.create(
-          applicant_id: User.all.sample.id,
           board_id: Board.all.sample.id,
           title: Faker::Job.title,
           company: Faker::Company.name,
@@ -87,8 +95,8 @@ unless Rails.env.production?
           status: status,
           details: Faker::Lorem.paragraph(sentence_count: 10),
           details_summary: Faker::ProgrammingLanguage.name,
-          total_points: rand(-1..10),
-          created_at: Time.now - rand(1..200).days
+          total_points: rand(-1..6),
+          created_at: Time.now - rand(1..212).days
         )
       end
       puts "There are now #{JobListing.count} job listings"
