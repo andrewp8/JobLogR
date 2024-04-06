@@ -1,10 +1,10 @@
 <div class="border rounded-1 p-4 m-4">
   <h2>Edit <%= resource.username %>'s profile</h2>
-  <div class="mb-3 avatar-container m-auto rounded-circle row">
+  <div class="mb-3 avatar-container m-auto rounded-circle row m-3">
     <%= resource.avatar.attached? ? image_tag(resource.avatar, class: "avatar-image rounded-circle") : "<i class='fa-solid fa-user-tie avatar-icon'></i>".html_safe %>
     <div class="text-center">
       <%= link_to remove_avatar_path, method: :delete, data: { confirm: "Are you sure you want to remove your avatar?" } do %>
-        <i class="fas fa-trash-alt text-danger"></i>
+        <i class="fa-solid fa-trash text-danger"></i>
       <% end %>
     </div>
   </div>
@@ -21,12 +21,12 @@
     <% end %>
 
     <!-- First & last name field -->
-    <div class="d-flex justify-content-evently">
-      <div class="mb-3 pe-1">
+    <div class="d-flex justify-content-between">
+      <div class="col-6 mb-3 pe-1">
         <%= f.label :first_name, "First name"%>
         <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
       </div>
-      <div class="mb-3">
+      <div class="col-6 mb-3">
         <%= f.label :last_name, "Last name" %>
         <%= f.text_field :last_name, autofocus: true, class: 'form-control' %>
       </div>
