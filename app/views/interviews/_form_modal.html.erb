@@ -3,12 +3,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="interviewModalLabel">
-        <%status.capitalize%> Interview</h1>
+        <%locals[:job_listing].status.capitalize%> Interview</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= render "interviews/form", job_listing: job_listing } %>
+        <%= render "interviews/form", locals: {interview: locals[:interview], job_listing: locals[:job_listing]} %>
       </div>
     </div>
   </div>
 </div>
+
+
+      <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
+        <i class="fa-solid fa-plus"></i> Interview
+      <%end%>

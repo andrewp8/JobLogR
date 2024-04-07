@@ -31,10 +31,10 @@
       <%= form.datetime_field :end_date , class: 'form-control datetimepicker', placeholder: 'Select date and time'%>
     </div>
 
-      <%= form.text_field :job_listing_id, hidden: true %>
+      <%= form.text_field :job_listing_id, value: job_listing.id , hidden: true %>
 
     <div class="form-actions row">
-      <%= form.submit %>
+      <%= form.submit, class: "create" %>
     </div>
   <% end %>
 </div>

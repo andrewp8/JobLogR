@@ -470,7 +470,6 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
-  momentjs-rails (>= 2.9.0)
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
