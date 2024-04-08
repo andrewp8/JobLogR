@@ -91,10 +91,9 @@
           <div class="card p-2 bg-body-tertiary">
             <h5><%= date.strftime('%a, %d %b %Y') %></h5>
             <%messages.each do |msg|%>
-              <%= turbo_frame_tag 'messages_frame' do %>
+              <div id="ai_messages">
               <%=render "ai_messages/ai_message", ai_message: msg%>
-
-              <% end %>
+              </div>
             <%end%>
           </div>
         <%end%>
