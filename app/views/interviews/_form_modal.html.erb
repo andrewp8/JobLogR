@@ -3,11 +3,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="interviewModalLabel">
-        <%locals[:job_listing].status.capitalize%> Interview</h1>
+        <%job_listing.status.capitalize%> Interview</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= render "interviews/form", locals: {interview: locals[:interview], job_listing: locals[:job_listing]} %>
+        <%= render "interviews/form", interview: interview, job_listing: job_listing %>
       </div>
     </div>
   </div>

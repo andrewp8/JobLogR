@@ -52,7 +52,7 @@
       </button>
     </h2>
     <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <%= render "interviews/form_modal", locals: {interview: Interview.new, job_listing: @job_listing}%>
+      <%= render "interviews/form_modal", interview: Interview.new, job_listing: @job_listing%>
 
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">

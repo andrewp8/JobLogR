@@ -1,5 +1,5 @@
 <div class="border rounded-1 p-4 m-4">
-  <%= form_with(model: interview) do |form| %>
+  <%= form_with model: interview do |form| %>
     <% if interview.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(interview.errors.count, "error") %> prohibited this interview from being saved:</h2>
@@ -31,10 +31,9 @@
       <%= form.datetime_field :end_date , class: 'form-control datetimepicker', placeholder: 'Select date and time'%>
     </div>
 
-      <%= form.text_field :job_listing_id, value: job_listing.id , hidden: true %>
-
+    <%= form.text_field :job_listing_id, value: job_listing.id, hidden: true %>
     <div class="form-actions row">
-      <%= form.submit, class: "create" %>
+      <%= form.submit "Create", class: "create" %>
     </div>
   <% end %>
 </div>
