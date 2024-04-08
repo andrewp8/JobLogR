@@ -102,8 +102,6 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
-    bootstrap3-datetimepicker-rails (4.17.47)
-      momentjs-rails (>= 2.8.1)
     builder (3.2.4)
     capybara (3.39.1)
       addressable
@@ -235,8 +233,6 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.20.0)
-    momentjs-rails (2.29.4.1)
-      railties (>= 3.1)
     msgpack (1.7.0)
     multipart-post (2.4.0)
     mustermann (3.0.0)
@@ -320,6 +316,7 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     rchardet (1.8.0)
+    redcarpet (3.6.0)
     redis (4.8.1)
     regexp_parser (2.8.0)
     reline (0.3.3)
@@ -454,7 +451,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  bootstrap3-datetimepicker-rails (~> 4.17.47)
   capybara
   chartkick
   debug
@@ -476,6 +472,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-erd
   rails_db
+  redcarpet
   redis (~> 4.0)
   rspec-html-matchers
   rspec-rails (~> 6.0.0)

@@ -55,6 +55,7 @@
 
       <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#newInterviewModal" } do %>
         <i class="fa-solid fa-plus"></i> Interview
+        <%= render "interviews/form", interview: Interview.new, job_listing: @job_listing %>
       <%end%> 
 
       <div id="carouselExample" class="carousel slide">
@@ -67,11 +68,11 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span class="visually-hidden text-danger">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span class="visually-hidden text-danger">Next</span>
         </button>
       </div>
 
@@ -90,8 +91,9 @@
           <div class="card p-2 bg-body-tertiary">
             <h5><%= date.strftime('%a, %d %b %Y') %></h5>
             <%messages.each do |msg|%>
-              <%=render "ai_messages/ai_message", ai_message: msg%>
               <%= turbo_frame_tag 'messages_frame' do %>
+              <%=render "ai_messages/ai_message", ai_message: msg%>
+
               <% end %>
             <%end%>
           </div>
@@ -114,4 +116,4 @@
     </div>
   </div>
 </div>
-      <%= render "interviews/form", interview: Interview.new, job_listing: @job_listing %>
+      
