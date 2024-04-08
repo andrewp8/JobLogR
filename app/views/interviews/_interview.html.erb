@@ -5,11 +5,13 @@
     <h6 class="card-subtitle mb-2 text-body-secondary">End date: <%= interview.end_date %></h6>
     <p class="card-text"><%= interview.details %></p>
 
-    <%= link_to edit_interview_path(interview), class: "px-5 btn text-warning", data: { bs_toggle: "modal", bs_target: "#editInterviewModal" } do %>
+    <div class="card-subtitle row">
+      <%= link_to edit_interview_path(interview), class: "px-5 btn text-warning col-6", data: { bs_toggle: "modal", bs_target: "#editInterviewModal" } do %>
       <i class="fa-solid fa-pencil"></i>
     <% end %>
-    <%= button_to interview, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger delete-button" do %>
+    <%= button_to interview, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger delete-button col-6" do %>
       <i class="fa-solid fa-trash"></i>
     <% end %>
+    </div>
   </div>
 </div>
