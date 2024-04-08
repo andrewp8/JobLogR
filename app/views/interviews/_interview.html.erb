@@ -1,11 +1,15 @@
-
 <div class=" text-center bg-success" id="<%= dom_id interview %>">
   <div class="card-body">
     <h5 class="card-title"><%= interview.interview_type.capitalize %></h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">Start date: <%= interview.start_date %></h6>
     <h6 class="card-subtitle mb-2 text-body-secondary">End date: <%= interview.end_date %></h6>
     <p class="card-text"><%= interview.details %></p>
-    <a href="#" class="card-link">Edit</a>
-    <a href="#" class="card-link">Delete</a>
+
+    <%= link_to edit_interview_path(interview), class: "px-5 btn text-warning", data: { bs_toggle: "modal", bs_target: "#editInterviewModal" } do %>
+      <i class="fa-solid fa-pencil"></i>
+    <% end %>
+    <%= button_to interview, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger delete-button" do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
   </div>
 </div>

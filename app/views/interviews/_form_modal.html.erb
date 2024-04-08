@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="interviewModalLabel">
-        <%job_listing.status.capitalize%> Interview</h1>
+          <%=job_listing.status.capitalize%> Interview</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -12,8 +12,6 @@
     </div>
   </div>
 </div>
-
-
-      <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
+<%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do
         <i class="fa-solid fa-plus"></i> Interview
-      <%end%>
+      <%end%> 

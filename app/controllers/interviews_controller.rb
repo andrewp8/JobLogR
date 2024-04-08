@@ -4,7 +4,8 @@ class InterviewsController < ApplicationController
   # GET /interviews or /interviews.json
   def index
 
-    @interviews = Interview.all
+    @interviews = JobListing.joins(board: :user).where(users: { id: current_user.id }).interviews
+    @jo
   end
 
   # GET /interviews/1 or /interviews/1.json
@@ -23,13 +24,14 @@ class InterviewsController < ApplicationController
   # POST /interviews or /interviews.json
   def create
     @interview = Interview.new(interview_params)
-
+    @job_listing = JobListing.find(@interview.job_listing_id)
     respond_to do |format|
       if @interview.save
-        format.html { redirect_to interview_url(@interview), notice: "Interview was successfully created." }
+        format.html { redirect_to job_listing_path(@interview.job_listing_id), notice: "Interview was successfully created." }
         format.json { render :show, status: :created, location: @interview }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        # format.html {  render partial: 'form', locals: { interview: @interview, job_listing: @job_listing }, status: :unprocessable_entity}
+        format.html { redirect_back fallback_location: job_listing_path(@interview.job_listing_id), alert: "#{@interview.errors.full_messages.join(',')}" }
         format.json { render json: @interview.errors, status: :unprocessable_entity }
       end
     end
@@ -39,10 +41,10 @@ class InterviewsController < ApplicationController
   def update
     respond_to do |format|
       if @interview.update(interview_params)
-        format.html { redirect_to interview_url(@interview), notice: "Interview was successfully updated." }
+        format.html { redirect_to job_listing_url(@job_listing), notice: "Interview was successfully updated." }
         format.json { render :show, status: :ok, location: @interview }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html {redirect_back(fallback_location: job_listing_url(@job_listing), alert: "Unable to update the record. Please check your input.")}
         format.json { render json: @interview.errors, status: :unprocessable_entity }
       end
     end
@@ -53,7 +55,7 @@ class InterviewsController < ApplicationController
     @interview.destroy
 
     respond_to do |format|
-      format.html { redirect_to interviews_url, notice: "Interview was successfully destroyed." }
+      format.html { redirect__back fallback_location: job_listing_url(@job_listing.id), notice: "Interview was successfully destroyed." }
       format.json { head :no_content }
     end
   end
