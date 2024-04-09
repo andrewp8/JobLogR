@@ -2,5 +2,5 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
-require("chartkick")
-require("chart.js")
+import "chartkick";
+import "Chart.bundle";

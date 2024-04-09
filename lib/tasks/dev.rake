@@ -50,7 +50,7 @@ unless Rails.env.production?
       )
 
 
-      6.times do
+      3.times do
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
         username = first_name.downcase
@@ -81,7 +81,7 @@ unless Rails.env.production?
 
     task add_job_listings: :environment do
       puts "adding job listings..."
-      40.times do |job|
+      4000.times do |job|
         rand_salary = rand(40000.0..110000.0)
         status = [:pending, :under_review, :interviewing, :rejected].sample
         job = JobListing.create(
@@ -104,7 +104,7 @@ unless Rails.env.production?
 
     task add_interviews: :environment do
       puts "adding interviews"
-      6.times do |interview|
+      600.times do |interview|
         interview_type = [
           "Phone Interview",
           "On-site Interview",

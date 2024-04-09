@@ -1,0 +1,17 @@
+
+<div class="flip-card m-auto mb-3 col-6">
+  <div class="card flip-card-inner">
+    <div class="flip-card-front landing_card">
+      <div class="card-content">
+        <h5 class="card-title"><%=content[:caption]%></h5>
+        <iframe src="<%= content[:img] %>" class="card-img-top" aria-label="<%= content[:label]%>"></iframe>
+        <div class="card-body">
+          <p class="card-text"><%=content[:body]%></p>
+        </div>
+      </div>
+    </div>
+    <div class="flip-card-back landing_card">
+      <%= image_tag("#{content[:img_back]}", alt: "#{content[:alt]}", class: "back_card_img") %>
+    </div>
+  </div>
+</div>

@@ -12,8 +12,9 @@
       </div>
     </div>
     <div>
-      <%= area_chart @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , label: "", colors: ["#9430ff"] ,download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: "Amount: ", library: {backgroundColor: "#eee"}%>
+      <%= scatter_chart  @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , colors: ["#9430ff"] ,download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: " Applied applications in the last 6 months: "%>
     </div>
+ 
   </div>
 
   <div class="border mb-3 d-flex align-items-center">
