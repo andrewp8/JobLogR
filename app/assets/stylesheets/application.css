@@ -106,6 +106,7 @@ a{
   box-shadow: 1px 1px 20px 1px grey;
 }
 
+
 /* --------------------------------- landing -------------------------------- */
 .landing_h1_text {
   font-weight: bolder;
@@ -179,7 +180,13 @@ a{
   color: #555; /* Adjust the color of the icon */
 }
 
+/* -------------------------------- carousel -------------------------------- */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%);
+}
 
+/* ---------------------------------- test ---------------------------------- */
 .test {
   border: 1px solid red;
 }

@@ -41,7 +41,7 @@ class InterviewsController < ApplicationController
   def update
     respond_to do |format|
       if @interview.update(interview_params)
-        format.html { redirect_to job_listing_url(@job_listing), notice: "Interview was successfully updated." }
+        format.html { redirect_to job_listing_url(@interview.job_listing_id), notice: "Interview was successfully updated." }
         format.json { render :show, status: :ok, location: @interview }
       else
         format.html {redirect_back(fallback_location: job_listing_url(@job_listing), alert: "Unable to update the record. Please check your input.")}
@@ -52,10 +52,12 @@ class InterviewsController < ApplicationController
 
   # DELETE /interviews/1 or /interviews/1.json
   def destroy
+    interview = Interview.find(params[:id])
+    job_listing_id = interview.job_listing_id
     @interview.destroy
 
     respond_to do |format|
-      format.html { redirect__back fallback_location: job_listing_url(@job_listing.id), notice: "Interview was successfully destroyed." }
+      format.html { redirect_back fallback_location: job_listing_url(job_listing_id), notice: "Interview was successfully destroyed." }
       format.json { head :no_content }
     end
   end

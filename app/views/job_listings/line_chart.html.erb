@@ -12,7 +12,7 @@
       </div>
     </div>
     <div>
-      <%= area_chart @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , label: "", colors: ["#9430ff"] , loading: "Loading...",download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: "Amount: ", library: {backgroundColor: "#eee"}%>
+      <%= area_chart @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , label: "", colors: ["#9430ff"] ,download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: "Amount: ", library: {backgroundColor: "#eee"}%>
     </div>
   </div>
 

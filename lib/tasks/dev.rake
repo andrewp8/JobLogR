@@ -81,7 +81,7 @@ unless Rails.env.production?
 
     task add_job_listings: :environment do
       puts "adding job listings..."
-      400.times do |job|
+      40.times do |job|
         rand_salary = rand(40000.0..110000.0)
         status = [:pending, :under_review, :interviewing, :rejected].sample
         job = JobListing.create(
@@ -104,7 +104,7 @@ unless Rails.env.production?
 
     task add_interviews: :environment do
       puts "adding interviews"
-      60.times do |interview|
+      6.times do |interview|
         interview_type = [
           "Phone Interview",
           "On-site Interview",

@@ -1,9 +1,5 @@
 <turbo-stream action="append" target="ai_messages">
   <template>
-    <div id="ai_message_<%= @ai_message.id %>">
-      <p><strong>Role:</strong> <%= @ai_message.role %></p>
-      <p><strong>Body:</strong> <%= @ai_message.body %></p>
-      <p><strong>Job Listing:</strong> <%= @ai_message.job_listing.title %></p>
-    </div>
+    <%= render "ai_messages/ai_message", ai_message: ai_message %>
   </template>
 </turbo-stream>
