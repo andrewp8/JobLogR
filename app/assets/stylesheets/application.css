@@ -45,6 +45,8 @@ a{
 #navbar-scroll {
   top: 68px; 
 }
+
+
 /* ------------------------------- btn ------------------------------ */
 .sign_up_bg, .sign_up, .log_in, .sign_out, .create, .edit, .close{
   color: black;
