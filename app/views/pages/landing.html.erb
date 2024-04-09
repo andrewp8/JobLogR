@@ -8,16 +8,19 @@
         <%= link_to "Get started for free", new_user_registration_path, class: "nav-link sign_up" %>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6 col-lg-6 gradient-background rounded-4 mt-4 test">
-      <div class="landing m-3">
+    <div class="col-sm-12 col-md-6 col-lg-6 gradient-background rounded-4 mt-4">
+      <div class="landing m-3 m-auto container main_container">
         <%= image_tag("left_demo.png", alt: "product photo", class: "landing_img") %>
       </div>
     </div>
   </div>
-<h5 class="fw-bold mt-4">The career kit for the modern job-seeker</h5>
+  <h5 class="fw-bold mt-4"></h5>
 </div>
-<div class="row d-flex justify-content-center text-center">
-    <div class="col analysis_tool m-2">Application Analysis Tool</div>
-    <div class="col ai_tool m-2">Build resume and cover letters with AI</div>
-    <div class="col tracker_tool m-2">Interview Tracker</div>
+<div class="row align-self-stretch">
+  <% @contents.each do |content|%>
+    <%= render "card", content: content%>
+  <%end%>
 </div>
+
+
+<%=render "footer" %>

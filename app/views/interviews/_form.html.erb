@@ -1,50 +1,39 @@
-<%= form_with(model: interview) do |form| %>
-  <% if interview.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(interview.errors.count, "error") %> prohibited this interview from being saved:</h2>
+<div class="border rounded-1 p-4 m-4">
+  <%= form_with model: interview do |form| %>
+    <% if interview.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(interview.errors.count, "error") %> prohibited this interview from being saved:</h2>
+        <ul>
+          <% interview.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-        <% interview.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="mb-3">
+      <%= form.label :interview_type,"Interview Type" %>
+      <%= form.text_field :interview_type, required: true, autofocus: true, class: 'form-control'  %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :details, "Details" %>
+      <%= form.text_area :details, placeholder: "A note about the activity", autofocus: true, class: 'form-control'  %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :start_date, style: "display: block" %>
+      <%= form.datetime_field :start_date , class: 'form-control', min: Date.today%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :end_date, style: "display: block" %>
+      <%= form.datetime_field :end_date , class: 'form-control', min: Date.today%>
+    </div>
+
+    <%= form.text_field :job_listing_id, value: job_listing.id, hidden: true %>
+    <div class="form-actions row">
+      <%= form.submit "Save", class: "btn create" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :interview_type, style: "display: block" %>
-    <%= form.text_field :interview_type %>
-  </div>
-
-  <div>
-    <%= form.label :details, style: "display: block" %>
-    <%= form.text_area :details %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :point, style: "display: block" %>
-    <%= form.number_field :point %>
-  </div>
-
-  <div>
-    <%= form.label :job_listing_id, style: "display: block" %>
-    <%= form.text_field :job_listing_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
-
+</div>

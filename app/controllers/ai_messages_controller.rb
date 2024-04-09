@@ -47,7 +47,9 @@ puts "ABC --- #{response["choices"][0]["message"]["content"]}"
       if @ai_message.save
         format.html { redirect_to job_listing_path(@ai_message.job_listing_id), notice: "Ai message was successfully created." }
         format.json { render :show, status: :created, location: @ai_message }
-        format.turbo_stream { render turbo_stream: turbo_stream.append(@ai_message) }
+        format.turbo_stream { render turbo_stream: turbo_stream.append("ai_messages",
+        partial: "ai_messages/ai_message",
+        locals: { ai_message: @ai_message }) }
       else
         flash[:error] = @ai_message.errors.full_messages.to_sentence
         format.html { render :new, status: :unprocessable_entity }

@@ -63,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_03_054834) do
   create_table "interviews", force: :cascade do |t|
     t.string "interview_type", null: false
     t.text "details"
-    t.date "start_date"
-    t.date "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer "point", default: 1, null: false
     t.bigint "job_listing_id", null: false
     t.datetime "created_at", null: false

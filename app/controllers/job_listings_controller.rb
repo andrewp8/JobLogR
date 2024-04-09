@@ -72,7 +72,6 @@ class JobListingsController < ApplicationController
     @job_listings = index
     respond_to do |format|
       format.html { render "line_chart" }
-      # Add other formats as needed, like JSON, XML, etc.
     end
   end
   

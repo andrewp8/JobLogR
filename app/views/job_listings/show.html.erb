@@ -52,27 +52,35 @@
       </button>
     </h2>
     <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#interviewModal" } do %>
-        <i class="fa-solid fa-plus"></i> Interview
-      <%end%>
-      <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <% @job_listing.interviews.each do |interview|%>
-              <%= render "interviews/interview", interview: interview %>
-            <%end%>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
 
+      <div class="m-3">
+        <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#newInterviewModal" } do %>
+          <i class="fa-solid fa-plus"></i> Interview
+        <%end%>
+        <%= render "interviews/form_modal", interview: Interview.new, job_listing: @job_listing, mode: "new"  %>
+<% if @job_listing.interviews.present? %>
+        <div id="interviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="100000">
+          <div class="carousel-inner">
+            <% @job_listing.interviews.each_with_index do |interview, index| %>
+              <%= render "interviews/form_modal", interview: interview, job_listing: @job_listing, mode: "edit"  %>
+              <div class="carousel-item <%= 'active' if index.zero? %>">
+                <%= render "interviews/interview", interview: interview%>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#interviewCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#interviewCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <%else  %>
+
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="accordion-item">
@@ -83,14 +91,14 @@
     </h2>
     <div id="collapseChatGPT" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body ">
-      <%= render "ai_messages/form", ai_message: AiMessage.new, job_listing: @job_listing %>
+        <%= render "ai_messages/form", ai_message: AiMessage.new, job_listing: @job_listing %>
         <% @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
           <div class="card p-2 bg-body-tertiary">
             <h5><%= date.strftime('%a, %d %b %Y') %></h5>
             <%messages.each do |msg|%>
-              <%=render "ai_messages/ai_message", ai_message: msg%>
-              <%= turbo_frame_tag 'messages_frame' do %>
-              <% end %>
+              <div id="ai_messages">
+                <%=render "ai_messages/ai_message", ai_message: msg%>
+              </div>
             <%end%>
           </div>
         <%end%>
