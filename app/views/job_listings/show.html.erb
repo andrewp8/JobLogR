@@ -93,7 +93,7 @@
       <div class="accordion-body ">
         <%= render "ai_messages/form", ai_message: AiMessage.new, job_listing: @job_listing %>
         <% @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
-          <div class="card p-2 bg-body-tertiary">
+          <div class="card p-2 bg-body-tertiary mb-3">
             <h5><%= date.strftime('%a, %d %b %Y') %></h5>
             <%messages.each do |msg|%>
               <div id="ai_messages">

@@ -44,7 +44,7 @@ class InterviewsController < ApplicationController
         format.html { redirect_to job_listing_url(@interview.job_listing_id), notice: "Interview was successfully updated." }
         format.json { render :show, status: :ok, location: @interview }
       else
-        format.html {redirect_back(fallback_location: job_listing_url(@job_listing), alert: "Unable to update the record. Please check your input.")}
+        format.html {redirect_back(fallback_location: job_listing_url(@interview.job_listing_id), alert: "Unable to update the record. Please check your input.")}
         format.json { render json: @interview.errors, status: :unprocessable_entity }
       end
     end

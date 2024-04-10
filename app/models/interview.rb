@@ -41,5 +41,8 @@ class Interview < ApplicationRecord
     if start_date.present? && end_date.present? && end_date < start_date
       errors.add(:end_date, "End time can't be before start date")
     end
+    if start_date.present? && end_date.present? && end_date == start_date
+      errors.add(:end_date, "End time can't be the same with start date")
+    end
   end
 end
