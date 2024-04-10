@@ -1,13 +1,12 @@
-
-
 <% if @ai_message.persisted? %>
-  var addedMessage = $("<%= j(render 'ai_messages/ai_message', ai_message: @ai_message) %>");
-  $("#ai_messages").append(addedMessage); // Append the new message
-  addedMessage.hide().slideDown(); // Slide down effect for the newly added message
-
-  // Optionally, reset the form fields if needed
-  $('#<%= dom_id(ai_message, "form") %>')[0].reset();
+  var addedMessageHtml = "<%= j(render 'ai_messages/ai_message', ai_message: @ai_message) %>";
+  var addedMessage = $(addedMessageHtml);
 <% else %>
-  // Handle the case where @ai_message wasn't saved successfully
-  // You might want to display error messages or take other actions
+  var addedMessage = $("<p>Oops! We encountered an error.</p>");
 <% end %>
+
+addedMessage.hide();
+$(".ai_messages:first").prepend(addedMessage);
+addedMessage.slideDown();
+
+$("#ai_body").val("");

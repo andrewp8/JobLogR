@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :ai_messages
   resources :job_listings do
     patch 'update_status/:status', action: :update_status, on: :member, as: :update_status
-    get 'graph', action: :graph, on: :collection, as: :graph
+    get 'application_insights', action: :application_insights, on: :collection, as: :application_insights
   end
   resources :boards
   resources :interviews

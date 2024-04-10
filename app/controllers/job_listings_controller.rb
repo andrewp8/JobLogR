@@ -68,8 +68,9 @@ class JobListingsController < ApplicationController
     end
   end
 
-  def graph
+  def application_insights
     @job_listings = index
+    @follow_up_list = @job_listings.where("job_listings.total_points < 1 AND job_listings.created_at >= ?", 6.months.ago)
     respond_to do |format|
       format.html { render "line_chart" }
     end

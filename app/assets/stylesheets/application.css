@@ -51,13 +51,9 @@ a{
 .sign_up_bg, .sign_up, .log_in, .sign_out, .create, .edit, .close{
   color: black;
   margin-bottom: 10px;
-  border: solid .5 grey;
   border-radius: 5px;
   padding: 10px;
-  background-color: var(--app-purple);
-  /* width: 100px; */
   text-align: center;
-  box-shadow: 1px 1px 20px 1px var(--app-purple);
 }
 
 .sign_up {
@@ -85,6 +81,10 @@ a{
   }
 }
 
+.sign_up_bg{
+  background-color: var(--app-purple);
+  box-shadow: 1px 1px 20px 1px var(--app-purple);
+}
 .log_in{
   background-color: var(--app-blue);
   box-shadow: 1px 1px 20px 1px var(--app-blue);

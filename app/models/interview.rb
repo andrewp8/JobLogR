@@ -33,16 +33,16 @@ class Interview < ApplicationRecord
 
   def future_date_time
     if start_date.present? && start_date < Time.current
-      errors.add(:start_date, "Start time can't be in the past")
+      errors.add(:start_date, "can't be in the past")
     end
     if end_date.present? && end_date < Time.current
-      errors.add(:end_date, "End time can't be in the past")
+      errors.add(:end_date, "can't be in the past")
     end
     if start_date.present? && end_date.present? && end_date < start_date
-      errors.add(:end_date, "End time can't be before start date")
+      errors.add(:end_date, "can't be before start date")
     end
     if start_date.present? && end_date.present? && end_date == start_date
-      errors.add(:end_date, "End time can't be the same with start date")
+      errors.add(:end_date, "can't be the same with start date")
     end
   end
 end
