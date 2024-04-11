@@ -21,9 +21,13 @@ end
     req.ip
   end
 
-  # Track it using ActiveSupport::Notification
-ActiveSupport::Notifications.subscribe('rack.attack') do |name, start, finish, request_id, req|
-  puts "Rack::Attack: Blocklisted request #{req.path} from IP #{req.ip}"
+ # Subscribe to "rack.attack" notifications
+ActiveSupport::Notifications.subscribe("rack.attack") do |name, start, finish, request_id, payload|
+  req = payload[:request]
+  if req.env['rack.attack.matched'] == "block-wordpress-scans"
+    Rails.logger.info "[Rack::Attack][Blocked] Remote IP: #{req.ip}, Path: #{req.path}"
+    # Additional notification logic here...
+  end
 end
 
 end
