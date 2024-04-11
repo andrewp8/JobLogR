@@ -1,13 +1,11 @@
-<%= form_with(model: ai_message, local: true, html: { id: dom_id(ai_message, "form") }) do |form| %>
+<%= form_with(model: ai_message, local: true, html: { id: dom_id(ai_message, "form"), data: { turbo: false } }) do |form| %>
   <div class="mb-3">
     <div class="input-group">
-      <%= form.text_field :body, class: "form-control", required: false, id:"body", placeholder: "How can I help you?" %>
+      <%= form.text_field :body, class: "form-control", required: false, id:"ai_body", placeholder: "How can I help you?" %>
       <%= form.submit "Ask", class: "input-group-text"%>
     </div>
   </div>
   <div>
     <%= form.hidden_field :job_listing_id, value: job_listing.id %>
   </div>
-<% end %>
-<%= turbo_frame_tag 'new_message_frame' do %>
 <% end %>

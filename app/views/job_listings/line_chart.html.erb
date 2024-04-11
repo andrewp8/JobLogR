@@ -1,20 +1,27 @@
 <div class="border mb-3">
   <h6 class="m-2">In the last 6 months</h6>
   <div class="d-flex justify-content-evenly text-center">
-    <div class="col-6">
+    <div class="col-4">
       <h6>Applied</h6>
       <h1 class="text-primary">
         <%=@job_listings.where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 %>
       </div>
-      <div class="col-6">
+      <div class="col-4">
         <h6>Interviewed</h6>
         <h1 class="text-success"><%=@job_listings.where(status: :interviewing).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 %></h1>
       </div>
+      <div class="col-4">
+        <button class="bg-warning border rounded" data-bs-toggle="modal" data-bs-target="#followUpModal">
+          <h6>Low-Engagement Applications</h6>
+          <h1 class="text-success"><%=@follow_up_list.count.presence || 0%></h1>
+        </button>
+      </div>
+
     </div>
     <div>
       <%= scatter_chart  @job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , colors: ["#9430ff"] ,download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: " Applied applications in the last 6 months: "%>
     </div>
- 
+
   </div>
 
   <div class="border mb-3 d-flex align-items-center">
@@ -62,3 +69,29 @@
       </div>
     </div>
   </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="followUpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="followUpModalLabel">Low-Engagement Applications</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--list-->
+        <ul class="list-group">
+         <%= @follow_up_list.each do |job| %>
+  <li class="list-group-item"><%= link_to job.title, job_listing_path(job.id) %></li>
+            <% end %>
+</ul>
+        <!--end list -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 

@@ -4,3 +4,10 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "chartkick";
 import "Chart.bundle";
+
+
+import jquery from "jquery";
+window.jQuery = jquery;
+window.$ = jquery;
+import Rails from "@rails/ujs"
+Rails.start();

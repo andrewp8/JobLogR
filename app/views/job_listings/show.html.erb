@@ -14,7 +14,7 @@
         <%= link_to board_path(@job_listing.board.id), class:"btn text-secondary-emphasis" do %>
           <i class="fa-solid fa-left-long"></i>
         <% end %>
-        <h3 class="navbar-brand">
+        <h3 class="navbar-brand text-wrap">
           <%= @job_listing.title.capitalize%>
         </h3>
       </button>
@@ -95,11 +95,11 @@
         <% @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
           <div class="card p-2 bg-body-tertiary mb-3">
             <h5><%= date.strftime('%a, %d %b %Y') %></h5>
+              <div class="ai_messages_test">
             <%messages.each do |msg|%>
-              <div id="ai_messages">
                 <%=render "ai_messages/ai_message", ai_message: msg%>
-              </div>
             <%end%>
+              </div>
           </div>
         <%end%>
       </div>
