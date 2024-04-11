@@ -69,10 +69,11 @@ class AiMessagesController < ApplicationController
 
   # DELETE /ai_messages/1 or /ai_messages/1.json
   def destroy
+    job_listing_id = @ai_message.job_listing_id
     @ai_message.destroy
 
     respond_to do |format|
-      format.html { redirect_to ai_messages_url, notice: "Ai message was successfully destroyed." }
+      format.html { redirect_to job_listing_path(job_listing_id), notice: "This message was successfully destroyed." }
       format.json { head :no_content }
     end
   end

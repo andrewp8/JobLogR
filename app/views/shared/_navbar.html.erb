@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">About</a>
+          <%= link_to 'About', about_path, class: 'nav-link active', 'aria-current' => 'page' %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -37,7 +37,8 @@
             </a>
             <ul class="dropdown-menu">
               <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item sign_out" %>
+          <%= link_to 'Feedback', feedback_path, class: 'dropdown-item'%>
+              <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item sign_out mt-2" %>
             </ul>
           </li>
         <%else%>

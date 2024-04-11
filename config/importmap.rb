@@ -8,3 +8,9 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "chartkick", to: "chartkick.js"
 pin "Chart.bundle", to: "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"
+
+
+
+
+pin "@rails/ujs", to: "https://ga.jspm.io/npm:@rails/ujs@7.1.3-2/app/assets/javascripts/rails-ujs.esm.js"
+pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js"

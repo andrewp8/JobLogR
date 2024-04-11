@@ -4,7 +4,7 @@
 <% else %>
   var addedMessage = $("<p>Oops! We encountered an error.</p>");
 <% end %>
-
+console.log(addedMessage);
 addedMessage.hide();
 $(".ai_messages:first").prepend(addedMessage);
 addedMessage.slideDown();
