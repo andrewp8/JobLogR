@@ -30,7 +30,7 @@ class AiMessagesController < ApplicationController
     @ai_message.body << params[:ai_message][:body]
     @ai_message.job_listing_id = params[:ai_message][:job_listing_id]
     client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
-  instructed_prompt = "As a career expert, please answer my question #{@ai_message.body[0]}. Give me a specific advices, insights, recommendations, url if necessary, and important key to add in my resume or cover letter for the company if applicable. Please respond in Markdown syntax language."
+  instructed_prompt = "As a career expert, please answer my question #{@ai_message.body[0]}. Give me a specific advices, insights, recommendations, url if necessary. If i ever ask about resume or cover letter, please provide important key to add in my resume or cover letter for the company if applicable. Please respond in Markdown syntax language."
     response = client.chat(
       parameters: {
         model: "gpt-3.5-turbo", 
