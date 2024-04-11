@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:landing_page, :about]
-
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from ActionController::RoutingError, with: :render_404
+  
   protected
 
   def configure_permitted_parameters
@@ -21,4 +21,7 @@ class ApplicationController < ActionController::Base
     boards_path
   end
 
+  def render_404
+    render 'errors/404', status: :not_found
+  end
 end
