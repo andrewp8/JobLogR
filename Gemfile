@@ -57,8 +57,8 @@ gem 'groupdate'
 # markdown
 gem 'redcarpet'
 
-# Rack middleware for blocking & throttling abusive requests
-gem 'rack-attack'
+# google authentication
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

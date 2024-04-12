@@ -17,6 +17,7 @@
   --app-purple: #9430ff;
   --app-blue: #0f76f3;
   --app-yellow: #f3a10f;
+  --app-green: #00a35f;
 }
 
 /* ---------------------------------- roots --------------------------------- */
@@ -48,7 +49,7 @@ a{
 
 
 /* ------------------------------- btn ------------------------------ */
-.sign_up_bg, .sign_up, .log_in, .sign_out, .create, .edit, .close{
+.sign_up_bg, .sign_up, .log_in, .sign_out, .create, .edit, .close , .follow_up{
   color: black;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -63,7 +64,7 @@ a{
   font-weight: bolder;
 }
 
-.sign_up_bg:active, .sign_out:active, .log_in:active, .create:active, .close:active, .edit:active {
+.sign_up_bg:active, .sign_out:active, .log_in:active, .create:active, .close:active, .edit:active, .follow_up:active {
   color: white;
   font-weight: bold;
   animation-name: glow;
@@ -104,6 +105,10 @@ a{
 .close {
   background-color: grey;
   box-shadow: 1px 1px 20px 1px grey;
+}
+.follow_up {
+  background-color: var(--app-green);
+  box-shadow: 1px 1px 20px 1px var(--app-green);
 }
 
 
@@ -210,19 +215,6 @@ a{
   margin-bottom: 20px;
 }
 
-.btn {
-  padding: 10px 20px;
-  background-color: #f1f1f1;
-  color: #333;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.btn:hover {
-  background-color: #333;
-  color: #f1f1f1;
-}
-
 .attribute{
   position: absolute;
   bottom: 10px;
@@ -268,6 +260,14 @@ a{
 .carousel-control-next-icon {
   filter: invert(100%);
 }
+
+/* ---------------------------- rich text editor ---------------------------- */
+.custom-rich-text-editor .trix-editor {
+  width: 100%; /* Set the width to fill the modal */
+  max-width: 100%; /* Ensure the editor does not exceed the modal's width */
+  height: 300px; /* Adjust the height as needed */
+}
+
 
 /* ---------------------------------- test ---------------------------------- */
 .test {

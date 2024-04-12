@@ -1,0 +1,26 @@
+<!-- Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="emailModalLabel">Send follow up email</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_with(url: follow_ups_send_follow_up_email_path, method: :post) do |form| %>
+        <div class="modal-body">
+          <%= form.text_field :recipient_email, placeholder: "Recipient's Email", required: true, class: "form-control mb-3" %>
+          <%= form.rich_text_area :email_body, value: @follow_up_template, class: "form-control mb-3 custom-rich-text-editor" %>
+        </div>
+        <%= form.hidden_field :job_listing_id, value: job_listing.id %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <div class="modal-footer">
+          <button type="submit" class="btn close" data-bs-dismiss="modal">Close</button>
+          <%= form.submit "Send", class: "btn create" do %>
+            Send
+            <i class="fa-regular fa-paper-plane"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
