@@ -1,0 +1,2 @@
+class FollowUpMailer < ApplicationMailer
+end
