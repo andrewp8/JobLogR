@@ -21,7 +21,4 @@ class ApplicationController < ActionController::Base
     boards_path
   end
 
-  def render_404
-    render 'errors/404', status: :not_found
-  end
 end
