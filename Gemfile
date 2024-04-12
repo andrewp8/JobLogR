@@ -119,3 +119,7 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "actiontext", "~> 7.0"
+
+gem "actionmailer", "~> 7.0"
