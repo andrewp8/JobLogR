@@ -7,10 +7,12 @@
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
 #  last_name              :string
+#  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :integer          default("user"), not null
+#  uid                    :string
 #  username               :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -22,11 +24,11 @@
 #  index_users_on_username              (username) UNIQUE
 #
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+
   enum role: { user: 0, admin: 1, moderator: 2 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 
   has_many :boards, dependent: :destroy
   has_one_attached :avatar
@@ -37,4 +39,23 @@ class User < ApplicationRecord
               with: /\A[\w_\.]+\z/i,
               message: "can only contain letters, numbers, periods, and underscores",
             }
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.first_name #assuming auth.info has a first_name
+      user.last_name = auth.info.last_name #assuming auth.info has a last_name
+      # user.avatar = auth.info.image
+      # Attach avatar image if available
+      # if auth.info.image.present?
+      #   avatar_url = auth.info.image
+      #   user.avatar.attach(io: URI.open(avatar_url), filename: "avatar.jpg")
+      # end
+
+      # If you are using confirmable and the provider(s) you use validate emails
+      #uncoment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
 end
