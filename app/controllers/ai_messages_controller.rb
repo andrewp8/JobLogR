@@ -26,7 +26,7 @@ class AiMessagesController < ApplicationController
   # POST /ai_messages or /ai_messages.json
   def create
     @ai_message = AiMessage.new(ai_message_params)
-    @ai_message.role << current_user.username
+    @ai_message.role << current_user.first_name
     @ai_message.body << params[:ai_message][:body]
     @ai_message.job_listing_id = params[:ai_message][:job_listing_id]
     client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])

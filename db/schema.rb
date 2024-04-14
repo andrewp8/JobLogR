@@ -105,7 +105,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_12_225109) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.citext "username"
     t.string "first_name"
     t.string "last_name"
     t.integer "role", default: 0, null: false
@@ -115,7 +114,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_12_225109) do
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

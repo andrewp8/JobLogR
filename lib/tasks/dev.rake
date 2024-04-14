@@ -36,7 +36,6 @@ unless Rails.env.production?
         email: "andrew@example.com",
         password: "pass123",
         role: :admin,
-        username: "andrew",
         first_name: "andrew",
         last_name: "pham",
       )
@@ -44,7 +43,6 @@ unless Rails.env.production?
         email: "bob@example.com",
         password: "123456",
         role: :moderator,
-        username: "bob",
         first_name: "bob",
         last_name: "bobby",
       )
@@ -53,12 +51,10 @@ unless Rails.env.production?
       1.times do
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
-        username = first_name.downcase
 
         user = User.create(
-          email: "#{username}@example.com",
+          email: "#{first_name}@example.com",
           password: "password",
-          username: username,
           first_name: first_name,
           last_name: last_name,
           role: :user,

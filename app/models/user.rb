@@ -13,7 +13,6 @@
 #  reset_password_token   :string
 #  role                   :integer          default("user"), not null
 #  uid                    :string
-#  username               :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -21,7 +20,6 @@
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_username              (username) UNIQUE
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
@@ -32,31 +30,23 @@ class User < ApplicationRecord
 
   has_many :boards, dependent: :destroy
   has_one_attached :avatar
-  validates :username,
-            presence: true,
-            uniqueness: true,
-            format: {
-              with: /\A[\w_\.]+\z/i,
-              message: "can only contain letters, numbers, periods, and underscores",
-            }
 
+            def self.from_google(u)
+              create_with(uid: u[:uid], name: u[:name], provider: 'google',
+                          password: Devise.friendly_token[0, 20]).find_or_create_by!(email: u[:email])
+            end
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      puts "---- in user model 111----"
       user.email = auth.info.email
-      puts "---- in user model: user.emal #{user.email}----"
       user.password = Devise.friendly_token[0, 20]
-      puts "---- in user model: user.password #{user.password}----"
       user.first_name = auth.info.first_name #assuming auth.info has a first_name
-      puts "---- in user model: user.first_name #{user.first_name}----"
       user.last_name = auth.info.last_name #assuming auth.info has a last_name
-      puts "---- in user model: user.last_name #{user.last_name}----"
       # user.avatar = auth.info.image
       # Attach avatar image if available
-      # if auth.info.image.present?
-      #   avatar_url = auth.info.image
-      #   user.avatar.attach(io: URI.open(avatar_url), filename: "avatar.jpg")
-      # end
+      if auth.info.image.present?
+        avatar_url = auth.info.image
+        user.avatar.attach(io: URI.open(avatar_url), filename: "avatar.jpg")
+      end
 
       # If you are using confirmable and the provider(s) you use validate emails
       #uncoment the line below to skip the confirmation emails.
