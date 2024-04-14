@@ -11,10 +11,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate_user!
-    if !user_signed_in? || (user_signed_in? && current_user.provider != "google")
-      super # Proceed with Devise authentication if the user is not signed in or if the user signed in with a method other than Google
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   end
 
   def landing_page?
@@ -25,7 +23,4 @@ class ApplicationController < ActionController::Base
     boards_path
   end
 
-  def new_session_path(scope)
-    new_user_session_path
-  end
 end
