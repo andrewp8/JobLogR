@@ -1,9 +1,9 @@
-<div class=" text-center" id="<%= dom_id interview %>">
+<div class="mx-5 px-3 text-center" id="<%= dom_id interview %>">
   <div class="card-body">
     <h5 class="card-title"><%= interview.interview_type.capitalize %></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Start date: <%= interview.start_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></h6>
-    <h6 class="card-subtitle mb-2 text-body-secondary">End date: <%= interview.end_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></h6>
-    <p class="card-text">Details: <%= interview.details %></p>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><strong>Start date:</strong> <%= interview.start_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></h6>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><strong>End date:</strong> <%= interview.end_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></h6>
+    <p class="card-text"><strong>Details:</strong> <%= interview.details %></p>
     <div class="d-flex justify-content-center">
       <%= link_to edit_interview_path(interview), class: "btn text-warning", data: { bs_toggle: "modal", bs_target: "#editInterviewModal" } do %>
       <i class="fa-solid fa-pencil"></i>

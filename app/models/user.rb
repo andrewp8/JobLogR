@@ -40,13 +40,8 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.first_name #assuming auth.info has a first_name
-      user.last_name = auth.info.last_name #assuming auth.info has a last_name
-      # user.avatar = auth.info.image
-      # Attach avatar image if available
-      # if auth.info.image.present?
-      #   avatar_url = auth.info.image
-      #   user.avatar.attach(io: URI.open(avatar_url), filename: "avatar.jpg")
-      # end
+      user.last_name = auth.info.last_name
+
       if auth.info.image.present?
         avatar_url = auth.info.image
         downloaded_avatar = Down.download(avatar_url) # Use the 'down' gem to download the image
