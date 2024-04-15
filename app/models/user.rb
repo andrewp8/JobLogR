@@ -43,10 +43,16 @@ class User < ApplicationRecord
       user.last_name = auth.info.last_name #assuming auth.info has a last_name
       # user.avatar = auth.info.image
       # Attach avatar image if available
+      # if auth.info.image.present?
+      #   avatar_url = auth.info.image
+      #   user.avatar.attach(io: URI.open(avatar_url), filename: "avatar.jpg")
+      # end
       if auth.info.image.present?
         avatar_url = auth.info.image
-        user.avatar.attach(io: URI.open(avatar_url), filename: "avatar.jpg")
+        downloaded_avatar = Down.download(avatar_url) # Use the 'down' gem to download the image
+        user.avatar.attach(io: downloaded_avatar, filename: "avatar.jpg")
       end
+      
 
       # If you are using confirmable and the provider(s) you use validate emails
       #uncoment the line below to skip the confirmation emails.
