@@ -70,28 +70,28 @@
     </div>
   </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="followUpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="followUpModalLabel">Low-Engagement Applications</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!--list-->
-        <ul class="list-group">
-         <%= @follow_up_list.each do |job| %>
-  <li class="list-group-item"><%= link_to job.title, job_listing_path(job.id) %></li>
+  <!-- Modal -->
+  <div class="modal fade" id="followUpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="followUpModalLabel">Low-Engagement Applications</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!--list-->
+          <ul class="list-group">
+            <% @follow_up_list.each do |job| %>
+              <li class="list-group-item">
+                <%= link_to job.title, job_listing_path(job.id) %>
+              </li>
             <% end %>
-</ul>
-        <!--end list -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+          </ul>
+          <!--end list -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
- 
