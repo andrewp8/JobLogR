@@ -25,16 +25,14 @@ class AiMessagesController < ApplicationController
 
   # POST /ai_messages or /ai_messages.json
   def create
-    # user_query = params[:ai_message][:body]
+    user_query = params[:ai_message][:body]
     @ai_message = AiMessage.new(ai_message_params)
     @ai_message.role << current_user.first_name
-    # @ai_message.body << user_query
-    @ai_message.body << params[:ai_message][:body]
+    @ai_message.body << user_query
     @ai_message.job_listing_id = params[:ai_message][:job_listing_id]
     
     @ai_message.role << "system"
-    # response = AiMessage.generate_response(user_query)
-    response = AiMessage.generate_response
+    response = AiMessage.generate_response(user_query)
     @ai_message.body << response
 
     respond_to do |format|
