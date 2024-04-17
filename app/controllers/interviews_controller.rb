@@ -5,7 +5,6 @@ class InterviewsController < ApplicationController
   def index
 
     @interviews = JobListing.joins(board: :user).where(users: { id: current_user.id }).interviews
-    @jo
   end
 
   # GET /interviews/1 or /interviews/1.json
