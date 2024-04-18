@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    puts "handle---- #{params[:user][:avatar].present?} "
     if @user.update(user_params)
       handle_avatar_upload
       redirect_to @user, notice: 'User was successfully updated.'

@@ -9,16 +9,7 @@ class JobListingsController < ApplicationController
 
   # GET /job_listings/1 or /job_listings/1.json
   def show
-    @follow_up_template = "Hello,<br><br>
-    I hope this email finds you well.<br><br>
-    My name is [Your Name] and I am following up on my application for the [Job Title] position that I submitted on [Date].<br><br>
-    I am very interested in this opportunity at [Company Name] because [ Briefly mention a reason why you're interested in the company and role (e.g., company's mission aligns with your values, specific aspect of the job description excites you)].<br><br>
-    In my previous role at [Previous Company], I [ Briefly mention a relevant accomplishment or skill that aligns with the job requirements]. I am confident that my skills and experience would be a valuable asset to your team.<br><br>
-    I understand the hiring process takes time, but I wanted to reiterate my strong interest in this position.<br><br>
-    Thank you for your time and consideration.<br><br>
-    Sincerely,<br><br>
-    [Your Name]
-    "
+    @follow_up_template = JobListing.follow_up_email_template
   end
 
   # GET /job_listings/new
@@ -35,7 +26,6 @@ class JobListingsController < ApplicationController
     @job_listing = JobListing.new(job_listing_params)
     respond_to do |format|
       if @job_listing.save
-        # format.html { redirect_to job_listing_url(@job_listing), notice: "Job listing was successfully created." }
         format.html { redirect_back fallback_location: board_path(@job_listing.board.id), notice: "Job listing was successfully created." }
         format.json { render :show, status: :created, location: @job_listing }
       else
