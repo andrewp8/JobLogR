@@ -7,7 +7,7 @@ var newMessageDiv = document.createElement('div');
 newMessageDiv.innerHTML = '<%= j render("ai_messages/ai_message", ai_message: @ai_message) %>';
 
 // Get the container for the messages
-var messagesContainer = document.querySelector('.ai_messages_test');
+var messagesContainer = document.querySelector('.new_ai_messages');
 
 // Insert the new message before the first child of the container
 messagesContainer.insertBefore(newMessageDiv.firstChild, messagesContainer.firstChild);
