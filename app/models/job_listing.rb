@@ -32,7 +32,7 @@ class JobListing < ApplicationRecord
     interviewing: 2,
     rejected: -1,
   }
-  
+
   belongs_to :board
   has_many :interviews, dependent: :destroy
   has_many :ai_messages, foreign_key: :job_listing_id
@@ -44,8 +44,9 @@ class JobListing < ApplicationRecord
   validates :job_url, format: { with: /\Ahttps?:\/\//, message: "must start with http:// or https://" }, allow_blank: true
   validate :attachments_content_type
 
+  # TODO: could this be in a mailer view?
   def self.follow_up_email_template
-    follow_up_template = "Hello,<br><br>
+    "Hello,<br><br>
     I hope this email finds you well.<br><br>
     My name is [Your Name] and I am following up on my application for the [Job Title] position that I submitted on [Date].<br><br>
     I am very interested in this opportunity at [Company Name] because [ Briefly mention a reason why you're interested in the company and role (e.g., company's mission aligns with your values, specific aspect of the job description excites you)].<br><br>
@@ -56,6 +57,7 @@ class JobListing < ApplicationRecord
     [Your Name]
     "
   end
+
   private
 
   def attachments_content_type

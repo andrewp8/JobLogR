@@ -9,7 +9,7 @@
       <%= form_with(url: follow_ups_send_follow_up_email_path, method: :post) do |form| %>
         <div class="modal-body ">
           <%= form.text_field :recipient_email, placeholder: "Recipient's Email", required: true, class: "form-control mb-3" %>
-          <%= form.text_field :subject, placeholder: "Subject", required: true, value: "Follow Up: #{current_user.first_name.capitalize} #{current_user.last_name.capitalize} - #{job_listing.title}", class: "form-control mb-3" %>
+          <%= form.text_field :subject, placeholder: "Subject", required: true, class: "form-control mb-3" %>
           <%= form.rich_text_area :email_body, value: follow_up_template, class: "form-control mb-3" %>
         </div>
         <%= form.hidden_field :job_listing_id, value: job_listing.id %>
