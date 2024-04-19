@@ -48,7 +48,6 @@ class JobListingsController < ApplicationController
         format.json { render :show, status: :ok, location: @job_listing }
       else
         format.html { redirect_back(fallback_location: job_listing_url(@job_listing), alert: "Unable to update the record. Please check your input.") }
-        # format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @job_listing.errors, status: :unprocessable_entity }
       end
     end

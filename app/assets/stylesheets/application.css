@@ -313,7 +313,16 @@ a {
   white-space: nowrap; /* Prevent button text from wrapping */
 }
 
+/* ------------------------------- javascript ------------------------------- */
+@keyframes burst {
+  0% {
+		opacity: 1;
+	}
 
+	100% {
+		opacity: 0;
+	}
+}
 
 
 /* ---------------------------------- test ---------------------------------- */

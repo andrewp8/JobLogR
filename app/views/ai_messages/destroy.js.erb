@@ -1,0 +1,12 @@
+// destroy.js.erb
+
+var aiMessageId = "<%= dom_id @ai_message %>";
+var aiMessage = document.getElementById(aiMessageId);
+
+// Add burst animation
+aiMessage.style.animation = "burst 0.7s ease 0s 1 normal forwards";
+
+// Remove the message element from the DOM after the animation completes
+aiMessage.addEventListener("animationend", function() {
+  aiMessage.remove();
+});

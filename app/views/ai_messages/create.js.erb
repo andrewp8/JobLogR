@@ -1,12 +1,16 @@
-<% if @ai_message.persisted? %>
-  var addedMessageHtml = "<%= j(render 'ai_messages/ai_message', ai_message: @ai_message) %>";
-  var addedMessage = $(addedMessageHtml);
-<% else %>
-  var addedMessage = $("<p>Oops! We encountered an error.</p>");
-<% end %>
-console.log(addedMessage);
-addedMessage.hide();
-$(".ai_messages:first").prepend(addedMessage);
-addedMessage.slideDown();
+document.getElementById('loading-icon').style.display = 'none';
 
-$("#ai_body").val("");
+// Create a new div element to hold the new message
+var newMessageDiv = document.createElement('div');
+
+// Set the inner HTML of the new div to the rendered message
+newMessageDiv.innerHTML = '<%= j render("ai_messages/ai_message", ai_message: @ai_message) %>';
+
+// Get the container for the messages
+var messagesContainer = document.querySelector('.ai_messages_test');
+
+// Insert the new message before the first child of the container
+messagesContainer.insertBefore(newMessageDiv.firstChild, messagesContainer.firstChild);
+
+// Clear the input value after adding the new message
+document.getElementById('ai_body').value = '';

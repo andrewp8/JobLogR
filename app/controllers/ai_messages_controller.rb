@@ -69,6 +69,7 @@ class AiMessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to job_listing_path(job_listing_id), notice: "This message was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 

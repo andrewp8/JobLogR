@@ -8,14 +8,6 @@ import "trix"
 import "@rails/actiontext"
 
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   var buttonRow = document.querySelector('.trix-button-row');
-//   if (buttonRow) {
-//       buttonRow.style.backgroundColor = 'red'; // Change the background color to red
-//   }
-// });
-
-
 document.addEventListener('DOMContentLoaded', function() {
   // Find the <trix-toolbar> element within the modal
   var trixToolbar = document.querySelector('#emailModal .trix-button-row');
@@ -32,3 +24,4 @@ document.addEventListener('DOMContentLoaded', function() {
     button.style.display = 'none';
   });
 });
+
