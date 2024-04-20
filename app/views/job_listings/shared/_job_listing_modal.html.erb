@@ -1,0 +1,13 @@
+<div class="modal fade" id="<%= action %>JobListingModal" tabindex="-1" aria-labelledby="<%= action %>JobListingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="<%= action %>JobListingModalLabel"><%= action.capitalize %> Job Listing</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "job_listings/shared/form", locals: { job_listing: job_listing, board: board } %>
+      </div>
+    </div>
+  </div>
+</div>

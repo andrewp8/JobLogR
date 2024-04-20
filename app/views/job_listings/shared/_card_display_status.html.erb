@@ -1,0 +1,18 @@
+<p class="card-text h8 <%= 
+            job.status == 'interviewing' ? 'text-success' : 
+            job.status == 'pending' ? 'text-secondary' : 
+            job.status == 'under_review' ? 'text-primary' : 
+            'text-danger' 
+            %>">
+
+  <% if job.status == 'interviewing' %>
+    <i class="fa-solid fa-circle-check btn text-success"></i>
+  <% elsif job.status == 'pending' %>
+    <i class="fa-regular fa-hourglass-half btn text-secondary"></i>
+  <% elsif job.status == 'under_review' %>
+    <i class="fa-solid fa-eye btn text-primary"></i>
+  <% else %>
+    <i class="fa-solid fa-thumbs-down btn text-danger"></i>
+  <% end %>
+  <%= job.status.gsub(/_/, ' ').titleize %>
+</p>
