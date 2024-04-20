@@ -70,8 +70,16 @@ class JobListingsController < ApplicationController
   def application_insights
     @job_listings = index
     @follow_up_list = @job_listings.where("job_listings.total_points < 1 AND job_listings.created_at >= ?", 6.months.ago)
+    @six_months_progress = @job_listings.where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
+    @num_of_interviews_in_six_months = @job_listings.where(status: :interviewing).where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
+    @last_seven_days_progress = @job_listings.where("job_listings.created_at >= ?", 7.days.ago)
+    @total_interviewings = @job_listings.where(status: :interviewing).count
+    @total_under_reviews = @job_listings.where(status: :under_review).count
+    @total_pendings = @job_listings.where(status: :pending).count
+    @total_rejections = @job_listings.where(status: :rejected).count
+    
     respond_to do |format|
-      format.html { render "line_chart" }
+      format.html { render "job_listings/charts/charts" }
     end
   end
 

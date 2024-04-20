@@ -24,7 +24,7 @@ class Interview < ApplicationRecord
   belongs_to :job_listing
 
   after_create :increment_job_listing_total_points
-  validate :future_date_time
+  validate :start_date_and_end_date_cannot_be_in_the_past, :start_date_cannot_be_before_or_equal_end_date
   private
 
   def increment_job_listing_total_points
@@ -39,6 +39,7 @@ class Interview < ApplicationRecord
       errors.add(:end_date, "can't be in the past")
     end
   end
+
   def start_date_cannot_be_before_or_equal_end_date
     if start_date.present? && end_date.present? && end_date < start_date
       errors.add(:end_date, "can't be before start date")

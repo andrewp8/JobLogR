@@ -1,0 +1,24 @@
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJobDetails" aria-expanded="true" aria-controls="collapseJobDetails">
+        <div class="d-flex justify-content-start align-items-center">
+          <%= link_to board_path(job_listing.board.id), class:"btn text-secondary-emphasis" do %>
+            <i class="fa-solid fa-left-long"></i>
+          <% end %>
+          <%= job_listing.title.capitalize%>
+          <%= link_to edit_job_listing_path(job_listing), class: "btn text-warning", data: { bs_toggle: "modal", bs_target: "#editJobListingModal" } do %>
+            <i class="fa-solid fa-pencil"></i>
+          <% end %>
+          <%= link_to job_listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn text-danger delete-button" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+
+      </button>
+    </h2>
+    <div id="collapseJobDetails" class="accordion-collapse collapse show" data-bs-parent="#collapseJobDetails">
+      <div class="accordion-body">
+        <%= render "job_listings/shared/job_listing", job_listing: job_listing %>
+      </div>
+    </div>
+  </div>

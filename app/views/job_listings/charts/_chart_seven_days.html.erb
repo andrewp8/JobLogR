@@ -1,0 +1,16 @@
+<div class="border mb-3 d-flex align-items-center">
+  <div class="col-8">
+    <%= column_chart last_seven_days_progress.group_by_day(:created_at).count, label: "Amount: ", loading: "Loading...",download: true, title: "Applied job listings in the last 7 days", xtitle: "Date", ytitle: "Amount of job listing", library: {
+        colors: ["#0f76f3"],
+        tooltip: {
+          textStyle: {
+            color: "#333333"
+          }
+        } } %>
+  </div>
+  <div class="col-4 text-center">
+    <h6>In the last 7 days</h6>
+    <h6>Applied</h6>
+    <h1 class="text-primary"><%=last_seven_days_progress.count.presence || 0%></h1>
+  </div>
+</div>

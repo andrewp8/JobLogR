@@ -1,0 +1,22 @@
+ 
+<div class="accordion-item">
+  <h2 class="accordion-header">
+    <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFiles" aria-expanded="false" aria-controls="collapseFiles">
+      Used Resume and Cover Letter
+    </button>
+  </h2>
+  <div id="collapseFiles" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <% if job_listing.attachments.attached? %>
+      <div class="m-2 list-group">
+
+        <% job_listing.attachments.each_with_index do |attachment, index| %>
+          <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#attachmentModal<%= index %>">
+            <%= attachment.filename %>
+          </button>
+
+          <%= render "job_listings/shared/attachments", attachment: attachment, index: index %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

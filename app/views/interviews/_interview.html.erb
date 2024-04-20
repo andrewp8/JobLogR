@@ -1,9 +1,9 @@
-<div class="mx-5 px-3 text-center" id="<%= dom_id interview %>">
+<div class="mt-2 mx-5 p-3 text-center" id="<%= dom_id interview %>">
   <div class="card-body">
-    <h5 class="card-title"><%= interview.interview_type.capitalize %></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary"><strong>Start date:</strong> <%= interview.start_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></h6>
-    <h6 class="card-subtitle mb-2 text-body-secondary"><strong>End date:</strong> <%= interview.end_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></h6>
-    <p class="card-text"><strong>Details:</strong> <%= interview.details %></p>
+    <p class="fw-bold"><%= interview.interview_type.capitalize %></p>
+    <p class="card-text mb-2"><span class="text-decoration-underline">Start date:</span> <%= interview.start_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></p>
+    <p class="card-text mb-2"><span class="text-decoration-underline">End date:</span> <%= interview.end_date.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y at %I:%M %p %Z") %></p>
+    <p class="card-text"><span class="text-decoration-underline">Details:</span> <%= interview.details %></p>
     <div class="d-flex justify-content-center">
       <%= link_to edit_interview_path(interview), class: "btn text-warning", data: { bs_toggle: "modal", bs_target: "#editInterviewModal" } do %>
       <i class="fa-solid fa-pencil"></i>

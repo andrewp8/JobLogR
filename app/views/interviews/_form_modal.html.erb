@@ -1,9 +1,8 @@
-<div class="modal fade" id="<%= mode %>InterviewModal" tabindex="-1" aria-labelledby="<%=mode%>InterviewModalLabel" aria-hidden="true">
+<div class="modal fade" id="<%= action %>InterviewModal" tabindex="-1" aria-labelledby="<%=action%>InterviewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="<%= mode %>InterviewModalLabel">
-          <%=job_listing.status.capitalize%> Interview</h1>
+        <h1 class="modal-title fs-5" id="<%= action %>InterviewModalLabel"><%= action.capitalize %> Interview</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
