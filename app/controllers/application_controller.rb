@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:landing_page, :about]
+  before_action :authenticate_user!, except: [:landing_page?, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  end
 
   def landing_page?
     request.path == root_path

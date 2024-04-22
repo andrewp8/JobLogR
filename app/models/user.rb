@@ -31,10 +31,10 @@ class User < ApplicationRecord
   has_many :boards, dependent: :destroy
   has_one_attached :avatar
 
-            def self.from_google(u)
-              create_with(uid: u[:uid], name: u[:name], provider: 'google',
-                          password: Devise.friendly_token[0, 20]).find_or_create_by!(email: u[:email])
-            end
+  def self.from_google(u)
+    create_with(uid: u[:uid], name: u[:name], provider: "google",
+                password: Devise.friendly_token[0, 20]).find_or_create_by!(email: u[:email])
+  end
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -47,7 +47,6 @@ class User < ApplicationRecord
         downloaded_avatar = Down.download(avatar_url) # Use the 'down' gem to download the image
         user.avatar.attach(io: downloaded_avatar, filename: "avatar.jpg")
       end
-      
 
       # If you are using confirmable and the provider(s) you use validate emails
       #uncoment the line below to skip the confirmation emails.

@@ -8,4 +8,3 @@ class FollowUpMailer < ApplicationMailer
     end
   end
 end
-f

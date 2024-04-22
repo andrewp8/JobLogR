@@ -54,6 +54,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
+    debugger
     params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation)
   end
 end
