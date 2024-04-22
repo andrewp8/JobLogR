@@ -12,6 +12,9 @@ class PagesController < ApplicationController
   def about
   end
 
+  def how_to_use
+  end
+
   def feedback
   end
 end

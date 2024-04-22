@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:landing_page?, :about]
+  before_action :authenticate_user!, except: [:landing_page?, :about, :how_to_use]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "follow_ups/send_follow_up_email"
   get "about", to: "pages#about"
   get "feedback", to: "pages#feedback"
+  get "how_to_use", to: "pages#how_to_use"
   
   resources :ai_messages
   resources :job_listings do
