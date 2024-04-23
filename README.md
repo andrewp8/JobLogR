@@ -16,6 +16,13 @@ JobLogR aims to empower job seekers by providing a comprehensive tool to manage 
   </iframe>
 </div>
 
+## Entity-Relationship Diagram (ERD)
+
+Our application's database schema is visualized in the Entity-Relationship Diagram (ERD) below. This diagram provides a clear overview of the tables, their fields, and the relationships between them, facilitating a better understanding of how data is interconnected within our application.
+<p align="center" width="100%">
+<img alt="JobLogR's domain model" width="1000px" src="https://gist.github.com/assets/69804999/0265b70c-739b-4095-8846-b5dab2ac1182" />
+</p>
+
 ## Setup
 
 ### Dependencies
@@ -53,7 +60,8 @@ JobLogR aims to empower job seekers by providing a comprehensive tool to manage 
     ```
 ## Contributing
 - Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-- Please make sure to update tests as appropriate.
+- **Follow Rails Naming Conventions**: Ensure that all code contributions adhere to the [Rails naming conventions](https://guides.rubyonrails.org/active_record_basics.html#naming-conventions) for classes, modules, table names, and associations. This consistency is crucial for maintaining code clarity and efficiency within the framework.
+
 
 ## Frequently Asked Questions (FAQ)
 
