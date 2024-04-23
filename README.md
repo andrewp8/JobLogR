@@ -8,7 +8,8 @@
 
 JobLogR aims to empower job seekers by providing a comprehensive tool to manage their job applications more efficiently, reducing the stress and disorganization often associated with the job search process.
 ## How to use JobLogR
-<div style="position: relative; padding-bottom: 216.86746987951807%; height: 0;"><iframe src="https://www.loom.com/embed/6be4b4336cad4b779e56a52a8a244a10?sid=d8bd3487-16cc-46f3-b8cd-d81857cd9a16" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+[![Watch the Video](https://cdn.loom.com/sessions/thumbnails/6be4b4336cad4b779e56a52a8a244a10-1713157845766-with-play.gif)](https://www.loom.com/share/6be4b4336cad4b779e56a52a8a244a10)
+
 
 For a comprehensive guide, [see the full interactive version on Canva](https://www.canva.com/design/DAGDLMYiogo/I8uWXvDlHrTUJ45ehY2Pow/view?utm_content=DAGDLMYiogo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink).
 
