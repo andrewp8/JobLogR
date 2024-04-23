@@ -1,23 +1,67 @@
 # [JobLogR](https://www.joblogr.org/) 🌐
 ### Simplify Your Job Application Process
 <p align="center" width="100%">
-<img alt="JobLogR Wireframe" width="700px" src="https://github.com/andrewp8/jobLogR/assets/69804999/c2c00383-66d8-4c3f-b5bd-2fc591d9fa94" />
+<img alt="JobLogR Wireframe" width="700px" src="https://github.com/andrewp8/jobLogR/assets/69804999/45278cda-7791-40bd-8fe3-8144ea6c7403" />
 </p>
 
-##
-JobLogR is a user-friendly web application that revolutionizes job application management. It tackles the common pain points encountered by job seekers through a streamlined interface and AI-powered features, making the job search more organized and less overwhelming.
+## Overview
 
-## Table of Contents
+JobLogR aims to empower job seekers by providing a comprehensive tool to manage their job applications more efficiently, reducing the stress and disorganization often associated with the job search process.
+## How to use JobLogR
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGDLMYiogo&#x2F;I8uWXvDlHrTUJ45ehY2Pow&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
 
-1. [Overview](#overview)
-2. [Key Features](#key-features)
-3. [Getting Started](#getting-started)
-4. [Feature Integration](#feature-integration)
-    - [Google Authentication (OAuth2)](#1-google-authentication-oauth2)
-    - [OpenAI Chat Integration](#2-openai-chat-integration)
-    - [Kickchart for Analytics](#3-kickchart-for-analytics)
-    - [Mailbox and Mailer](#4-mailbox-and-mailer)
-    - [Rails dev:reset Task](#5-rails-devreset-task)
-5. [Contributing](#contributing)
-6. [License](#license)
- 
+## Setup
+
+### Dependencies
+
+- [Active Storage](https://guides.rubyonrails.org/v6.0.0/active_storage_overview.html)
+- [AWS SDK for Ruby](https://github.com/aws/aws-sdk-ruby)
+- [Omniauth-Google-OAuth2](https://github.com/zquestz/omniauth-google-oauth2)
+- [Ruby OpenAI](https://github.com/aFlexrudall/ruby-openai?tab=readme-ov-file#streaming-chat)
+- [Chartkick](https://github.com/ankane/chartkick)
+- [Action Mailer](https://guides.rubyonrails.org/action_mailer_basics.html)
+- [Action Mailbox](https://guides.rubyonrails.org/action_mailbox_basics.html)
+
+### Installation
+
+1) Clone the repository and install dependencies:
+
+     ```bash
+    git clone https://github.com/andrewp8/jobLogR.git
+    cd joblogr
+    bundle install
+    rails dev:reset  # Seeds the database with sample data
+    rails active_storage:install
+    rails db:migrate
+    ```
+2) **Create a `.env` file:**
+    ```bash 
+    touch .env
+    ```
+    - Inside the `.env` file, define your credentials using key-value pairs, one per line. Here's the format:
+    - `API_KEY=your_secret_api_key`
+3) Once you have met the prerequisites, you can start the Rails development server by running the following command in your terminal:
+
+    ```bash
+    rails s
+    ```
+## Contributing
+- Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+- Please make sure to update tests as appropriate.
+
+## Frequently Asked Questions (FAQ)
+
+**Q: What should I do if I encounter an error stating that the master key is missing?**
+
+**A:** 
+- Delete the existing `credentials.yml.enc` file to allow for the generation of new credentials: `rm config/credentials.yml.enc`.
+- Open your credentials for editing with your preferred editor, e.g., `EDITOR="code --wait" rails credentials:edit`.
+- After updating your credentials, save and close the editor to generate a new `master.key`.
+- Securely configure the new `master.key` in your environment variables, but do not add it to version control.
+- Remember to back up any essential data before making these changes.
