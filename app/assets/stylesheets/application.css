@@ -41,7 +41,8 @@ a {
 /* --------------------------------- navbar --------------------------------- */
 .ct_nav {
   background-color: rgba(211, 211, 211, 0.491);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px)
 }
 
 #navbar-scroll {
