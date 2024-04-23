@@ -10,7 +10,7 @@ JobLogR aims to empower job seekers by providing a comprehensive tool to manage 
 ## How to use JobLogR
 [![Watch the Video](https://cdn.loom.com/sessions/thumbnails/6be4b4336cad4b779e56a52a8a244a10-1713157845766-with-play.gif)](https://www.loom.com/share/6be4b4336cad4b779e56a52a8a244a10)
 
-For a comprehensive guide, [see the full interactive version on Canva](https://www.canva.com/design/DAGDLMYiogo/I8uWXvDlHrTUJ45ehY2Pow/view?utm_content=DAGDLMYiogo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink).
+For a comprehensive guide, [see the full interactive version here 👈](https://www.canva.com/design/DAGDLMYiogo/I8uWXvDlHrTUJ45ehY2Pow/view?utm_content=DAGDLMYiogo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink).
 
 ## Entity-Relationship Diagram (ERD)
 
