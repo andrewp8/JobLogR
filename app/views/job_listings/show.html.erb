@@ -1,10 +1,12 @@
-<div class="d-flex justify-content-end mb-2">
-  <button type="button" class="btn follow_up" data-bs-toggle="modal" data-bs-target="#emailModal">
-    Send Follow-up email
-    <i class="fa-regular fa-paper-plane"></i>
-  </button>
-  <%=render "follow_ups/send_follow_up_email", follow_up_template: @follow_up_template, job_listing: @job_listing %>
-</div>
+<% if current_user.admin? %>
+  <div class="d-flex justify-content-end mb-2">
+    <button type="button" class="btn follow_up" data-bs-toggle="modal" data-bs-target="#emailModal">
+      Send Follow-up email
+      <i class="fa-regular fa-paper-plane"></i>
+    </button>
+    <%=render "follow_ups/send_follow_up_email", follow_up_template: @follow_up_template, job_listing: @job_listing %>
+  </div>
+<% end %>
 
 <div class="accordion" id="accordionExample">
   <%= render "job_listings/shared/show_details", job_listing: @job_listing %>
