@@ -8,13 +8,8 @@
 
 JobLogR aims to empower job seekers by providing a comprehensive tool to manage their job applications more efficiently, reducing the stress and disorganization often associated with the job search process.
 ## How to use JobLogR
-### Presentation Overview
 
-Here's a preview of the presentation:
-
-![Presentation Slide](url-to-screenshot.jpg)
-
-For the full interactive presentation, [view it on Canva](https://www.canva.com/design/DAGDLMYiogo/I8uWXvDlHrTUJ45ehY2Pow/view?utm_content=DAGDLMYiogo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink).
+For a comprehensive guide, [see the full interactive version on Canva](https://www.canva.com/design/DAGDLMYiogo/I8uWXvDlHrTUJ45ehY2Pow/view?utm_content=DAGDLMYiogo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink).
 
 
 
@@ -30,8 +25,9 @@ For the full interactive presentation, [view it on Canva](https://www.canva.com/
 
 Our application's database schema is visualized in the Entity-Relationship Diagram (ERD) below. This diagram provides a clear overview of the tables, their fields, and the relationships between them, facilitating a better understanding of how data is interconnected within our application.
 <p align="center" width="100%">
-<img alt="JobLogR's domain model" width="1000px" src="https://gist.github.com/assets/69804999/0265b70c-739b-4095-8846-b5dab2ac1182" />
+<img alt="JobLogR Wireframe" width="700px" src="https://gist.github.com/assets/69804999/0265b70c-739b-4095-8846-b5dab2ac1182" />
 </p>
+
 
 ## Setup
 
