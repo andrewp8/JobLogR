@@ -8,18 +8,9 @@
 
 JobLogR aims to empower job seekers by providing a comprehensive tool to manage their job applications more efficiently, reducing the stress and disorganization often associated with the job search process.
 ## How to use JobLogR
+<div style="position: relative; padding-bottom: 216.86746987951807%; height: 0;"><iframe src="https://www.loom.com/embed/6be4b4336cad4b779e56a52a8a244a10?sid=d8bd3487-16cc-46f3-b8cd-d81857cd9a16" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 For a comprehensive guide, [see the full interactive version on Canva](https://www.canva.com/design/DAGDLMYiogo/I8uWXvDlHrTUJ45ehY2Pow/view?utm_content=DAGDLMYiogo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink).
-
-
-
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGDLMYiogo&#x2F;I8uWXvDlHrTUJ45ehY2Pow&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
 
 ## Entity-Relationship Diagram (ERD)
 
