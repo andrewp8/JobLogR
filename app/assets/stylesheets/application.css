@@ -246,6 +246,161 @@ a {
   bottom: 10px;
 }
 
+/* ------------------------------ tilting card ------------------------------ */
+:root{
+  --color-1:rgba(255, 255, 255, 0.1);
+  --color-2:rgba(255, 255, 255, 0.5);
+  --color-3:rgba(255, 255, 255, 0.75);
+  --color-4:rgba(0, 0, 0, 0.05);
+  --color-5: #644651;
+  --color-6: #fff;
+  --color-7: #040a29;
+  --color-8: rgba(255,255,255,0.075);
+  --x: 45deg;
+}
+
+.body  {
+  margin: 1rem 0;
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  background: url(https://github.com/Khyes/image_dump/blob/main/bg.jpg?raw=true);
+  background-size: cover;
+  background-position: center;
+}
+
+.box {
+  position: relative;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+
+.box .card {
+  position: relative;
+  background: var(--color-1);
+  width: 300px;
+  min-height: 400px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-2);
+  border-top: 1px solid var(--color-3);
+  border-left: 1px solid var(--color-3);
+  border-radius: 20px;
+  box-shadow: 0 25px 45px var(--color-4);
+  transform-style: preserve-3d;
+}
+
+.elements {
+  position:absolute;
+  top: 50px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  background: var(--color-1);
+  transform: translateZ(80px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-2);
+  border-top: 1px solid var(--color-3);
+  border-left: 1px solid var(--color-3);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px var(--color-4);
+}
+
+.elements.bg::before {
+  content:'';
+  position: absolute;
+  inset: 0;
+  background: url(https://github.com/Khyes/image_dump/blob/main/left-quote.png?raw=true);
+  background-size: 60px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: 0.9s;
+}
+
+.box:hover .elements.bg::before {
+  opacity: 1;
+}
+
+.elements.imgBx {
+  top: 0;
+  left: initial;
+  right: 60px;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  transform: translateZ(120px);
+}
+
+.elements.imgBx img {
+  position: absolute;
+  width: calc(100% - 20px);
+  border-radius: 8px;
+  border: 1px solid var(--color-2);
+  border-top: 1px solid var(--color-3);
+  border-left: 1px solid var(--color-3);
+  box-shadow: 0 25px 45px var(--color-4);
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.box:hover .elements.imgBx img {
+  opacity: 1;
+}
+
+.elements.name {
+  top: 235px;
+  left: initial;
+  right: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  transform: translateZ(100px);
+  background: transparent;
+  backdrop-filter: blur(0px);
+  border: none;
+  box-shadow: none;
+  color: var(--color-5);
+  transition: 1s;
+  opacity: 0;
+  transition-delay: 0.25;
+}
+
+.box:hover .elements.name {
+  top: 135px;
+  opacity: 1;
+}
+
+.elements.content {
+  top: initial;
+  left: initial;
+  bottom: 0;
+  right: -20px;
+  width: 85%;
+  min-height: 200px;
+  padding: 10px;
+  transform: translateZ(180px);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elements.content p {
+  position: relative;
+  color: var(--color-5);
+  font-size: 0.65em;
+  transition: 0.8s;
+  opacity: 0;
+  transition-delay: 0.5s;
+  
+}
+
+.box:hover .elements.content p {
+  opacity: 1;
+}
+
 /* ---------------------------------- text ---------------------------------- */
 .h8 {
   font-size: small;

@@ -1,0 +1,25 @@
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+
+        <%= render "pages/testimonials_card", testimonial: @testimonials.sample %>
+
+  <button class="carousel-control-prev"  style="color: white" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<script>
+  VanillaTilt.init(document.querySelector(".box"), {
+  		max: 20,
+  		speed: 400,
+    glare: true,
+    transition: true,
+    reverse: true,
+
+  	});
+</script>
