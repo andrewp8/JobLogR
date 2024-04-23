@@ -26,20 +26,20 @@
 #  fk_rails_...  (board_id => boards.id)
 #
 class JobListing < ApplicationRecord
+  include Emailable
   enum status: {
     pending: 0,
     under_review: 1,
     interviewing: 2,
     rejected: -1,
   }
-  
+
   belongs_to :board
   has_many :interviews, dependent: :destroy
   has_many :ai_messages, foreign_key: :job_listing_id
 
   has_many_attached :attachments, service: :amazon
 
-  # -------------------------------- validations ------------------------------- #
   validates :title, presence: true
   validates :company, presence: true
   validates :job_url, format: { with: /\Ahttps?:\/\//, message: "must start with http:// or https://" }, allow_blank: true

@@ -57,8 +57,13 @@ gem 'groupdate'
 # markdown
 gem 'redcarpet'
 
-# Rack middleware for blocking & throttling abusive requests
-gem 'rack-attack'
+# google authentication
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+
+# download avatar url from google account
+gem 'down'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -119,3 +124,7 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "actiontext", "~> 7.0"
+
+gem "actionmailer", "~> 7.0"

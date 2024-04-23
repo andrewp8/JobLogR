@@ -1,123 +1,18 @@
-<div class="d-flex justify-content-end align-items-center my-2">
-  <%= link_to edit_job_listing_path(@job_listing), class: "px-5 btn text-warning", data: { bs_toggle: "modal", bs_target: "#editJobListingModal" } do %>
-    <i class="fa-solid fa-pencil"></i>
-  <% end %>
-  <%= button_to @job_listing, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger delete-button" do %>
-    <i class="fa-solid fa-trash"></i>
-  <% end %>
-</div>
+<% if current_user.admin? %>
+  <div class="d-flex justify-content-end mb-2">
+    <button type="button" class="btn follow_up" data-bs-toggle="modal" data-bs-target="#emailModal">
+      Send Follow-up email
+      <i class="fa-regular fa-paper-plane"></i>
+    </button>
+    <%=render "follow_ups/send_follow_up_email", follow_up_template: @follow_up_template, job_listing: @job_listing %>
+  </div>
+<% end %>
+
 <div class="accordion" id="accordionExample">
-
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJobDetails" aria-expanded="true" aria-controls="collapseJobDetails">
-        <%= link_to board_path(@job_listing.board.id), class:"btn text-secondary-emphasis" do %>
-          <i class="fa-solid fa-left-long"></i>
-        <% end %>
-        <h3 class="navbar-brand text-wrap">
-          <%= @job_listing.title.capitalize%>
-        </h3>
-      </button>
-    </h2>
-    <div id="collapseJobDetails" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <%= render @job_listing %>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFiles" aria-expanded="false" aria-controls="collapseFiles">
-        Used Resume and Cover Letter
-      </button>
-    </h2>
-    <div id="collapseFiles" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <% if @job_listing.attachments.attached? %>
-        <div class="m-2 list-group">
-
-          <% @job_listing.attachments.each_with_index do |attachment, index| %>
-            <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#attachmentModal<%= index %>">
-              <%= attachment.filename %>
-            </button>
-
-          <%= render "attachments", attachment: attachment, index: index %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header">
-    <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInterviews" aria-expanded="false" aria-controls="collapseInterviews">
-      Interview Info
-    </button>
-  </h2>
-  <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-
-    <div class="m-3">
-      <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#newInterviewModal" } do %>
-        <i class="fa-solid fa-plus"></i> Interview
-      <%end%>
-      <%= render "interviews/form_modal", interview: Interview.new, job_listing: @job_listing, mode: "new"  %>
-      <% if @job_listing.interviews.present? %>
-        <div id="interviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="100000">
-          <div class="carousel-inner">
-            <% @job_listing.interviews.each_with_index do |interview, index| %>
-              <%= render "interviews/form_modal", interview: interview, job_listing: @job_listing, mode: "edit"  %>
-              <div class="carousel-item <%= 'active' if index.zero? %>">
-                <%= render "interviews/interview", interview: interview%>
-              </div>
-            <% end %>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#interviewCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#interviewCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      <%else  %>
-
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header">
-    <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseChatGPT" aria-expanded="false" aria-controls="collapseChatGPT">
-      Research Area
-    </button>
-  </h2>
-  <div id="collapseChatGPT" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-    <div class="accordion-body ">
-      <%= render "ai_messages/form", ai_message: AiMessage.new, job_listing: @job_listing %>
-      <% @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
-        <div class="card p-2 bg-body-tertiary mb-3">
-          <h5><%= date.strftime('%a, %d %b %Y') %></h5>
-          <div class="ai_messages_test">
-            <%messages.each do |msg|%>
-              <%=render "ai_messages/ai_message", ai_message: msg%>
-            <%end%>
-          </div>
-        </div>
-      <%end%>
-    </div>
-  </div>
-</div>
+  <%= render "job_listings/shared/show_details", job_listing: @job_listing %>
+  <%= render "job_listings/shared/show_files", job_listing: @job_listing %>
+  <%= render "job_listings/shared/show_interviews", job_listing: @job_listing %>
+  <%= render "job_listings/shared/show_chatgpt", job_listing: @job_listing %>
 </div>
 
-<div class="modal fade" id="editJobListingModal" tabindex="-1" aria-labelledby="editJobListingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editJobListingModalLabel">Edit Job Listing</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= render "job_listings/form", locals: { job_listing: @job_listing, board: @job_listing.board } %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render "job_listings/shared/job_listing_modal", job_listing: @job_listing, board: @job_listing.board, action: "edit"  %>

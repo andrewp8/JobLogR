@@ -25,21 +25,15 @@ class AiMessagesController < ApplicationController
 
   # POST /ai_messages or /ai_messages.json
   def create
+    user_query = params[:ai_message][:body]
     @ai_message = AiMessage.new(ai_message_params)
-    @ai_message.role << current_user.username
-    @ai_message.body << params[:ai_message][:body]
+    @ai_message.role << current_user.first_name
+    @ai_message.body << user_query
     @ai_message.job_listing_id = params[:ai_message][:job_listing_id]
-    client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
-  instructed_prompt = "As a career expert, please answer my question #{@ai_message.body[0]}. Give me a specific advices, insights, recommendations, url if necessary. If i ever ask about resume or cover letter, please provide important key to add in my resume or cover letter for the company if applicable. Please respond in Markdown syntax language."
-    response = client.chat(
-      parameters: {
-        model: "gpt-3.5-turbo", 
-        messages: [{ role: "user", content: instructed_prompt }], # Required.
-        temperature: 0.7,
-      },
-    )
+    
     @ai_message.role << "system"
-    @ai_message.body << response["choices"][0]["message"]["content"]
+    response = AiMessage.generate_response(user_query)
+    @ai_message.body << response
 
     respond_to do |format|
       if @ai_message.save
@@ -47,7 +41,7 @@ class AiMessagesController < ApplicationController
         format.json { render :show, status: :created, location: @ai_message }
         format.js
       else
-        flash[:error] = @ai_message.errors.full_messages.to_sentence
+        set_flash_error(@ai_message) # helper
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ai_message.errors, status: :unprocessable_entity }
       end
@@ -75,6 +69,7 @@ class AiMessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to job_listing_path(job_listing_id), notice: "This message was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -88,6 +83,4 @@ class AiMessagesController < ApplicationController
   def ai_message_params
     params.require(:ai_message).permit(:role, :body, :job_listing_id)
   end
-  
-  
 end

@@ -5,7 +5,6 @@ class InterviewsController < ApplicationController
   def index
 
     @interviews = JobListing.joins(board: :user).where(users: { id: current_user.id }).interviews
-    @jo
   end
 
   # GET /interviews/1 or /interviews/1.json
@@ -30,7 +29,6 @@ class InterviewsController < ApplicationController
         format.html { redirect_to job_listing_path(@interview.job_listing_id), notice: "Interview was successfully created." }
         format.json { render :show, status: :created, location: @interview }
       else
-        #format.html {  render partial: 'form', locals: { interview: @interview, job_listing: @job_listing }, status: :unprocessable_entity}
         format.html { redirect_back fallback_location: job_listing_path(@interview.job_listing_id), alert: "#{@interview.errors.full_messages.join(',')}" }
         format.json { render json: @interview.errors, status: :unprocessable_entity }
       end

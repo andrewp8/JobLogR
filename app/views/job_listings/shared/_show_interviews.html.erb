@@ -1,0 +1,39 @@
+ 
+<div class="accordion-item">
+  <h2 class="accordion-header">
+    <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInterviews" aria-expanded="false" aria-controls="collapseInterviews">
+      Interview Info
+    </button>
+  </h2>
+  <div id="collapseInterviews" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+
+    <div class="m-3">
+      <%= link_to new_interview_path, class: "px-5", data: { bs_toggle: "modal", bs_target: "#newInterviewModal" } do %>
+        <i class="fa-solid fa-plus"></i> Create Interview
+      <%end%>
+      <%= render "interviews/form_modal", interview: Interview.new, job_listing: job_listing, action: "new"  %>
+      <% if job_listing.interviews.present? %>
+        <div id="interviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="100000">
+          <div class="carousel-inner">
+            <% job_listing.interviews.each_with_index do |interview, index| %>
+              <%= render "interviews/form_modal", interview: interview, job_listing: job_listing, action: "edit"  %>
+              <div class="carousel-item <%= 'active' if index.zero? %>">
+                <%= render "interviews/interview", interview: interview%>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#interviewCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#interviewCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      <%else  %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

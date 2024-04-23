@@ -23,12 +23,6 @@
       </div>
     </div>
 
-    <!-- Username field -->
-    <div class="mb-3">
-      <%= f.label :username %>
-      <%= f.text_field :username, required: true, autofocus: true, class: 'form-control' %>
-    </div>
-
     <!-- Email field -->
     <div class="mb-3">
       <%= f.label :email %>
@@ -57,9 +51,11 @@
     </div>
 
     <div class="form-actions row">
-      <%= f.submit "Sign Up", class: "sign_up_bg col-12" %>
+      <%= f.submit "Sign Up", class: "btn sign_up_bg col-12" %>
     </div>
+
   <% end %>
+
 
   <%= render "users/shared/links" %>
 </div>

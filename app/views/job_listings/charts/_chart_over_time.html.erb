@@ -1,0 +1,27 @@
+<div class="border mb-3">
+  <div class="mb-3 col-12">
+    <%= pie_chart job_listings.group(:status).count, donut: true, colors: ['#0f76f3', '#9430ff', '#f30fd9', '#198754'], loading: "Loading...",download: true,title: "Total job listings applied", xtitle: "Date", ytitle: "Amount of job listing"%>
+  </div>
+  <div class="d-flex justify-content-evenly align-items-end">
+    <div class="col-2">
+      <h6>Total applied</h6>
+      <h1><%=job_listings.count%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Interviews</h6>
+      <h1 style="color: var(--app-green)"><%=total_interviewings%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Under Reviews</h6>
+      <h1 style="color: #f30fd9"><%=total_under_reviews%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Pending</h6>
+      <h1 style="color: var(--app-purple)"><%=total_pendings%></h1>
+    </div>
+    <div class="col-2">
+      <h6>Rejected</h6>
+      <h1 style="color: var(--app-blue)"><%=total_rejections%></h1>
+    </div>
+  </div>
+</div>

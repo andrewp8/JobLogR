@@ -12,6 +12,10 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
+    @pendings = @board.job_listings.where(status: :pending).order(created_at: :desc)
+    @under_reviews = @board.job_listings.where(status: :under_review).order(created_at: :desc)
+    @interviewings = @board.job_listings.where(status: :interviewing).order(created_at: :desc)
+    @rejections = @board.job_listings.where(status: :rejected).order(created_at: :desc)
   end
 
   # GET /boards/new
@@ -27,7 +31,7 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     @board.user_id = current_user.id
-    
+
     respond_to do |format|
       if @board.save
         format.html { redirect_to boards_path, notice: "Board was successfully created." }
@@ -64,13 +68,14 @@ class BoardsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_board
-      @board = Board.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def board_params
-      params.require(:board).permit(:board_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_board
+    @board = Board.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def board_params
+    params.require(:board).permit(:board_name)
+  end
 end

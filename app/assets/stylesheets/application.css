@@ -11,19 +11,20 @@
  * It is generally better to create a new file per style scope.
 
  */
-
 /* -------------------------------- variables ------------------------------- */
 :root {
   --app-purple: #9430ff;
   --app-blue: #0f76f3;
   --app-yellow: #f3a10f;
+  --app-green: #00a35f;
 }
 
 /* ---------------------------------- roots --------------------------------- */
-a{
+a {
   text-decoration: none;
   color: var(--app-purple);
 }
+
 /* ---------------------------------- logo ---------------------------------- */
 .logo {
   font-family: "Archivo Black", sans-serif;
@@ -36,19 +37,27 @@ a{
   width: 50px;
   border-radius: 50%;
 }
+
 /* --------------------------------- navbar --------------------------------- */
-.ct_nav{
+.ct_nav {
   background-color: rgba(211, 211, 211, 0.491);
   backdrop-filter: blur(50px);
 }
 
 #navbar-scroll {
-  top: 68px; 
+  top: 68px;
 }
 
 
 /* ------------------------------- btn ------------------------------ */
-.sign_up_bg, .sign_up, .log_in, .sign_out, .create, .edit, .close{
+.sign_up_bg,
+.sign_up,
+.log_in,
+.sign_out,
+.create,
+.edit,
+.close,
+.follow_up {
   color: black;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -63,7 +72,13 @@ a{
   font-weight: bolder;
 }
 
-.sign_up_bg:active, .sign_out:active, .log_in:active, .create:active, .close:active, .edit:active {
+.sign_up_bg:active,
+.sign_out:active,
+.log_in:active,
+.create:active,
+.close:active,
+.edit:active,
+.follow_up:active {
   color: white;
   font-weight: bold;
   animation-name: glow;
@@ -71,39 +86,50 @@ a{
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
+
 @keyframes glow {
   from {
     text-shadow: 0px 0px 5px #fff, 0px 0px 5px var(--app-purple);
   }
-  
+
   to {
     text-shadow: 0px 0px 20px #fff, 0px 0px 20px var(--app-purple);
   }
 }
 
-.sign_up_bg{
+.sign_up_bg {
   background-color: var(--app-purple);
   box-shadow: 1px 1px 20px 1px var(--app-purple);
 }
-.log_in{
+
+.log_in {
   background-color: var(--app-blue);
   box-shadow: 1px 1px 20px 1px var(--app-blue);
 }
+
 .sign_out {
   background-color: var(--app-purple);
   box-shadow: 1px 1px 20px 1px var(--app-purple);
 }
+
 .create {
   background-color: var(--app-blue);
   box-shadow: 1px 1px 20px 1px var(--app-blue);
 }
-.edit{
+
+.edit {
   background-color: var(--app-yellow);
   box-shadow: 1px 1px 20px 1px var(--app-yellow);
 }
+
 .close {
   background-color: grey;
   box-shadow: 1px 1px 20px 1px grey;
+}
+
+.follow_up {
+  background-color: var(--app-green);
+  box-shadow: 1px 1px 20px 1px var(--app-green);
 }
 
 
@@ -113,7 +139,8 @@ a{
   font-size: 2.5em;
 }
 
-.landing_p_text, .about_p_text {
+.landing_p_text,
+.about_p_text {
   text-align: justify;
 }
 
@@ -147,11 +174,12 @@ a{
 
 
 /* ---------------------------------- flip_card ---------------------------------- */
-.container{
+.container {
   position: relative;
   align-items: center;
   justify-content: center;
 }
+
 .flip-card {
   width: 20rem;
   height: 34rem;
@@ -172,7 +200,8 @@ a{
   transform: rotateY(180deg);
 }
 
-.flip-card-back, .flip-card-front {
+.flip-card-back,
+.flip-card-front {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -183,10 +212,12 @@ a{
 .flip-card-front {
   overflow: hidden;
 }
-.flip-card-back img{
+
+.flip-card-back img {
   max-height: 100%;
   max-width: 100%;
 }
+
 .flip-card-back {
   color: white;
   transform: rotateY(180deg);
@@ -210,16 +241,171 @@ a{
   margin-bottom: 20px;
 }
 
-
-.attribute{
+.attribute {
   position: absolute;
   bottom: 10px;
 }
 
+/* ------------------------------ tilting card ------------------------------ */
+:root{
+  --color-1:rgba(255, 255, 255, 0.1);
+  --color-2:rgba(255, 255, 255, 0.5);
+  --color-3:rgba(255, 255, 255, 0.75);
+  --color-4:rgba(0, 0, 0, 0.05);
+  --color-5: #644651;
+  --color-6: #fff;
+  --color-7: #040a29;
+  --color-8: rgba(255,255,255,0.075);
+  --x: 45deg;
+}
+
+.body  {
+  margin: 1rem 0;
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  background: url(https://github.com/Khyes/image_dump/blob/main/bg.jpg?raw=true);
+  background-size: cover;
+  background-position: center;
+}
+
+.box {
+  position: relative;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+
+.box .card {
+  position: relative;
+  background: var(--color-1);
+  width: 300px;
+  min-height: 400px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-2);
+  border-top: 1px solid var(--color-3);
+  border-left: 1px solid var(--color-3);
+  border-radius: 20px;
+  box-shadow: 0 25px 45px var(--color-4);
+  transform-style: preserve-3d;
+}
+
+.elements {
+  position:absolute;
+  top: 50px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  background: var(--color-1);
+  transform: translateZ(80px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-2);
+  border-top: 1px solid var(--color-3);
+  border-left: 1px solid var(--color-3);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px var(--color-4);
+}
+
+.elements.bg::before {
+  content:'';
+  position: absolute;
+  inset: 0;
+  background: url(https://github.com/Khyes/image_dump/blob/main/left-quote.png?raw=true);
+  background-size: 60px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: 0.9s;
+}
+
+.box:hover .elements.bg::before {
+  opacity: 1;
+}
+
+.elements.imgBx {
+  top: 0;
+  left: initial;
+  right: 60px;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  transform: translateZ(120px);
+}
+
+.elements.imgBx img {
+  position: absolute;
+  width: calc(100% - 20px);
+  border-radius: 8px;
+  border: 1px solid var(--color-2);
+  border-top: 1px solid var(--color-3);
+  border-left: 1px solid var(--color-3);
+  box-shadow: 0 25px 45px var(--color-4);
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.box:hover .elements.imgBx img {
+  opacity: 1;
+}
+
+.elements.name {
+  top: 235px;
+  left: initial;
+  right: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  transform: translateZ(100px);
+  background: transparent;
+  backdrop-filter: blur(0px);
+  border: none;
+  box-shadow: none;
+  color: var(--color-5);
+  transition: 1s;
+  opacity: 0;
+  transition-delay: 0.25;
+}
+
+.box:hover .elements.name {
+  top: 135px;
+  opacity: 1;
+}
+
+.elements.content {
+  top: initial;
+  left: initial;
+  bottom: 0;
+  right: -20px;
+  width: 85%;
+  min-height: 200px;
+  padding: 10px;
+  transform: translateZ(180px);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elements.content p {
+  position: relative;
+  color: var(--color-5);
+  font-size: 0.65em;
+  transition: 0.8s;
+  opacity: 0;
+  transition-delay: 0.5s;
+  
+}
+
+.box:hover .elements.content p {
+  opacity: 1;
+}
+
 /* ---------------------------------- text ---------------------------------- */
-.h8{
+.h8 {
   font-size: small;
 }
+
 /* -------------------------------- accordion ------------------------------- */
 .accordion-button:focus {
   box-shadow: 0 0 10px 1px rgba(128, 128, 128, 0.765);
@@ -236,19 +422,24 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px; /* Adjust as needed */
-  height: 150px; /* Adjust as needed */
+  width: 150px;
+  /* Adjust as needed */
+  height: 150px;
+  /* Adjust as needed */
 }
 
 .avatar-image {
   width: 100%;
   height: 100%;
-  object-fit:cover; /* Keeps the aspect ratio and fills the container */
+  object-fit: cover;
+  /* Keeps the aspect ratio and fills the container */
 }
 
 .avatar-icon {
-  font-size: 150px; /* Adjust as needed */
-  color: #555; /* Adjust the color of the icon */
+  font-size: 150px;
+  /* Adjust as needed */
+  color: #555;
+  /* Adjust the color of the icon */
 }
 
 /* -------------------------------- carousel -------------------------------- */
@@ -256,6 +447,38 @@ a{
 .carousel-control-next-icon {
   filter: invert(100%);
 }
+
+/* ---------------------------- rich text editor ---------------------------- */
+/* Set the width of the .trix-button-row based on the width of #emailModal */
+#emailModal .trix-button-row {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling if necessary */
+}
+
+/* Flex display for .trix-button-row */
+#emailModal .trix-button-row.flex-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line if necessary */
+  justify-content: left; /* Center-align buttons */
+}
+
+/* Adjust individual button styles */
+#emailModal .trix-button-row .trix-button {
+  margin: 5px; /* Adjust margin between buttons */
+  white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+/* ------------------------------- javascript ------------------------------- */
+@keyframes burst {
+  0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
 
 /* ---------------------------------- test ---------------------------------- */
 .test {

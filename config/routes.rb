@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: "pages#landing"
+  get "follow_ups/send_follow_up_email"
   get "about", to: "pages#about"
   get "feedback", to: "pages#feedback"
-
+  get "how_to_use", to: "pages#how_to_use"
+  
   resources :ai_messages
   resources :job_listings do
     patch "update_status/:status", action: :update_status, on: :member, as: :update_status
@@ -10,16 +11,11 @@ Rails.application.routes.draw do
   end
   resources :boards
   resources :interviews
-
-  devise_for :users, :controllers => { registrations: "users/registrations" }
+  
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   delete "users/remove_avatar", to: "users#remove_avatar", as: "remove_avatar"
+  
+  post "/follow_ups/send_follow_up_email", to: "follow_ups#send_follow_up_email"
 
-
-  # mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-
+  root to: "pages#landing"
 end

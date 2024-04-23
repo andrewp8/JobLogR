@@ -10,20 +10,16 @@
       <p class="card-text"><%= job.details_summary %></p>
       <p class="card-text h8"><%= number_to_currency(job.salary, precision: 2) %></p>
       <p class="card-text h8">Applied: <%= time_ago_in_words(job.created_at) %> ago</p>
-      <p class="card-text h8 <%= 
-            job.status == 'interviewing' ? 'text-success' : 
-            job.status == 'pending' ? 'text-secondary' : 
-            job.status == 'under_review' ? 'text-primary' : 
-            'text-danger' 
-            %>"><%= job.status.gsub(/_/, ' ').titleize %></p>
+      <%= render "job_listings/shared/card_display_status", job: job %>
       <div class="col text-center">
-        <%= render "job_listings/card_status", job: job %>
+        <%= render "job_listings/shared/card_edit_status", job: job %>
       </div>
       <div class="col-12 text-center">
-        <%= link_to job_listing_path(job) do%>
-          Go to page <i class="fa-solid fa-arrow-right"></i>
+        <%= link_to job_listing_path(job) do %>
+          Details <i class="fa-solid fa-arrow-right"></i>
         <%end%>
       </div>
     </div>
   </div>
 </div>
+
