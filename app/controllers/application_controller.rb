@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:landing, :about, :how_to_use]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  after_action :verify_authorized, unless: :devise_controller? #login, signout, etc. are controller by devise_controller
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protected
 
   def configure_permitted_parameters
@@ -13,12 +16,14 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # def landing_page?
-  #   request.path == root_path
-  # end
-
   def after_sign_in_path_for(resource)
     boards_path
   end
 
+  private
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
 end
