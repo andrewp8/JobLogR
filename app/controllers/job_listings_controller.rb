@@ -1,6 +1,7 @@
 class JobListingsController < ApplicationController
-  include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::NumberHelper #to use number_to_currency helper
   before_action :set_job_listing, only: %i[ show edit update update_status destroy ]
+  before_action :authorize_resource
 
   # GET /job_listings or /job_listings.json
   def index
@@ -104,5 +105,14 @@ class JobListingsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def job_listing_params
     params.require(:job_listing).permit(:title, :company, :location, :salary, :status, :details, :details_summary, :points, :board_id, :job_url, :portal_url, attachments: [])
+  end
+
+  def authorize_resource
+    #is authorized as a class since there's no specific board instance to authorize.
+    if action_name == "index" || action_name == "new" || action_name == "create"  
+      authorize JobListing
+    else
+      authorize @job_listing
+    end
   end
 end
