@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_after_action :verify_authorized, only: [:landing, :about, :how_to_use]
+  skip_after_action :verify_authorized, only: [:landing, :about, :how_to_use, :feedback]
 
   def landing
     @contents = [

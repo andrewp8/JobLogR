@@ -1,11 +1,12 @@
 class JobListingsController < ApplicationController
   include ActionView::Helpers::NumberHelper #to use number_to_currency helper
-  before_action :set_job_listing, only: %i[ show edit update update_status destroy ]
+  before_action :set_job_listing, only: %i[ show edit update update_status destroy]
+  before_action :set_all_job_listings, only: %i[ index application_insights ]
   before_action :authorize_resource
+  
 
   # GET /job_listings or /job_listings.json
   def index
-    @job_listings = JobListing.joins(board: :user).where(users: { id: current_user.id })
   end
 
   # GET /job_listings/1 or /job_listings/1.json
@@ -20,6 +21,7 @@ class JobListingsController < ApplicationController
 
   # GET /job_listings/1/edit
   def edit
+    @board = @job_listing.board
   end
 
   # POST /job_listings or /job_listings.json
@@ -69,7 +71,7 @@ class JobListingsController < ApplicationController
   end
 
   def application_insights
-    @job_listings = index
+    skip_authorization
     @follow_up_list = @job_listings.where("job_listings.total_points < 1 AND job_listings.created_at >= ?", 6.months.ago)
     @six_months_progress = @job_listings.where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
     @num_of_interviews_in_six_months = @job_listings.where(status: :interviewing).where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
@@ -102,6 +104,10 @@ class JobListingsController < ApplicationController
     @job_listing = JobListing.find(params[:id])
   end
 
+  def set_all_job_listings
+    @job_listings = JobListing.joins(board: :user).where(users: { id: current_user.id })
+  end
+
   # Only allow a list of trusted parameters through.
   def job_listing_params
     params.require(:job_listing).permit(:title, :company, :location, :salary, :status, :details, :details_summary, :points, :board_id, :job_url, :portal_url, attachments: [])
@@ -109,7 +115,7 @@ class JobListingsController < ApplicationController
 
   def authorize_resource
     #is authorized as a class since there's no specific board instance to authorize.
-    if action_name == "index" || action_name == "new" || action_name == "create"  
+    if %w[index new create application_insights].include?(action_name) 
       authorize JobListing
     else
       authorize @job_listing

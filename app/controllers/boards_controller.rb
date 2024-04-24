@@ -83,7 +83,7 @@ class BoardsController < ApplicationController
 
   def authorize_resource
     #is authorized as a class since there's no specific board instance to authorize.
-    if action_name == "index" || action_name == "new" || action_name == "create"  
+    if %w[index new create].include?(action_name)
       authorize Board
     else
       authorize @board

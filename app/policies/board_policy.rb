@@ -37,7 +37,7 @@ class BoardPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user_has_access? && user.admin?  # Only admin can delete, and must also be the owner
+    user_has_access?
   end
 
   private

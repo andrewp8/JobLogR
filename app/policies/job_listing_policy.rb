@@ -8,7 +8,11 @@ class JobListingPolicy < ApplicationPolicy
     end
 
     def resolve
-      user.admin? ? scope.all : scope.where(user: user)
+      if user.admin?
+        scope.all
+      else
+        scope.joins(board: :user).where(users: { id: user.id })
+      end
     end
   end
 
@@ -37,14 +41,22 @@ class JobListingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user_has_access? && user.admin?  # Only admin can delete, and must also be the owner
+    user_has_access?
   end
 
+  def application_insights?
+    true
+  end
+
+  def update_status?
+    user_has_access?
+  end
   private
 
   # Centralized access check
   def user_has_access?
     return false if record.nil?
-    user.admin? || record.user == user
+    # user.admin? || scope.where(id: record.id).exists?
+    user.admin? || record.board.user == user
   end
 end
