@@ -1,5 +1,6 @@
 class InterviewsController < ApplicationController
   before_action :set_interview, only: %i[ show edit update destroy ]
+  before_action :authorize_resource
 
   # GET /interviews or /interviews.json
   def index
@@ -18,6 +19,7 @@ class InterviewsController < ApplicationController
 
   # GET /interviews/1/edit
   def edit
+    @job_listing = @interview.job_listing
   end
 
   # POST /interviews or /interviews.json
@@ -69,5 +71,14 @@ class InterviewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def interview_params
       params.require(:interview).permit(:interview_type, :details, :start_date, :end_date, :point, :job_listing_id)
+    end
+
+    def authorize_resource
+      #is authorized as a class since there's no specific board instance to authorize.
+      if %w[index new create].include?(action_name) 
+        authorize Interview
+      else
+        authorize @interview
+      end
     end
 end
