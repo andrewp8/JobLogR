@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:landing_page?, :about, :how_to_use]
+  include Pundit::Authorization
+
+  before_action :authenticate_user!, except: [:landing, :about, :how_to_use]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -11,9 +13,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def landing_page?
-    request.path == root_path
-  end
+  # def landing_page?
+  #   request.path == root_path
+  # end
 
   def after_sign_in_path_for(resource)
     boards_path
