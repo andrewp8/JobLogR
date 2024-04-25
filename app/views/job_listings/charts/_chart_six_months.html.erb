@@ -19,7 +19,8 @@
 
     </div>
     <div>
-      <%= scatter_chart job_listings.group(:total_points).where("job_listings.created_at >= ?", 6.months.ago).count.presence || 0 , colors: ["#9430ff"] ,download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: " Applied applications in the last 6 months: " %>
+      <%= area_chart six_months_progress_data, colors: ["#9430ff"] ,download: true, title: "Applied applications in the last 6 months", xtitle: "Total points", ytitle: "Amount of job listings", label: " Applied applications in the last 6 months: " %>
+      
     </div>
   </div>
 </div>
