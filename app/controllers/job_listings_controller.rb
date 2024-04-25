@@ -114,7 +114,6 @@ class JobListingsController < ApplicationController
   end
 
   def authorize_resource
-    #is authorized as a class since there's no specific board instance to authorize.
     if %w[index new create application_insights].include?(action_name) 
       authorize JobListing
     else

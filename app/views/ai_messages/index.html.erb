@@ -1,11 +1,12 @@
 <h1>Ai Messages</h1>
-<% @ai_messages.each do |ai_message| %>
-  <%=link_to ai_message_path(ai_message.id)%>
-  <div id="ai_message_<%= ai_message.id %>">
-    <p><strong>Role:</strong> <%= ai_message.role %></p>
-    <p><strong>Body:</strong> <%= ai_message.body %></p>
-    <p><strong>Job Listing:</strong> <%= ai_message.job_listing.title %></p>
-  </div>
+<% @ai_messages.each do |date, messages| %>
+  <div class="card p-2 mb-3">
+    <h3><%= date %></h3>
+    <% messages.each do |msg| %>
+    <div>
+      <%=link_to ai_message_path(msg.id)%>
+      <%= render "ai_message", ai_message: msg %>
+    </div>
+  <% end %>
+</div>
 <% end %>
-<%= link_to 'New Ai Message', new_ai_message_path %>
-<%= render "form", ai_message: @ai_message %>

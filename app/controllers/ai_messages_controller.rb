@@ -1,9 +1,10 @@
 require "openai"
 
 class AiMessagesController < ApplicationController
-
+  # before_action :authorize_resource
 
   before_action :set_ai_message, only: %i[ show edit update destroy ]
+  before_action { authorize @ai_message || AiMessage }
 
   # GET /ai_messages or /ai_messages.json
   def index
@@ -18,9 +19,10 @@ class AiMessagesController < ApplicationController
   def new
     @ai_message = AiMessage.new
   end
-
+0
   # GET /ai_messages/1/edit
   def edit
+    @job_listing = @ai_message.job_listing
   end
 
   # POST /ai_messages or /ai_messages.json
@@ -83,4 +85,12 @@ class AiMessagesController < ApplicationController
   def ai_message_params
     params.require(:ai_message).permit(:role, :body, :job_listing_id)
   end
+
+  # def authorize_resource
+  #   if %w[index new create].include?(action_name) 
+  #     authorize AiMessage
+  #   else
+  #     authorize @ai_message
+  #   end
+  # end
 end
