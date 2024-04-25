@@ -7,7 +7,7 @@
     <div id="collapseChatGPT" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body ">
         <%= render "ai_messages/form", ai_message: AiMessage.new, job_listing: job_listing %>
-        <% job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }.each do |date, messages|%>
+        <% @messages_grouped_by_date.each do |date, messages|%>
           <div class="card p-2 bg-body-tertiary mb-3 group_ai_messages">
             <h5 class="date_ai_messages"><%= date.strftime('%a, %d %b %Y') %></h5>
             <div class="new_ai_messages">

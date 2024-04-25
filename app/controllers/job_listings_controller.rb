@@ -12,6 +12,7 @@ class JobListingsController < ApplicationController
   # GET /job_listings/1 or /job_listings/1.json
   def show
     @follow_up_template = JobListing.follow_up_email_template
+    @messages_grouped_by_date = @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }
   end
 
   # GET /job_listings/new

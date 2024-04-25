@@ -1,18 +1,21 @@
 document.getElementById('loading-icon').style.display = 'none';
 
-// Create a new div element to hold the new message
-var newMessageDiv = document.createElement('div');
-
-// Set the inner HTML of the new div to the rendered message
-newMessageDiv.innerHTML = '<%= j render("ai_messages/ai_message", ai_message: @ai_message) %>';
-
-// Get the container for the messages
 var messagesContainer = document.querySelector('.new_ai_messages');
+if (!messagesContainer) {
+  // If .new_ai_messages doesn't exist, reload the page
+  location.reload();
+} else {
+  // Create a new div element to hold the new message
+  var newMessageDiv = document.createElement('div');
 
-// Insert the new message before the first child of the container
-messagesContainer.insertBefore(newMessageDiv.firstChild, messagesContainer.firstChild);
+  // Set the inner HTML of the new div to the rendered message
+  newMessageDiv.innerHTML = '<%= j render("ai_messages/ai_message", ai_message: @ai_message) %>';
+  
+  // Get the container for the messages
+  var messagesContainer = document.querySelector('.new_ai_messages');
 
+  // Insert the new message before the first child of the container
+  messagesContainer.insertBefore(newMessageDiv.firstChild, messagesContainer.firstChild);
+}
 // Clear the input value after adding the new message
 document.getElementById('ai_body').value = '';
-
-console.log(jQuery('.new_ai_messages').children().length)
