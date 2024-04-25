@@ -1,9 +1,9 @@
+<div>
+  <%= render "job_listings/charts/chart_six_months", six_months_progress: @six_months_progress, num_of_interviews_in_six_months: @num_of_interviews_in_six_months, follow_up_list: @follow_up_list, six_months_progress_data: @six_months_progress_data %>
 
-<%= render "job_listings/charts/chart_six_months", six_months_progress: @six_months_progress, num_of_interviews_in_six_months: @num_of_interviews_in_six_months, follow_up_list: @follow_up_list, job_listings: @job_listings %>
+  <%= render "job_listings/charts/chart_seven_days", last_seven_days_progress: @last_seven_days_progress%>
 
-<%= render "job_listings/charts/chart_seven_days", last_seven_days_progress: @last_seven_days_progress%>
-
-<%= render "job_listings/charts/chart_over_time", job_listings: @job_listings, total_interviewings: @total_interviewings,total_under_reviews: @total_under_reviews, total_pendings: @total_pendings, total_rejections: @total_rejections %>
-
+  <%= render "job_listings/charts/chart_over_time", job_listings: @job_listings, total_interviewings: @total_interviewings,total_under_reviews: @total_under_reviews, total_pendings: @total_pendings, total_rejections: @total_rejections %>
+</div>
 
 <%= render "job_listings/charts/low_engagement_modal", follow_up_list: @follow_up_list %>

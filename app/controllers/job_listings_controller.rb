@@ -12,6 +12,7 @@ class JobListingsController < ApplicationController
   # GET /job_listings/1 or /job_listings/1.json
   def show
     @follow_up_template = JobListing.follow_up_email_template
+    @messages_grouped_by_date = @job_listing.ai_messages.order(created_at: :desc).group_by { |message| message.created_at.to_date }
   end
 
   # GET /job_listings/new
@@ -81,6 +82,12 @@ class JobListingsController < ApplicationController
     @total_pendings = @job_listings.where(status: :pending).count
     @total_rejections = @job_listings.where(status: :rejected).count
     
+
+    @six_months_progress_data = JobListing.joins(board: :user)
+    .where(users: { id: current_user.id })
+    .where("job_listings.created_at <= ?", 6.months.ago)
+    .group(:status)
+    .count.presence || 0
     respond_to do |format|
       format.html { render "job_listings/charts/charts" }
     end
