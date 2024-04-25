@@ -18,7 +18,7 @@ class JobListingPolicy < ApplicationPolicy
 
   # Policy methods
   def index?
-    true  # Anyone logged in can access the index page because records are explicitly fetched from the current_user
+    user.admin?
   end
 
   def show?
