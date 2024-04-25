@@ -1,6 +1,6 @@
 <h1>Editing job listing</h1>
 
-<%= render "form", job_listing: @job_listing %>
+<%= render "job_listings/shared/form", locals: {job_listing: @job_listing, board: @board} %>
 
 <br>
 

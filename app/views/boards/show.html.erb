@@ -5,7 +5,7 @@
     <% end %>
     <h3 class="navbar-brand"><%= @board.board_name %></h3>
 
-    <%=  link_to edit_board_path(@board), class: "px-5 btn text-warning", data: { bs_toggle: "modal", bs_target: "#editBoardModal" } do %>
+    <%=  link_to edit_board_path(@board), class: "btn text-warning", data: { bs_toggle: "modal", bs_target: "#editBoardModal" } do %>
       <i class="fa-solid fa-pencil"></i>
     <% end %>
     <%= button_to @board, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn text-danger" do %>

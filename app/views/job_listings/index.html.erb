@@ -4,7 +4,9 @@
 
 <div id="job_listings">
   <% @job_listings.each do |job_listing| %>
-    <%= render job_listing %>
+    <div class="card p-2 mb-2">
+      <%= render "job_listings/shared/job_listing", job_listing: job_listing %>
+    </div>
     <p>
       <%= link_to "Show this job listing", job_listing %>
     </p>

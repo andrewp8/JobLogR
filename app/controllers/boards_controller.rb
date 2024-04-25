@@ -1,9 +1,11 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[ show edit update destroy ]
+  # before_action { authorize @board || Board }
+  before_action :authorize_resource
 
   # GET /boards or /boards.json
   def index
-    @boards = current_user.boards
+    @boards = policy_scope(current_user.boards)
     respond_to do |format|
       format.html
       format.js
@@ -77,5 +79,14 @@ class BoardsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def board_params
     params.require(:board).permit(:board_name)
+  end
+
+  def authorize_resource
+    #is authorized as a class since there's no specific board instance to authorize.
+    if %w[index new create].include?(action_name)
+      authorize Board
+    else
+      authorize @board
+    end
   end
 end
