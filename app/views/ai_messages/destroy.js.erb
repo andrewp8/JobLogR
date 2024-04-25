@@ -1,5 +1,4 @@
 // destroy.js.erb
-
 var aiMessageId = "<%= dom_id @ai_message %>";
 var aiMessage = document.getElementById(aiMessageId);
 
@@ -9,12 +8,10 @@ aiMessage.style.animation = "burst 0.7s ease 0s 1 normal forwards";
 // Remove the message element from the DOM after the animation completes
 aiMessage.addEventListener("animationend", function() {
   aiMessage.remove();
-});
-var newAiMessages = document.querySelector('.new_ai_messages');
-var groupAiMessages = document.querySelector('.group_ai_messages');
+  
+  // Check if any element inside .new_ai_messages exists in the DOM
+  if (jQuery('.new_ai_messages').children().length <1 ) {
+    jQuery('.group_ai_messages').remove()
+  } 
 
-    if (newAiMessages.children.length == 0) {
-    console.log("TEST",event.target.classList.contains('delete-button') && newAiMessages.children.length == 0)
-       groupAiMessages.remove();
-    }
-});
+})
