@@ -1,7 +1,7 @@
 # [JobLogR](https://www.joblogr.org/) 🌐
 ### Simplify Your Job Application Process
 <p align="center" width="100%">
-<img alt="JobLogR Wireframe" width="700px" src="https://github.com/andrewp8/jobLogR/assets/69804999/45278cda-7791-40bd-8fe3-8144ea6c7403" />
+     <img alt="JobLogR Wireframe" width="700px" src="https://github.com/andrewp8/jobLogR/assets/69804999/45278cda-7791-40bd-8fe3-8144ea6c7403" />
 </p>
 
 ## Overview
@@ -16,8 +16,9 @@ For a comprehensive guide, [see the full interactive version here 👈](https://
 
 Our application's database schema is visualized in the Entity-Relationship Diagram (ERD) below. This diagram provides a clear overview of the tables, their fields, and the relationships between them, facilitating a better understanding of how data is interconnected within our application.
 <p align="center" width="100%">
-<img alt="JobLogR Wireframe" width="700px" src="https://github-production-user-asset-6210df.s3.amazonaws.com/69804999/324680767-0265b70c-739b-4095-8846-b5dab2ac1182.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240423%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240423T162045Z&X-Amz-Expires=300&X-Amz-Signature=1d757b6bffa218d4c3a0df8b3e89a99816767d78bf4bb0c0bacc96785ae2f92f&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=0" />
+     <img width="987" alt="JobLogR ERD" src="https://github.com/andrewp8/jobLogR/assets/69804999/b32f60fe-e586-4980-ac09-65e059141b49">
 </p>
+
 
 
 ## Setup
