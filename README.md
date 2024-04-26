@@ -8,6 +8,11 @@
 
 JobLogR aims to empower job seekers by providing a comprehensive tool to manage their job applications more efficiently, reducing the stress and disorganization often associated with the job search process.
 ## How to use JobLogR
+<p align="center" width="60%">
+  <a href="https://www.loom.com/share/6be4b4336cad4b779e56a52a8a244a10">
+    <img src="https://cdn.loom.com/sessions/thumbnails/6be4b4336cad4b779e56a52a8a244a10-1713157845766-with-play.gif" alt="How to use JobLogR gif">
+  </a>
+</p>
 <p align="center" width="100%">
      [![Watch the Video](https://cdn.loom.com/sessions/thumbnails/6be4b4336cad4b779e56a52a8a244a10-1713157845766-with-play.gif)](https://www.loom.com/share/6be4b4336cad4b779e56a52a8a244a10)
 </p>
@@ -16,6 +21,7 @@ For a comprehensive guide, [see the full interactive version here 👈](https://
 ## Entity-Relationship Diagram (ERD)
 
 Our application's database schema is visualized in the Entity-Relationship Diagram (ERD) below. This diagram provides a clear overview of the tables, their fields, and the relationships between them, facilitating a better understanding of how data is interconnected within our application.
+
 <p align="center" width="100%">
      <img width="987" alt="JobLogR ERD" src="https://github.com/andrewp8/jobLogR/assets/69804999/b32f60fe-e586-4980-ac09-65e059141b49">
 </p>
