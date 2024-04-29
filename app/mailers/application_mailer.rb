@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV["GMAIL_ADDRESS"]
+  default from: ENV["POSTMARK_SERVER_EMAIL_ADDRESS"]
   layout "mailer"
 end

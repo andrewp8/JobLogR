@@ -25,8 +25,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   enum role: { user: 0, admin: 1, moderator: 2 }
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_many :boards, dependent: :destroy
   has_one_attached :avatar
@@ -48,9 +46,6 @@ class User < ApplicationRecord
         user.avatar.attach(io: downloaded_avatar, filename: "avatar.jpg")
       end
 
-      # If you are using confirmable and the provider(s) you use validate emails
-      #uncoment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
     end
   end
 end
