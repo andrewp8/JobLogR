@@ -72,7 +72,6 @@ class JobListingsController < ApplicationController
   end
 
   def application_insights
-    skip_authorization
     @follow_up_list = @job_listings.where("job_listings.total_points < 1 AND job_listings.created_at >= ?", 6.months.ago)
     @six_months_progress = @job_listings.where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
     @num_of_interviews_in_six_months = @job_listings.where(status: :interviewing).where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
