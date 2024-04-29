@@ -11,6 +11,7 @@
           <%= form.text_field :recipient_email, placeholder: "Recipient's Email", required: true, class: "form-control mb-3" %>
           <%= form.text_field :subject, placeholder: "Subject", required: true, class: "form-control mb-3" %>
           <%= form.rich_text_area :email_body, value: follow_up_template, class: "form-control mb-3" %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
         </div>
         <%= form.hidden_field :job_listing_id, value: job_listing.id %>
         <div class="modal-footer">
