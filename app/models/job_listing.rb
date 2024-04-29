@@ -36,7 +36,7 @@ class JobListing < ApplicationRecord
 
   belongs_to :board
   has_many :interviews, dependent: :destroy
-  has_many :ai_messages, foreign_key: :job_listing_id
+  has_many :ai_messages
 
   has_many_attached :attachments, service: :amazon
 
