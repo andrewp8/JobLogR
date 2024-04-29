@@ -71,26 +71,24 @@ class JobListingsController < ApplicationController
     end
   end
 
-  def application_insights
-    @follow_up_list = @job_listings.where("job_listings.total_points < 1 AND job_listings.created_at >= ?", 6.months.ago)
-    @six_months_progress = @job_listings.where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
-    @num_of_interviews_in_six_months = @job_listings.where(status: :interviewing).where("job_listings.created_at <= ?", 6.months.ago).count.presence || 0
-    @last_seven_days_progress = @job_listings.where("job_listings.created_at >= ?", 7.days.ago)
-    @total_interviewings = @job_listings.where(status: :interviewing).count
-    @total_under_reviews = @job_listings.where(status: :under_review).count
-    @total_pendings = @job_listings.where(status: :pending).count
-    @total_rejections = @job_listings.where(status: :rejected).count
-    
+def application_insights
+  insights_service = ApplicationInsightsService.new(@job_listings, current_user)
+  insights_data = insights_service.call
 
-    @six_months_progress_data = JobListing.joins(board: :user)
-    .where(users: { id: current_user.id })
-    .where("job_listings.created_at <= ?", 6.months.ago)
-    .group(:status)
-    .count.presence || 0
-    respond_to do |format|
-      format.html { render "job_listings/charts/charts" }
-    end
+  @follow_up_list = insights_data[:follow_up_list]
+  @six_months_progress = insights_data[:six_months_progress]
+  @num_of_interviews_in_six_months = insights_data[:num_of_interviews_in_six_months]
+  @last_seven_days_progress = insights_data[:last_seven_days_progress]
+  @total_interviewings = insights_data[:total_interviewings]
+  @total_under_reviews = insights_data[:total_under_reviews]
+  @total_pendings = insights_data[:total_pendings]
+  @total_rejections = insights_data[:total_rejections]
+  @six_months_progress_data = insights_data[:six_months_progress_data]
+
+  respond_to do |format|
+    format.html { render "job_listings/charts/charts" }
   end
+end
 
   # DELETE /job_listings/1 or /job_listings/1.json
   def destroy
