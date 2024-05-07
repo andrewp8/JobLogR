@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_after_action :verify_authorized, only: [:landing, :about, :how_to_use, :feedback]
 
   def landing
+    # I would move this to the view
     @contents = [
       { caption: "Your AI-Powered Career Coach", body: "Leverage AI as your career coach with JobLogR, researching companies and consolidating job-related information in one spot, eliminating the need for repeated research on the same topics, streamlining your job search process.", img: "https://lottie.host/embed/d9d1d22d-5f77-4fb5-9172-b63e128e972c/BKyloZEJIc.json", label: "Animation illustrating an AI-powered career coach guiding a user through job search and application strategies.", img_back: "ai.png", alt: "Image showcasing the functionality of JobLogR's Career Coach." },
       { caption: "The career kit for the modern job-seeker", body: "JobLogR ensures secure storage of job details, enables tracking all applications in one location, simplifies planning your interview schedule, and allows job status updates with a single click, streamlining the job search process efficiently.", img: "https://lottie.host/embed/35cbc379-89a2-4fff-bdd6-d66cda49b230/v6ZpYC1mBZ.json", label: "An animation picture showing the seamless tracking and management of job applications in the Job Tracking Manager.", img_back: "tracker.png", alt: "Image showcasing the functionality of JobLogR's job tracking management." },

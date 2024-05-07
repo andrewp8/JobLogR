@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[ show edit update destroy ]
-  # before_action { authorize @board || Board }
+  # before_action { authorize @board || Board } # commented out code?
   before_action :authorize_resource
 
   # GET /boards or /boards.json

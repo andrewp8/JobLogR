@@ -75,7 +75,8 @@ class InterviewsController < ApplicationController
 
     def authorize_resource
       #is authorized as a class since there's no specific board instance to authorize.
-      if %w[index new create].include?(action_name) 
+      # could be simplified with `authorize{ @interview || Interview }`
+      if %w[index new create].include?(action_name)
         authorize Interview
       else
         authorize @interview

@@ -3,7 +3,7 @@ class JobListingsController < ApplicationController
   before_action :set_job_listing, only: %i[ show edit update update_status destroy]
   before_action :set_all_job_listings, only: %i[ index application_insights ]
   before_action :authorize_resource
-  
+
 
   # GET /job_listings or /job_listings.json
   def index
@@ -56,7 +56,7 @@ class JobListingsController < ApplicationController
       end
     end
   end
-
+  # that could probably just use `update` action
   def update_status
     new_status = params[:status].to_sym
     @job = set_job_listing()
@@ -118,7 +118,7 @@ end
   end
 
   def authorize_resource
-    if %w[index new create application_insights].include?(action_name) 
+    if %w[index new create application_insights].include?(action_name)
       authorize JobListing
     else
       authorize @job_listing

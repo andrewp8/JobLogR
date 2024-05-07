@@ -20,6 +20,5 @@ class Board < ApplicationRecord
   has_many :job_listings, dependent: :destroy
   belongs_to :user
 
-  # -------------------------------- validations ------------------------------- #
   validates :board_name, presence: true
 end
