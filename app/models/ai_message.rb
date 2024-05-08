@@ -18,6 +18,7 @@
 #  fk_rails_...  (job_listing_id => job_listings.id)
 #
 class AiMessage < ApplicationRecord
+  # nice concern!
   include OpenAiResponseHandler
   belongs_to :job_listing, foreign_key: :job_listing_id
 end

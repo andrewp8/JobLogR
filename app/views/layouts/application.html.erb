@@ -7,6 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# Good use of partials! %>
     <%= render partial: "shared/cdn_assets" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -16,11 +17,13 @@
   </head>
 
   <body>
+    <%# Good use of partials! %>
     <%= render partial: "shared/navbar" %>
 
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
+          <%# Good use of partials! %>
           <% if notice.present? %>
             <%= render partial: "shared/flash", locals: { message: notice, css_class: "success" } %>
           <% end %>
