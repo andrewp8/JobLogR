@@ -5,7 +5,6 @@ This is a base Ruby on Rails repository configured for learning with Codespaces 
 - Ruby version: `3.2.1`
 - Rails version: `7.0.4.3`
 
-
 We've added additional Ruby gems and other software that aren't automatically available in a new Rails app.
 
 ### Additional gems:
@@ -35,12 +34,13 @@ We've added additional Ruby gems and other software that aren't automatically av
 - [`webmock`](https://github.com/bblimke/webmock)
 
 ### Additional software:
+
 - OS Ubuntu 20.04.5 LTS
 - Chromedriver
 - Fly.io's `flyctl`
 - Google Chrome (headless browser)
 - Graphviz
-- Heroku 
+- Heroku
 - Node JS 18
 - NPM 8.19.3
 - Parity
@@ -49,7 +49,9 @@ We've added additional Ruby gems and other software that aren't automatically av
 - Yarn
 
 ### VS Code extensions:
+
 - aliariff.vscode-erb-beautify
 - mbessey.vscode-rufo
 - vortizhe.simple-ruby-erb
-# jobLogR
+
+# JobRecorder

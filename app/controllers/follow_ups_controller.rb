@@ -12,7 +12,7 @@ class FollowUpsController < ApplicationController
       FollowUpMailer.follow_up_email(recipient_email, email_body, subject, full_name).deliver_now
       redirect_to job_listing_url(job_listing), notice: "Follow-up email sent successfully!"
     rescue Postmark::ApiInputError => e
-      flash[:alert] = "Currently, we can only send emails to addresses within our domain. Please use an email address that ends with '@joblogr.org'."
+      flash[:alert] = "Currently, we can only send emails to addresses within our domain. Please use an email address that ends with '@JobRecorder.com'."
       redirect_to job_listing_url(job_listing)
     rescue StandardError => e
       flash[:alert] = "An unexpected error occurred: #{e.message}"
