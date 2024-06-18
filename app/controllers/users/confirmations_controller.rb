@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  # clear out commented out code
   # GET /resource/confirmation/new
   # def new
   #   super

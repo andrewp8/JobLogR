@@ -1,4 +1,5 @@
 <%= form_with(model: ai_message, local: false, html: { id: dom_id(ai_message, "form")}) do |form| %>
+<%# delete commented out code %>
 <%# <%= form_with(model: ai_message, local: true, html: { id: dom_id(ai_message, "form"), data: { turbo: false } }) do |form| %>
   <div class="mb-3">
     <div class="input-group">
@@ -10,7 +11,7 @@
     <%= form.hidden_field :job_listing_id, value: job_listing.id %>
   </div>
 <% end %>
-
+<%# explicit enough ; no need to add a comment %>
 <!-- Loading icon -->
 <div id="loading-icon" style="display: none;" class="text-center">
   <%= image_tag "loading.gif", width: 200 %>

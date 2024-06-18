@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   private
-
+  # Not sure you need this since you are using ActiveStorage
   def handle_avatar_upload
     if auth.present? && auth.info.image.present?
       avatar_url = auth.info.image
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   # Controller action where you want to remove the avatar
   def remove_avatar
     @user = current_user
-    
+
     # Remove the avatar
     @user.avatar.purge
 

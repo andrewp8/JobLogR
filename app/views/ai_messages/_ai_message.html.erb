@@ -1,8 +1,9 @@
 <div id="<%= dom_id ai_message %>" class="p-3 " >
   <div class="d-flex justify-content-end">
-<%= button_to ai_message, method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn text-danger delete-button" do %>
-  <i class="fa-solid fa-trash"></i>
-<% end %>
+    <%# indent %>
+    <%= button_to ai_message, method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn text-danger delete-button" do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
 
   </div>
   <div class="d-flex justify-content-end align-items-center">
